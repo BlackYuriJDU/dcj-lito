@@ -1,0 +1,7 @@
+mes_fase,titulo,sintomas_observados,funcionalidade,fonte_validacao
+0,"Início inespecífico","Insônia, ansiedade, apetite reduzido, queixas de concentração; hipótese inicial de depressão","Independente; ainda trabalhando/vivendo normalmente","Padrão clássico de início sCJD (ver research/estado_da_arte_dcj.md)"
+1,"Primeiros sinais cognitivos","Falhas de memória recente, desorientação leve no tempo; lentificação do raciocínio","Independente com dificuldades; família nota mudança","Critérios CDC: declínio cognitivo progressivo rápido"
+2,"Demência rápida + ataxia","Desorientação temporoespacial, marcha instável (ataxia cerebelar), disartria leve","Precisa supervisão para deslocamentos","Quadro neurológico típico MM1"
+3,"Mioclonias e declínio severo","Mioclonias espontâneas e ao estímulo; mioclonia negativa possível; agitação noturna","Dependente para AVDs básicas","PSWC no EEG tipicamente emerge nesta fase"
+4,"Fase avançada inicial","Mutenismo progressivo, rigidez, acinesia, disfagia inicial","Acamado; alimentação assistida","Evolução terminal típica"
+5,"Terminal","Disfagia grave, incontinência, redução do nível de consciência","Cuidados paliativos intensivos","Sobrevida mediana sCJD ~4-6 meses após início (MM1)"
