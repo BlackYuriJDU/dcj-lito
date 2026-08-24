@@ -59,6 +59,13 @@ prometer cura está mentindo. O que existe de sério:
 3. **Falidos — não percam tempo/dinheiro**: quinacrina, doxiciclina,
    pentosano polissulfato, flupirtina (todos sem eficácia comprovada).
 
+   **E o PRN100?** Foi um anticorpo testado em 6 pacientes em Londres (2018–19):
+   seguro e alcançou o cérebro, mas sem como provar eficácia (eram poucos pacientes,
+   já graves, sem grupo de comparação) — e o fornecimento acabou antes de haver
+   resposta. Ou seja: não foi "refutado"; foi interrompido por logística. O conceito
+   de proteger a proteína príon segue vivo nas terapias atuais (que ensinam o corpo
+   a produzir menos dela).
+
 ## 5. Onde está a ajuda (Brasil e mundo)
 
 **Brasil**
