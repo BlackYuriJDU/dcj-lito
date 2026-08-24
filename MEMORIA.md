@@ -133,3 +133,13 @@ o ciclo da auditoria adversarial, o envio ao Lito, a carta ao Prion Alliance,
 a invenção da alfândega intercelular, a blindagem G127V (limiar de percolação
 ~41%), o PRN100, a auto-destruição celular e a demanda de calibração por dados
 reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra.
+
+## CALIBRAÇÃO POR DADOS REAIS (2026-08-24, fim de tarde)
+- simulacao_calibrada.py: morte Weibull estocástica; 3 validações contra literatura:
+  V1 MM1 → 4,3 meses (publicado 4-5) ✅; V2 subtipo lento 2,7× → 10,5 meses
+  (publicado 12-14; levemente abaixo — compressão não-linear frente+morte, honesto);
+  V3 dose→incubação log-linear (slope -19d/década) ✅ consistente com iatrogênica
+  (GH 12a → dura 22-48a, Rudge 2015/Will 2003/CDC 48,3a).
+- Lição técnica: endpoint "comprometidos" é dominado pela frente (calibração
+  trivial); endpoint "80% MORTOS" é sensível à distribuição de morte — o correto
+  para calibrar. Registrado no código.

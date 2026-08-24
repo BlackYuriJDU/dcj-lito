@@ -44,8 +44,10 @@ def weibull(rng, escala, k=K_WEIBULL):
 
 
 def rodar(rng, escala_morte, p_emitir=P_EMITIR, dose=1, alvo_frac=0.8,
-          horizonte=900):
-    """Retorna dias até `alvo_frac` da grade comprometida (ou None)."""
+          horizonte=900, alvo_mortos=False):
+    """Dias até `alvo_frac` comprometidos (ou MORTOS se alvo_mortos) — ou None.
+    Endpoint de MORTOS é sensível à distribuição de morte (calibração real);
+    endpoint de comprometidos é dominado pela frente (usado só na V3)."""
     n = LADO * LADO
     estado = [0] * n
     t_morte = [math.inf] * n
@@ -78,16 +80,21 @@ def rodar(rng, escala_morte, p_emitir=P_EMITIR, dose=1, alvo_frac=0.8,
             if estado[j] == 0:
                 estado[j] = 1
                 t_morte[j] = dia + weibull(rng, escala_morte)
-        comp = sum(1 for s in estado if s != 0)
-        if comp >= limiar:
+        if alvo_mortos:
+            cont = sum(1 for s in estado if s == 2)
+        else:
+            cont = sum(1 for s in estado if s != 0)
+        if cont >= limiar:
             return dia
     return None
 
 
-def mediana_tempo(escala, p_emitir=P_EMITIR, dose=1, alvo=0.8):
+def mediana_tempo(escala, p_emitir=P_EMITIR, dose=1, alvo=0.8,
+                  alvo_mortos=False):
     vals = []
     for s in range(REPS):
-        r = rodar(random.Random(500 + s), escala, p_emitir, dose, alvo)
+        r = rodar(random.Random(500 + s), escala, p_emitir, dose, alvo,
+                  alvo_mortos=alvo_mortos)
         if r is not None:
             vals.append(r)
     return statistics.median(vals) if vals else None
@@ -101,24 +108,25 @@ def main() -> None:
          "", "## Calibração V1 — sobrevida MM1 (mediana publicada: 4–5 meses)"]
     # auto-calibração da escala de morte
     melhor, melhor_dif = None, 1e9
-    for escala in range(40, 141, 10):
-        m = mediana_tempo(escala)
+    for escala in range(20, 161, 10):
+        m = mediana_tempo(escala, alvo_mortos=True)
         if m is None:
             continue
         dif = abs(m - MM1_ALVO_DIAS)
         if dif < melhor_dif:
             melhor, melhor_dif = escala, dif
-        print(f"[calib escala={escala}] mediana={m}d")
+        print(f"[calib escala={escala}] mediana-mortos={m}d")
     escala_mm1 = melhor
-    m1 = mediana_tempo(escala_mm1)
+    m1 = mediana_tempo(escala_mm1, alvo_mortos=True)
     L.append(f"- Escala de morte calibrada: {escala_mm1} d → sobrevida mediana "
-             f"simulada **{m1} d = {m1/30.4:.1f} meses** (alvo: 4–5) "
+             f"simulada **{m1} d = {m1/30.4:.1f} meses** (alvo: 4–5; endpoint "
+             "80% MORTOS — sensível à distribuição de morte) "
              f"{'✅' if 4.0 <= m1/30.4 <= 5.0 else '❌'}")
 
     # V2 — subtipo lento
     p_lento = P_EMITIR / 2.7
     escala_lenta = escala_mm1 * 2.7
-    m2 = mediana_tempo(escala_lenta, p_lento)
+    m2 = mediana_tempo(escala_lenta, p_lento, alvo_mortos=True)
     L += ["", "## Validação V2 — subtipo lento VV2-like (publicado: 12–14 meses)",
           f"- Dinâmica 2,7× mais lenta → sobrevida simulada **{m2} d = "
           f"{m2/30.4:.1f} meses** {'✅' if 10.0 <= m2/30.4 <= 15.0 else '❌'}"]
