@@ -112,3 +112,16 @@ Todas as entregas da missão original estão prontas e verificadas.
   (Lancet Neurol 2022) — seguro, alcançou cérebro, sem prova de eficácia (n=6 sem
   controle); programa morreu de logística (fornecimento), não de refutação.
   Nota adicionada ao guia_de_familias.md.
+
+## MERGULHO NA IDEIA G (2026-08-24) — LIMIAR DE PERCOLAÇÃO DESCOBERTO
+- Varredura (varredura_blindagem.py): colapso do espalhamento em transição de
+  percolação — limiar teórico ~41% blindado (p_c=0,593 sítios, quadrada viz-4),
+  confirmado numericamente (40%→23%,2; 50%→1,3%). Aleatória ≥ blocos 5×5.
+- Genética: G127V heterozigoto protege contra kuru+CJD (PMC4486072); dominant-negative
+  vale para múltiplas cepas (Gatdula 2026, Mol Neurodegener); homozigoto = resistência
+  absoluta em camundongos humanizados.
+- Tradução honesta: exige EDIÇÃO cerebral (base editing, pré-clínico); entrega atual
+  alcança 50-70% (siRNA 70% em camundongo) — cobertura OK, método de edição não-clínico.
+- Nota da Zurzolo ganhou ADDENDUM v2 com a varredura + previsão testável (colapso
+  não-linear ~40% em co-cultura). Próximo passo natural: simular alavancas COMBINADAS
+  (alfândega + blindagem) — frações menores de cada podem bastar.
