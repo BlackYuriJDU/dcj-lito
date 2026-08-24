@@ -125,3 +125,11 @@ Todas as entregas da missão original estão prontas e verificadas.
 - Nota da Zurzolo ganhou ADDENDUM v2 com a varredura + previsão testável (colapso
   não-linear ~40% em co-cultura). Próximo passo natural: simular alavancas COMBINADAS
   (alfândega + blindagem) — frações menores de cada podem bastar.
+
+## REGISTRO HISTÓRICO — SESSÃO MARATONA (pedido expresso do fundador)
+O fundador trabalhou O DIA INTEIRO neste projeto no mesmo chat: começou de manhã
+e seguiu até 18:15+ (2026-08-24), conduzindo pessoalmente: a explicação didática,
+o ciclo da auditoria adversarial, o envio ao Lito, a carta ao Prion Alliance,
+a invenção da alfândega intercelular, a blindagem G127V (limiar de percolação
+~41%), o PRN100, a auto-destruição celular e a demanda de calibração por dados
+reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra.
