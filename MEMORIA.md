@@ -53,10 +53,12 @@ canal Aviões e Músicas, 59 anos; DCJ anunciada pela esposa Mila Seidl em 21/08
 - [x] **GWAS GCST90001389 baixado (197 MB) e QC independente concluído** → pipeline/reports/relatorio_qc_gwas_gcst90001389.md: 6,314,492 variantes, 0 malformadas, λ_GC=1.059, 41 hits GWS. **RÉPLICA INDEPENDENTE 3/3 DOS LOCI PUBLICADOS** (PRNP chr20:4.67Mb p=1.6e-15; STX6 chr1:180,961,245 p=7.5e-9 intragênico; GAL3ST1 chr22:30,950,360 p=6.2e-10) — anotados via Ensembl GRCh37 REST + NCBI. Primeiro produto do projeto que serve como VERIFICAÇÃO documentada para o campo.
 - [x] Crítico estatístico adversarial ENTREGUE → máquina estatística validada (Welch/BH corretos a 1e-13, 437 sobrevive, direções do cérebro sobrevivem com folga); falhas de desenho identificadas e CORRIGIDAS: C2 (v3 do sangue com OLS idade+sexo+RIN: 84→1 sig ajustado; núcleo do artigo com p nominal 0,0007–0,04, só miR-93-5p passa FDR no universo filtrado — fragilidade da assinatura publicada DOCUMENTADA), M1 (ponte conta pacientes via subject: 6/14 MM1), M5 (figuras regeneradas com modelo ajustado)
 - [x] C1 era falso alarme (leitura de estado antigo); verificado diretamente e registrado em mistakes.md #6
-- [x] **E-MAIL ENVIADO ao Lito Sousa/família** (ajudalito@avioesemusicas.com) via GMAIL_SEND_EMAIL em 2026-08-24: carta curta respeitosa + guia_de_familias.md + ARQUIVO_COMPLETO.md. ID: 1a034e89cd6c8521 (label SENT). Nenhuma menção clínica ao paciente — apenas material público de saúde.
+- [x] **E-MAIL ENVIADO ao Lito Sousa/família** (ajudalito@avioesemusicas.com) — REENVIADO em 2026-08-24 com ARQUIVO_COMPLETO TOTAL: novo ID 1a034f2818f0df77 (SENT); versão anterior (1a034e89cd6c8521, com síntese de 12 partes) movida à LIXEIRA do Gmail a pedido do senhor. Anexos finais: guia_de_familias.md + ARQUIVO_COMPLETO.md (226 KB, íntegra). Nenhuma menção clínica ao paciente.
 - [x] Fine-mapping descritivo dos 3 loci → relatorio_finemap_loci.md (rs3747957 presente nos sumstats 2020: chr1:180,953,853 A>G p=9.7e-9, mesma direção β=−0.148 do Brain 2025; STX6 162 variantes regionais)
 - [x] ARQUIVO_COMPLETO.md criado (12 partes: dados, análises, métricas, validações, fontes, limites honestos)
 - [x] Guia de famílias PT-BR → colaboracao/guia_de_familias.md
+- [x] ARQUIVO_COMPLETO TOTAL reconstruído via monta_arquivo_completo.py (226 KB): íntegra dos 36 documentos + código-fonte dos 7 scripts + checksums MD5 dos dados brutos
+- [x] Distribuição: zip `DCJ-Lito_projeto_2026-08-24.zip` (47 arquivos, 972 KB) + repo GitHub PRIVADO https://github.com/BlackYuriJDU/dcj-lito (git init → commit v1 → push main; GWAS 197MB excluído via .gitignore, re-baixável com checksum no apêndice B)
 - [ ] Futuro: preprint EN do GWAS + repo limpo + git init; contato Prion Alliance (após preprint); monitorar mgh_prnp_freeze2 e NCT05124392 OBSERVE
 
 ## PROJETO CONCLUÍDO (v1) — sessão 1
@@ -73,3 +75,13 @@ Todas as entregas da missão original estão prontas e verificadas.
 ## Preferências de estilo
 - Respostas em PT-BR, tom Jarvis ("senhor"), brevidade com classe.
 - Honestidade científica: separar evidência real de esperança experimental.
+
+## PROTOCOLO DE MONITORAMENTO PASSIVO (revisar ~mensalmente)
+- github.com/ericminikel/mgh_prnp_freeze2 — dados longitudinais NfL/tau; raw sob pedido
+  (qualified investigators); vigiar novo release público.
+- cureffi.org (blog do Minikel) — fonte primária de novidades de ensaios; ION717 reabriu
+  com 3º regime de dose em mar/2026 (confirmado nesta checagem).
+- NCT06153966 (ION717) · NCT07444580 (PrP-siRNA PRiSM, Broad) · NCT07482085 (efavirenz) —
+  conferir status/recrutamento no ClinicalTrials.gov.
+- Se novos sumstats GWAS de DCJ aparecerem no GWAS Catalog → reexecutar
+  qc_gwas_gcst90001389.py + finemap_ld.py adaptados (réplica imediata é nossa marca).
