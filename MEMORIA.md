@@ -85,3 +85,12 @@ Todas as entregas da missão original estão prontas e verificadas.
   conferir status/recrutamento no ClinicalTrials.gov.
 - Se novos sumstats GWAS de DCJ aparecerem no GWAS Catalog → reexecutar
   qc_gwas_gcst90001389.py + finemap_ld.py adaptados (réplica imediata é nossa marca).
+
+## CARTAS DE ENGAJAMENTO ENVIADAS (2026-08-24)
+- Prion Alliance/Vallabh-Minikel (eminikel@ + cc svallabh@broadinstitute.org): ID 1a03533038d54907
+  · anexo manuscrito_preprint.md · pedido único: 20 min de crítica antes do bioRxiv.
+- HC-FMUSP Grupo Neurologia Cognitiva (sonia.brucki@hc.fm.usp.br, cc ecmiotto@usp.br —
+  e-mails oficiais extraídos da página do depto; Jerusa Smid sem e-mail direto público):
+  ID 1a035333f7144270 · anexos guia_de_familias.md + ARQUIVO_COMPLETO.md.
+- Próximo marco natural: aguardar respostas ~1-2 semanas; se silêncio, follow-up educado 1×;
+  publicar preprint no bioRxiv quando o repo virar público (+ Zenodo DOI).
