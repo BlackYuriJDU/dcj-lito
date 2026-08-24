@@ -94,3 +94,21 @@ Todas as entregas da missão original estão prontas e verificadas.
   ID 1a035333f7144270 · anexos guia_de_familias.md + ARQUIVO_COMPLETO.md.
 - Próximo marco natural: aguardar respostas ~1-2 semanas; se silêncio, follow-up educado 1×;
   publicar preprint no bioRxiv quando o repo virar público (+ Zenodo DOI).
+
+## HIPÓTESE DA ALFÂNDEDA INTERCELULAR — ENVIADA À DRA. ZURZOLO (2026-08-24)
+- Origem: conceito proposto pelo FUNDADOR do projeto em conversa ("blitz seletiva
+  nos túneis": reter todo tráfego, teste biofísico de padrão, degradar só positivos).
+- Verificação Tavily: componentes estabelecidos (TNTs propagam príons — Gousset &
+  Zurzolo 2009; regulação de carregamento nSMase2/ESCRT reduz propagação — Tallon
+  2021), mas a SÍNTESE (checkpoint biofísico seletivo na junção) não encontrada
+  na literatura — hipótese geradora.
+- Simulação calibrada (simulacao_prion.py): base MM1 50%/6,5meses 100%/10meses;
+  alfândega realista 80/5 → 50,2% (metade do dano); muro total → 16,3% só colateral;
+  capping ÷3 → 98,3% (só atrasa). 2 bugs de calibração documentados no código.
+- Nota formal: colaboracao/hipotese_alfandega_intercelular.md (EN, 3 previsões testáveis)
+- ENVIADO a chiara.zurzolo@pasteur.fr: ID 1a0358e1c473ad55 (SENT), anexos: nota +
+  figura + relatório. Oferta sem condições; pedido único: dizer se está errado.
+- PRN100 (esclarecimento p/ fundador): anticorpo anti-PrP testado em 6 pacientes
+  (Lancet Neurol 2022) — seguro, alcançou cérebro, sem prova de eficácia (n=6 sem
+  controle); programa morreu de logística (fornecimento), não de refutação.
+  Nota adicionada ao guia_de_familias.md.
