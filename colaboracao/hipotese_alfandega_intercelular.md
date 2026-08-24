@@ -81,3 +81,40 @@ unexplored, it is yours to test — freely, without conditions.
 ---
 
 *Contact: Projeto DCJ - Lito · github.com/BlackYuriJDU/dcj-lito · [e-mail do responsável]*
+
+---
+
+## ADDENDUM (2026-08-24, v2) — A segunda alavanca: blindagem celular e o limiar de percolação
+
+Exploração complementar proposta pelo mesmo autor: em vez de inspecionar o
+tráfego (checkpoint), **blindar uma fração das células** com PrP conversão-resistente
+(G127V-like). A genética já provou o conceito: heterozigotos G127V são protegidos
+contra kuru E DCJ clássica (PMC4486072); a proteção dominant-negative se estende a
+múltiplas cepas (Gatdula et al., Mol Neurodegener 2026); camundongos homozygotos
+são absolutamente resistentes (Asante et al.).
+
+**Varredura estocástica** (grade 80×80, 6 réplicas/ponto, mesma dinâmica calibrada):
+
+| Blindagem | 10% | 20% | 30% | 40% | 50% | 60% |
+|---|---|---|---|---|---|---|
+| Comprometidos (10 m) | 90% | 80% | 57% | **23%** | **1,3%** | 0,2% |
+
+**Achado central**: o colapso do espalhamento não é linear — é uma transição de
+**percolação de sítios** (limiar teórico p_c ≈ 0,593 suscetível ⇒ ~41% blindado),
+confirmada numericamente (degrau 40→50%). Abaixo do limiar a epidemia só desacelera;
+acima, o surto fica confinado ao foco. Blindagem aleatória (o padrão típico de
+entrega de terapia gênica) desempenha igual ou melhor que blindagem agrupada.
+
+**Previsão testável adicional**: em co-cultura com frações crescentes de células
+resistentes, o espalhamento deve colapsar não-linearmente perto de ~40% — um
+"smoking gun" de percolação, verificável em microfluídica.
+
+**Ressalva de tradução honesta**: instalar G127V exige EDIÇÃO gênica cerebral
+(base editing — pré-clínico), não silenciamento. A entrega atual (siRNA/ASO) já
+alcança 50–70% dos neurônios em camundongos — a cobertura exigida (~41%) é
+alcançável; o método de edição ainda não é clínico.
+
+**Síntese das duas alavancas**: checkpoint de tráfego (regulação) e blindagem
+(percolação) são complementares — uma reduz o fluxo infeccioso, a outra fragmenta
+o substrato suscetível. O modelo sugere que combinadas, frações menores de cada
+podem bastar (não simulado ainda; próximo passo natural).

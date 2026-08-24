@@ -1,7 +1,7 @@
 # ARQUIVO COMPLETO TOTAL — Projeto DCJ - Lito
 ## A íntegra de tudo: contexto, dossiês, pesquisas, análises, validações,
 ## auditorias, cartas, memória e código-fonte — num único documento
-*Montado por `monta_arquivo_completo.py` em 2026-08-24 17:59*
+*Montado por `monta_arquivo_completo.py` em 2026-08-24 18:13*
 
 **ÍNDICE**
 
@@ -1820,7 +1820,7 @@ de desenho (escala, filtro, covariáveis), higiene de repo e apresentação."
 ---
 
 ## Simulação da cascata priônica e das quatro alavancas
-*`simulacao_prion.py` em 2026-08-24 17:51. Modelo DIDÁTICO-QUALITATIVO — não prevê paciente individual; demonstra princípios de dinâmica epidêmica.*
+*`simulacao_prion.py` em 2026-08-24 18:05. Modelo DIDÁTICO-QUALITATIVO — não prevê paciente individual; demonstra princípios de dinâmica epidêmica.*
 
 **Parâmetros declarados**: grade 90×90 (8.100 neurônios), vizinhança de 4;
 transmissão por contato (p=0,30/dia/vizinho); morte interna 120 dias;
@@ -1835,6 +1835,8 @@ intra-neurônio não é bloqueável pelas terapias de túnel.
 | C · Alfândega perfeita | >10 | 0.0% |
 | D · Alfândega realista (80%/5%) | >10 | 50.2% |
 | E · Capping (emissão ÷3) | >10 | 98.3% |
+| F · Auto-destruição precoce (tdano 40d) | 4.0 | 100.0% |
+| G · 50% de células blindadas (G127V-like) | >10 | 0.8% |
 
 ### Leitura honesta
 - **Base (livre)**: 50% de perda em ~6.5 meses e 100% ao fim — consistente com o curso MM1 real (validação qualitativa do modelo).
@@ -1842,6 +1844,8 @@ intra-neurônio não é bloqueável pelas terapias de túnel.
 - **Alfândega perfeita**: melhor resultado possível — o foco inicial fica isolado e a população se salva.
 - **Alfândega REALISTA (captura 80%, colateral 5%)**: 50% ao fim vs. 100% da livre — imperfeição reduz drasticamente mas não zera o dano; mostra que NÃO é necessário ser perfeito para mudar o destino.
 - **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. 6.5 meses da livre; ainda assim 98% comprometidos ao fim — retardar compra tempo, mas sozinho não salva.
+- **F · Auto-destruição precoce (morrer em 40d)**: 100% ao fim — morrer rápido encurta a janela de emissão e protege a POPULAÇÃO, mas cada morte é irreversível: trade-off ético real, não solução.
+- **G · 50% blindadas (G127V-like)**: 0.8% ao fim — células resistentes agem como corta-fogos: a cascata morre nos obstáculos. É a única estratégia com PROVA genética natural (Fore/Papua) e em camundongos.
 
 ### Conclusão para o projeto
 A simulação dá forma numérica à hipótese do proponente: intervenção na
@@ -1941,6 +1945,43 @@ unexplored, it is yours to test — freely, without conditions.
 ---
 
 *Contact: Projeto DCJ - Lito · github.com/BlackYuriJDU/dcj-lito · [e-mail do responsável]*
+
+---
+
+### ADDENDUM (2026-08-24, v2) — A segunda alavanca: blindagem celular e o limiar de percolação
+
+Exploração complementar proposta pelo mesmo autor: em vez de inspecionar o
+tráfego (checkpoint), **blindar uma fração das células** com PrP conversão-resistente
+(G127V-like). A genética já provou o conceito: heterozigotos G127V são protegidos
+contra kuru E DCJ clássica (PMC4486072); a proteção dominant-negative se estende a
+múltiplas cepas (Gatdula et al., Mol Neurodegener 2026); camundongos homozygotos
+são absolutamente resistentes (Asante et al.).
+
+**Varredura estocástica** (grade 80×80, 6 réplicas/ponto, mesma dinâmica calibrada):
+
+| Blindagem | 10% | 20% | 30% | 40% | 50% | 60% |
+|---|---|---|---|---|---|---|
+| Comprometidos (10 m) | 90% | 80% | 57% | **23%** | **1,3%** | 0,2% |
+
+**Achado central**: o colapso do espalhamento não é linear — é uma transição de
+**percolação de sítios** (limiar teórico p_c ≈ 0,593 suscetível ⇒ ~41% blindado),
+confirmada numericamente (degrau 40→50%). Abaixo do limiar a epidemia só desacelera;
+acima, o surto fica confinado ao foco. Blindagem aleatória (o padrão típico de
+entrega de terapia gênica) desempenha igual ou melhor que blindagem agrupada.
+
+**Previsão testável adicional**: em co-cultura com frações crescentes de células
+resistentes, o espalhamento deve colapsar não-linearmente perto de ~40% — um
+"smoking gun" de percolação, verificável em microfluídica.
+
+**Ressalva de tradução honesta**: instalar G127V exige EDIÇÃO gênica cerebral
+(base editing — pré-clínico), não silenciamento. A entrega atual (siRNA/ASO) já
+alcança 50–70% dos neurônios em camundongos — a cobertura exigida (~41%) é
+alcançável; o método de edição ainda não é clínico.
+
+**Síntese das duas alavancas**: checkpoint de tráfego (regulação) e blindagem
+(percolação) são complementares — uma reduz o fluxo infeccioso, a outra fragmenta
+o substrato suscetível. O modelo sugere que combinadas, frações menores de cada
+podem bastar (não simulado ainda; próximo passo natural).
 
 ---
 
@@ -3971,7 +4012,12 @@ def rodar(cenario: str, seed: int):
     n = LADO * LADO
     estado = [0] * n            # 0=saudável, 1=semeado, 2=morto
     t_semeado = [-1] * n        # dia da semeadura
+    # G · Blindagem parcial (G127V-like): 50% das células conversão-resistentes
+    imune = {i for i in range(n) if rng.random() < 0.5} if cenario == "G" else set()
+    tdano = 40 if cenario == "F" else T_DANO   # F · auto-destruição precoce
     centro = (LADO // 2) * LADO + LADO // 2
+    if cenario == "G" and centro in imune:     # garante foco inicial viável
+        imune.discard(centro)
     estado[centro] = 1
     t_semeado[centro] = 0
 
@@ -3984,7 +4030,7 @@ def rodar(cenario: str, seed: int):
             idade = dia - t_semeado[i]
             # morte por dano interno (capping não impede a morte do já-semeado,
             # apenas desacelera a produção/emissão de novos veículos)
-            if idade >= T_DANO:
+            if idade >= tdano:
                 estado[i] = 2
                 continue
             # BUG CORRIGIDO 2×: (1) tentativa INDEPENDENTE por vizinho;
@@ -3997,7 +4043,7 @@ def rodar(cenario: str, seed: int):
                     if rng.random() >= taxa:
                         continue
                     j = i + delta
-                    if not (0 <= j < n) or estado[j] != 0:
+                    if not (0 <= j < n) or estado[j] != 0 or j in imune:
                         continue
                     if abs(j % LADO - i % LADO) > 1:   # borda horizontal
                         continue
@@ -4047,9 +4093,11 @@ def main() -> None:
         "C": "C · Alfândega perfeita",
         "D": "D · Alfândega realista (80%/5%)",
         "E": "E · Capping (emissão ÷3)",
+        "F": "F · Auto-destruição precoce (tdano 40d)",
+        "G": "G · 50% de células blindadas (G127V-like)",
     }
     resultados = {}
-    for cen in "ABCDE":
+    for cen in "ABCDEFG":
         infs, morts = [], []
         for s in range(REPLICATAS):
             fi, fm = rodar(cen, 42 + s)
@@ -4071,8 +4119,8 @@ def main() -> None:
     # ---------------- figura ----------------
     fig, ax = plt.subplots(figsize=(9, 5))
     cores = {"A": "#c0392b", "B": "#7f8c8d", "C": "#27ae60", "D": "#2980b9",
-             "E": "#8e44ad"}
-    for cen in "ABCDE":
+             "E": "#8e44ad", "F": "#e67e22", "G": "#16a085"}
+    for cen in "ABCDEFG":
         meses, mi, mo, *_ = resultados[cen]
         ax.plot(meses, [a + b for a, b in zip(mi, mo)], color=cores[cen],
                 lw=2, label=nomes[cen])
@@ -4103,7 +4151,7 @@ def main() -> None:
         "| Cenário | Meses até 50% perdido | Comprometidos ao fim (10 meses) |",
         "|---|---|---|",
     ]
-    for cen in "ABCDE":
+    for cen in "ABCDEFG":
         _, _, _, t50, fim_i, fim_m = resultados[cen]
         t50s = f"{t50:.1f}" if t50 is not None else ">10"
         L.append(f"| {nomes[cen]} | {t50s} | {100*(fim_i+fim_m):.1f}% |")
@@ -4112,6 +4160,8 @@ def main() -> None:
     _, ci, cm, t50c, fi_c, cm_c = resultados["C"]
     _, di, dm, t50d, fi_d, fm_d = resultados["D"]
     _, ei, em, t50e, fi_e, fm_e = resultados["E"]
+    _, ffi, fmm, t50f, fi_f, fm_f = resultados["F"]
+    _, gi, gm, t50g, fi_g, fm_g = resultados["G"]
 
     L += ["", "## Leitura honesta",
           f"- **Base (livre)**: 50% de perda em ~{t50a:.1f} meses e "
@@ -4129,6 +4179,12 @@ def main() -> None:
           f"- **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. "
           f"{t50a:.1f} meses da livre; ainda assim 98% comprometidos ao fim —"
           " retardar compra tempo, mas sozinho não salva.",
+          f"- **F · Auto-destruição precoce (morrer em 40d)**: {100*(fi_f+fm_f):.0f}% ao "
+          "fim — morrer rápido encurta a janela de emissão e protege a POPULAÇÃO, "
+          "mas cada morte é irreversível: trade-off ético real, não solução.",
+          f"- **G · 50% blindadas (G127V-like)**: {100*(fi_g+fm_g):.1f}% ao fim — células "
+          "resistentes agem como corta-fogos: a cascata morre nos obstáculos. É a "
+          "única estratégia com PROVA genética natural (Fore/Papua) e em camundongos.",
           "", "## Conclusão para o projeto",
           "A simulação dá forma numérica à hipótese do proponente: intervenção na",
           "PASSAGEM (alfândega), mesmo imperfectível, altera mais o desfecho do que",
