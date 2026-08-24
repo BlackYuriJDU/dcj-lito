@@ -57,7 +57,12 @@ def rodar(cenario: str, seed: int):
     n = LADO * LADO
     estado = [0] * n            # 0=saudável, 1=semeado, 2=morto
     t_semeado = [-1] * n        # dia da semeadura
+    # G · Blindagem parcial (G127V-like): 50% das células conversão-resistentes
+    imune = {i for i in range(n) if rng.random() < 0.5} if cenario == "G" else set()
+    tdano = 40 if cenario == "F" else T_DANO   # F · auto-destruição precoce
     centro = (LADO // 2) * LADO + LADO // 2
+    if cenario == "G" and centro in imune:     # garante foco inicial viável
+        imune.discard(centro)
     estado[centro] = 1
     t_semeado[centro] = 0
 
@@ -70,7 +75,7 @@ def rodar(cenario: str, seed: int):
             idade = dia - t_semeado[i]
             # morte por dano interno (capping não impede a morte do já-semeado,
             # apenas desacelera a produção/emissão de novos veículos)
-            if idade >= T_DANO:
+            if idade >= tdano:
                 estado[i] = 2
                 continue
             # BUG CORRIGIDO 2×: (1) tentativa INDEPENDENTE por vizinho;
@@ -83,7 +88,7 @@ def rodar(cenario: str, seed: int):
                     if rng.random() >= taxa:
                         continue
                     j = i + delta
-                    if not (0 <= j < n) or estado[j] != 0:
+                    if not (0 <= j < n) or estado[j] != 0 or j in imune:
                         continue
                     if abs(j % LADO - i % LADO) > 1:   # borda horizontal
                         continue
@@ -133,9 +138,11 @@ def main() -> None:
         "C": "C · Alfândega perfeita",
         "D": "D · Alfândega realista (80%/5%)",
         "E": "E · Capping (emissão ÷3)",
+        "F": "F · Auto-destruição precoce (tdano 40d)",
+        "G": "G · 50% de células blindadas (G127V-like)",
     }
     resultados = {}
-    for cen in "ABCDE":
+    for cen in "ABCDEFG":
         infs, morts = [], []
         for s in range(REPLICATAS):
             fi, fm = rodar(cen, 42 + s)
@@ -157,8 +164,8 @@ def main() -> None:
     # ---------------- figura ----------------
     fig, ax = plt.subplots(figsize=(9, 5))
     cores = {"A": "#c0392b", "B": "#7f8c8d", "C": "#27ae60", "D": "#2980b9",
-             "E": "#8e44ad"}
-    for cen in "ABCDE":
+             "E": "#8e44ad", "F": "#e67e22", "G": "#16a085"}
+    for cen in "ABCDEFG":
         meses, mi, mo, *_ = resultados[cen]
         ax.plot(meses, [a + b for a, b in zip(mi, mo)], color=cores[cen],
                 lw=2, label=nomes[cen])
@@ -189,7 +196,7 @@ def main() -> None:
         "| Cenário | Meses até 50% perdido | Comprometidos ao fim (10 meses) |",
         "|---|---|---|",
     ]
-    for cen in "ABCDE":
+    for cen in "ABCDEFG":
         _, _, _, t50, fim_i, fim_m = resultados[cen]
         t50s = f"{t50:.1f}" if t50 is not None else ">10"
         L.append(f"| {nomes[cen]} | {t50s} | {100*(fim_i+fim_m):.1f}% |")
@@ -198,6 +205,8 @@ def main() -> None:
     _, ci, cm, t50c, fi_c, cm_c = resultados["C"]
     _, di, dm, t50d, fi_d, fm_d = resultados["D"]
     _, ei, em, t50e, fi_e, fm_e = resultados["E"]
+    _, ffi, fmm, t50f, fi_f, fm_f = resultados["F"]
+    _, gi, gm, t50g, fi_g, fm_g = resultados["G"]
 
     L += ["", "## Leitura honesta",
           f"- **Base (livre)**: 50% de perda em ~{t50a:.1f} meses e "
@@ -215,6 +224,12 @@ def main() -> None:
           f"- **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. "
           f"{t50a:.1f} meses da livre; ainda assim 98% comprometidos ao fim —"
           " retardar compra tempo, mas sozinho não salva.",
+          f"- **F · Auto-destruição precoce (morrer em 40d)**: {100*(fi_f+fm_f):.0f}% ao "
+          "fim — morrer rápido encurta a janela de emissão e protege a POPULAÇÃO, "
+          "mas cada morte é irreversível: trade-off ético real, não solução.",
+          f"- **G · 50% blindadas (G127V-like)**: {100*(fi_g+fm_g):.1f}% ao fim — células "
+          "resistentes agem como corta-fogos: a cascata morre nos obstáculos. É a "
+          "única estratégia com PROVA genética natural (Fore/Papua) e em camundongos.",
           "", "## Conclusão para o projeto",
           "A simulação dá forma numérica à hipótese do proponente: intervenção na",
           "PASSAGEM (alfândega), mesmo imperfectível, altera mais o desfecho do que",
