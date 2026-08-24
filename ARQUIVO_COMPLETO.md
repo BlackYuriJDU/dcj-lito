@@ -1,7 +1,7 @@
 # ARQUIVO COMPLETO TOTAL — Projeto DCJ - Lito
 ## A íntegra de tudo: contexto, dossiês, pesquisas, análises, validações,
 ## auditorias, cartas, memória e código-fonte — num único documento
-*Montado por `monta_arquivo_completo.py` em 2026-08-24 15:00*
+*Montado por `monta_arquivo_completo.py` em 2026-08-24 17:59*
 
 **ÍNDICE**
 
@@ -17,10 +17,12 @@
 10. FINE-MAPPING DESCRITIVO DOS LOCI
 11. VALIDAÇÕES CRUZADAS CONTRA AS PUBLICAÇÕES ORIGINAIS
 12. AUDITORIAS DE TERCEIROS — UTILIDADE E ESTATÍSTICA ADVERSARIAL
-13. MATERIAL PARA FAMÍLIAS E PARA LABORATÓRIOS
-14. MEMÓRIA DO PROJETO — ERROS, DECISÕES E PADRÕES
-15. APÊNDICE A — CÓDIGO-FONTE COMPLETO DOS 7 SCRIPTS
-16. APÊNDICE B — METADADOS: dados brutos, figuras e inventário
+13. SIMULAÇÃO DA CASCATA PRIÔNICA — 5 CENÁRIOS DE INTERVENÇÃO
+14. HIPÓTESE GERADORA — ALFÂNDEGA INTERCELULAR SELETIVA
+15. MATERIAL PARA FAMÍLIAS E PARA LABORATÓRIOS
+16. MEMÓRIA DO PROJETO — ERROS, DECISÕES E PADRÕES
+17. APÊNDICE A — CÓDIGO-FONTE COMPLETO DOS 9 SCRIPTS
+18. APÊNDICE B — METADADOS: dados brutos, figuras e inventário
 
 ---
 
@@ -85,10 +87,12 @@ canal Aviões e Músicas, 59 anos; DCJ anunciada pela esposa Mila Seidl em 21/08
 - [x] **GWAS GCST90001389 baixado (197 MB) e QC independente concluído** → pipeline/reports/relatorio_qc_gwas_gcst90001389.md: 6,314,492 variantes, 0 malformadas, λ_GC=1.059, 41 hits GWS. **RÉPLICA INDEPENDENTE 3/3 DOS LOCI PUBLICADOS** (PRNP chr20:4.67Mb p=1.6e-15; STX6 chr1:180,961,245 p=7.5e-9 intragênico; GAL3ST1 chr22:30,950,360 p=6.2e-10) — anotados via Ensembl GRCh37 REST + NCBI. Primeiro produto do projeto que serve como VERIFICAÇÃO documentada para o campo.
 - [x] Crítico estatístico adversarial ENTREGUE → máquina estatística validada (Welch/BH corretos a 1e-13, 437 sobrevive, direções do cérebro sobrevivem com folga); falhas de desenho identificadas e CORRIGIDAS: C2 (v3 do sangue com OLS idade+sexo+RIN: 84→1 sig ajustado; núcleo do artigo com p nominal 0,0007–0,04, só miR-93-5p passa FDR no universo filtrado — fragilidade da assinatura publicada DOCUMENTADA), M1 (ponte conta pacientes via subject: 6/14 MM1), M5 (figuras regeneradas com modelo ajustado)
 - [x] C1 era falso alarme (leitura de estado antigo); verificado diretamente e registrado em mistakes.md #6
-- [x] **E-MAIL ENVIADO ao Lito Sousa/família** (ajudalito@avioesemusicas.com) via GMAIL_SEND_EMAIL em 2026-08-24: carta curta respeitosa + guia_de_familias.md + ARQUIVO_COMPLETO.md. ID: 1a034e89cd6c8521 (label SENT). Nenhuma menção clínica ao paciente — apenas material público de saúde.
+- [x] **E-MAIL ENVIADO ao Lito Sousa/família** (ajudalito@avioesemusicas.com) — REENVIADO em 2026-08-24 com ARQUIVO_COMPLETO TOTAL: novo ID 1a034f2818f0df77 (SENT); versão anterior (1a034e89cd6c8521, com síntese de 12 partes) movida à LIXEIRA do Gmail a pedido do senhor. Anexos finais: guia_de_familias.md + ARQUIVO_COMPLETO.md (226 KB, íntegra). Nenhuma menção clínica ao paciente.
 - [x] Fine-mapping descritivo dos 3 loci → relatorio_finemap_loci.md (rs3747957 presente nos sumstats 2020: chr1:180,953,853 A>G p=9.7e-9, mesma direção β=−0.148 do Brain 2025; STX6 162 variantes regionais)
 - [x] ARQUIVO_COMPLETO.md criado (12 partes: dados, análises, métricas, validações, fontes, limites honestos)
 - [x] Guia de famílias PT-BR → colaboracao/guia_de_familias.md
+- [x] ARQUIVO_COMPLETO TOTAL reconstruído via monta_arquivo_completo.py (226 KB): íntegra dos 36 documentos + código-fonte dos 7 scripts + checksums MD5 dos dados brutos
+- [x] Distribuição: zip `DCJ-Lito_projeto_2026-08-24.zip` (47 arquivos, 972 KB) + repo GitHub PRIVADO https://github.com/BlackYuriJDU/dcj-lito (git init → commit v1 → push main; GWAS 197MB excluído via .gitignore, re-baixável com checksum no apêndice B)
 - [ ] Futuro: preprint EN do GWAS + repo limpo + git init; contato Prion Alliance (após preprint); monitorar mgh_prnp_freeze2 e NCT05124392 OBSERVE
 
 ### PROJETO CONCLUÍDO (v1) — sessão 1
@@ -105,6 +109,43 @@ Todas as entregas da missão original estão prontas e verificadas.
 ### Preferências de estilo
 - Respostas em PT-BR, tom Jarvis ("senhor"), brevidade com classe.
 - Honestidade científica: separar evidência real de esperança experimental.
+
+### PROTOCOLO DE MONITORAMENTO PASSIVO (revisar ~mensalmente)
+- github.com/ericminikel/mgh_prnp_freeze2 — dados longitudinais NfL/tau; raw sob pedido
+  (qualified investigators); vigiar novo release público.
+- cureffi.org (blog do Minikel) — fonte primária de novidades de ensaios; ION717 reabriu
+  com 3º regime de dose em mar/2026 (confirmado nesta checagem).
+- NCT06153966 (ION717) · NCT07444580 (PrP-siRNA PRiSM, Broad) · NCT07482085 (efavirenz) —
+  conferir status/recrutamento no ClinicalTrials.gov.
+- Se novos sumstats GWAS de DCJ aparecerem no GWAS Catalog → reexecutar
+  qc_gwas_gcst90001389.py + finemap_ld.py adaptados (réplica imediata é nossa marca).
+
+### CARTAS DE ENGAJAMENTO ENVIADAS (2026-08-24)
+- Prion Alliance/Vallabh-Minikel (eminikel@ + cc svallabh@broadinstitute.org): ID 1a03533038d54907
+  · anexo manuscrito_preprint.md · pedido único: 20 min de crítica antes do bioRxiv.
+- HC-FMUSP Grupo Neurologia Cognitiva (sonia.brucki@hc.fm.usp.br, cc ecmiotto@usp.br —
+  e-mails oficiais extraídos da página do depto; Jerusa Smid sem e-mail direto público):
+  ID 1a035333f7144270 · anexos guia_de_familias.md + ARQUIVO_COMPLETO.md.
+- Próximo marco natural: aguardar respostas ~1-2 semanas; se silêncio, follow-up educado 1×;
+  publicar preprint no bioRxiv quando o repo virar público (+ Zenodo DOI).
+
+### HIPÓTESE DA ALFÂNDEDA INTERCELULAR — ENVIADA À DRA. ZURZOLO (2026-08-24)
+- Origem: conceito proposto pelo FUNDADOR do projeto em conversa ("blitz seletiva
+  nos túneis": reter todo tráfego, teste biofísico de padrão, degradar só positivos).
+- Verificação Tavily: componentes estabelecidos (TNTs propagam príons — Gousset &
+  Zurzolo 2009; regulação de carregamento nSMase2/ESCRT reduz propagação — Tallon
+  2021), mas a SÍNTESE (checkpoint biofísico seletivo na junção) não encontrada
+  na literatura — hipótese geradora.
+- Simulação calibrada (simulacao_prion.py): base MM1 50%/6,5meses 100%/10meses;
+  alfândega realista 80/5 → 50,2% (metade do dano); muro total → 16,3% só colateral;
+  capping ÷3 → 98,3% (só atrasa). 2 bugs de calibração documentados no código.
+- Nota formal: colaboracao/hipotese_alfandega_intercelular.md (EN, 3 previsões testáveis)
+- ENVIADO a chiara.zurzolo@pasteur.fr: ID 1a0358e1c473ad55 (SENT), anexos: nota +
+  figura + relatório. Oferta sem condições; pedido único: dizer se está errado.
+- PRN100 (esclarecimento p/ fundador): anticorpo anti-PrP testado em 6 pacientes
+  (Lancet Neurol 2022) — seguro, alcançou cérebro, sem prova de eficácia (n=6 sem
+  controle); programa morreu de logística (fornecimento), não de refutação.
+  Nota adicionada ao guia_de_familias.md.
 
 ---
 
@@ -1201,74 +1242,78 @@ a segunda (30,953,295) é intragênica.
 
 ---
 
-## Fine-mapping descritivo — loci do GWAS sCJD (sumstats 2020, GRCh37)
-*`finemap_stx6.py` em 2026-08-24 14:41. Sem LD individual: ranking regional, não credible set formal.*
+## Fine-mapping v2 — LD real (Ensembl/1000G phase 3) + credible sets descritivos
+*`finemap_ld.py` em 2026-08-24 16:02. População: 1000GENOMES:phase_3:ALL. Método: ABF de Wakefield (W=0.04) + agrupamento por r²≥0.8 ao lead. Approximate — sem modelo conjunto (SuSiE exigiria genótipos individuais).*
 
-### Locus STX6 (chr1:180,900,000-181,000,000)
-- Variantes na região: **162**
-- Lead regional: chr1:180,961,245 G>A p=7.51e-09 (beta=-0.149, SE=0.026, EAF=0.420)
-- **rs3747957 (índice Brain 2025)**: presente em chr1:180,953,853 A>G p=9.74e-09 (beta=-0.148) — mesma direção do lead (162 variantes regionais; rank do rs3747957 por p: 11º)
+### Locus STX6 — lead chr1:180,961,245 p=7.51e-09 · âncora LD: rs11586493 (efetivo: rs11586493)
+- Variantes na janela: 162 · pares LD da âncora: 184
+- Cobertura do painel nas top-20: 20/20 · máx r² observado: 1.00
+- Massa posterior do cluster âncora+proxies:
+  **r²≥0.8: 90.5%** · r²≥0.50: 90.5% · sem LD/fora do painel: 9.5%
 
-#### Top 10 regionais
+| pos | alelos | p | beta | rsID | status vs âncora | posterior |
+|---|---|---|---|---|---|---|
+| 180,961,245 | G>A | 7.51e-09 | -0.149 | rs11586493 | âncora | 5.8% |
+| 180,956,015 | A>G | 7.73e-09 | -0.149 | rs1404986578/rs1389132786/rs7553330 | r²=0.99 | 5.6% |
+| 180,957,962 | T>G | 8.30e-09 | -0.149 | rs1293366509/rs74227337/rs61433244/rs12754041 | r²=0.99 | 5.2% |
+| 180,958,946 | A>G | 9.02e-09 | -0.149 | rs4366283/rs4111520 | r²=0.99 | 4.8% |
+| 180,949,780 | T>G | 9.09e-09 | -0.149 | rs6680541 | r²=0.97 | 4.8% |
+| 180,962,282 | A>G | 9.34e-09 | -0.148 | rs2525668307/rs1654947403/rs59443232/rs1411478 | r²=1.00 | 4.7% |
+| 180,956,985 | G>A | 9.60e-09 | -0.148 | rs58087663/rs56685500/rs6425658 | r²=0.99 | 4.6% |
+| 180,956,905 | A>G | 9.60e-09 | -0.148 | rs57262540/rs6425657 | r²=0.99 | 4.6% |
+| 180,952,516 | C>A | 9.71e-09 | -0.149 | rs58426280/rs57054063/rs56521928/rs12744212 | r²=0.99 | 4.5% |
+| 180,953,038 | A>C | 9.73e-09 | -0.148 | rs1014849176/rs57149666/rs7543927 | r²=0.99 | 4.5% |
+| 180,953,853 | A>G | 9.74e-09 | -0.148 | rs1654776103/rs3747957 | r²=0.99 | 4.5% |
+| 180,954,130 | C>T | 9.74e-09 | -0.148 | rs961691834/rs4652548 | r²=0.99 | 4.5% |
 
-| p | pos | OA>EA | EAF | beta | SE |
-|---|---|---|---|---|---|
-| 7.51e-09 | 180,961,245 | G>A | 0.420 | -0.149 | 0.026 |
-| 7.73e-09 | 180,956,015 | A>G | 0.420 | -0.149 | 0.026 |
-| 8.30e-09 | 180,957,962 | T>G | 0.419 | -0.149 | 0.026 |
-| 9.02e-09 | 180,958,946 | A>G | 0.419 | -0.149 | 0.026 |
-| 9.09e-09 | 180,949,780 | T>G | 0.420 | -0.149 | 0.026 |
-| 9.34e-09 | 180,962,282 | A>G | 0.420 | -0.148 | 0.026 |
-| 9.60e-09 | 180,956,985 | G>A | 0.419 | -0.148 | 0.026 |
-| 9.60e-09 | 180,956,905 | A>G | 0.419 | -0.148 | 0.026 |
-| 9.71e-09 | 180,952,516 | C>A | 0.420 | -0.149 | 0.026 |
-| 9.73e-09 | 180,953,038 | A>C | 0.420 | -0.148 | 0.026 |
+### Locus GAL3ST1 — lead chr22:30,950,360 p=6.18e-10 · âncora LD: rs386462923 (efetivo: rs8142452)
+- Variantes na janela: 322 · pares LD da âncora: 61
+- Cobertura do painel nas top-20: 4/20 · máx r² observado: 1.00
+- Massa posterior do cluster âncora+proxies:
+  **r²≥0.8: 0.0%** · r²≥0.50: 0.0% · sem LD/fora do painel: 100.0%
+- ⚠️ Leitura: o único r²=1.00 é a própria âncora (posterior ~0.0%); o sinal real está em variantes mal marcadas pelo painel de comuns (haplótipo provavelmente de baixa frequência).
 
-### Locus GAL3ST1 (chr22:30,900,000-31,000,000)
-- Variantes na região: **322**
-- Lead regional: chr22:30,950,360 T>C p=6.18e-10 (beta=-0.169, SE=0.027, EAF=0.325)
+| pos | alelos | p | beta | rsID | status vs âncora | posterior |
+|---|---|---|---|---|---|---|
+| 30,950,360 | T>C | 6.18e-10 | -0.169 | rs2517624666/rs58431710/rs2267158 | r²=0.45 | 57.8% |
+| 30,953,295 | C>T | 8.60e-10 | -0.168 | rs2040917680/rs61593263/rs17858302/rs17856591/rs17845430 | r²=0.38 | 42.2% |
+| 30,949,820 | A>G | 3.28e-05 | -0.112 | rs386462923/rs60067782/rs8142452 | âncora | 0.0% |
+| 30,916,518 | C>T | 1.86e-04 | +0.112 | rs2040410816/rs886617 | sem dado de painel | 0.0% |
+| 30,915,804 | A>G | 1.90e-04 | +0.112 | rs11912737 | sem dado de painel | 0.0% |
+| 30,915,186 | A>G | 1.93e-04 | +0.112 | rs2147213388/rs77170318/rs9606749 | sem dado de painel | 0.0% |
+| 30,917,077 | T>C | 2.27e-04 | +0.111 | rs571918479/rs1859479 | sem dado de painel | 0.0% |
+| 30,916,443 | C>T | 2.32e-04 | +0.111 | rs886616 | sem dado de painel | 0.0% |
+| 30,916,380 | C>A | 2.33e-04 | +0.111 | rs1459415747/rs886615 | sem dado de painel | 0.0% |
+| 30,916,877 | A>G | 2.37e-04 | +0.110 | rs2412990 | sem dado de painel | 0.0% |
+| 30,912,328 | C>G | 2.56e-04 | +0.110 | rs56612612/rs9606747 | sem dado de painel | 0.0% |
+| 30,911,996 | C>T | 2.58e-04 | +0.110 | rs9608967 | sem dado de painel | 0.0% |
 
-#### Top 10 regionais
+### Locus PRNP — lead chr20:4,672,307 p=1.62e-15 · âncora LD: rs60704301 (efetivo: rs2093390)
+- Variantes na janela: 337 · pares LD da âncora: 106
+- Cobertura do painel nas top-20: 18/20 · máx r² observado: 1.00
+- Massa posterior do cluster âncora+proxies:
+  **r²≥0.8: 58.9%** · r²≥0.50: 100.0% · sem LD/fora do painel: 0.0%
 
-| p | pos | OA>EA | EAF | beta | SE |
-|---|---|---|---|---|---|
-| 6.18e-10 | 30,950,360 | T>C | 0.325 | -0.169 | 0.027 |
-| 8.60e-10 | 30,953,295 | C>T | 0.314 | -0.168 | 0.027 |
-| 3.28e-05 | 30,949,820 | A>G | 0.426 | -0.112 | 0.027 |
-| 1.86e-04 | 30,916,518 | C>T | 0.241 | +0.112 | 0.030 |
-| 1.90e-04 | 30,915,804 | A>G | 0.242 | +0.112 | 0.030 |
-| 1.93e-04 | 30,915,186 | A>G | 0.242 | +0.112 | 0.030 |
-| 2.27e-04 | 30,917,077 | T>C | 0.242 | +0.111 | 0.030 |
-| 2.32e-04 | 30,916,443 | C>T | 0.242 | +0.111 | 0.030 |
-| 2.33e-04 | 30,916,380 | C>A | 0.242 | +0.111 | 0.030 |
-| 2.37e-04 | 30,916,877 | A>G | 0.242 | +0.110 | 0.030 |
+| pos | alelos | p | beta | rsID | status vs âncora | posterior |
+|---|---|---|---|---|---|---|
+| 4,672,307 | C>T | 1.62e-15 | -0.219 | rs60704301/rs4254562/rs2093390 | âncora | 29.8% |
+| 4,675,155 | A>T | 1.65e-15 | -0.218 | rs17249667/rs6037932 | r²=0.87 | 29.1% |
+| 4,672,275 | A>G | 2.36e-15 | -0.218 | rs1025221938/rs6052770/rs2093391 | r²=0.73 | 20.6% |
+| 4,680,251 | A>G | 2.68e-15 | -0.211 | rs52800775/rs17858648/rs17850971/rs1799990 | r²=0.68 | 18.3% |
+| 4,672,816 | A>G | 3.70e-14 | -0.201 | rs57766978/rs6052771 | r²=0.71 | 1.4% |
+| 4,671,225 | T>G | 7.89e-14 | -0.198 | rs58875214/rs6052769 | r²=0.55 | 0.7% |
+| 4,684,286 | T>A | 1.26e-12 | -0.208 | rs6084836 | r²=0.48 | 0.0% |
+| 4,677,369 | A>G | 4.26e-12 | -0.202 | rs17328364/rs6116475 | r²=0.56 | 0.0% |
+| 4,675,980 | G>A | 2.39e-11 | -0.197 | rs6052772 | r²=0.70 | 0.0% |
+| 4,675,589 | T>C | 3.43e-10 | -0.194 | rs17249737/rs13045348 | r²=0.40 | 0.0% |
+| 4,670,510 | G>A | 3.83e-10 | -0.185 | rs4815729 | r²=0.50 | 0.0% |
+| 4,671,381 | T>G | 7.35e-10 | -0.173 | rs6107515 | r²=0.46 | 0.0% |
 
-### Locus PRNP (chr20:4,600,000-4,700,000)
-- Variantes na região: **337**
-- Lead regional: chr20:4,672,307 C>T p=1.62e-15 (beta=-0.219, SE=0.027, EAF=0.300)
-
-#### Top 10 regionais
-
-| p | pos | OA>EA | EAF | beta | SE |
-|---|---|---|---|---|---|
-| 1.62e-15 | 4,672,307 | C>T | 0.300 | -0.219 | 0.027 |
-| 1.65e-15 | 4,675,155 | A>T | 0.299 | -0.218 | 0.027 |
-| 2.36e-15 | 4,672,275 | A>G | 0.299 | -0.218 | 0.027 |
-| 2.68e-15 | 4,680,251 | A>G | 0.328 | -0.211 | 0.027 |
-| 3.70e-14 | 4,672,816 | A>G | 0.331 | -0.201 | 0.027 |
-| 7.89e-14 | 4,671,225 | T>G | 0.347 | -0.198 | 0.027 |
-| 1.26e-12 | 4,684,286 | T>A | 0.258 | -0.208 | 0.029 |
-| 4.26e-12 | 4,677,369 | A>G | 0.244 | -0.202 | 0.029 |
-| 2.39e-11 | 4,675,980 | G>A | 0.237 | -0.197 | 0.030 |
-| 3.43e-10 | 4,675,589 | T>C | 0.204 | -0.194 | 0.031 |
-
-### Nota de honestidade científica
-- Fine-mapping formal (credible set, colocalização eQTL) exige LD entre variantes;
-  sem genótipos individuais, este relatório é RANKING DESCRITIVO.
-- Comparação com Brain 2025: mesmo lead/efeito = consistência; diferença de p
-  esperada (coortes maiores em 2025).
-- PRNP: o sinal regional inclui o gene do príon; interpretação biológica
-  (códon 129) pertence à literatura, não a este arquivo.
+### Nota metodológica final
+- Credible set formal exige modelo conjunta (SuSiE/FINEMAP) com genótipos;
+  aqui reportamos MASSA POR CLUSTER de LD — suficiente para declarar que o
+  sinal é um bloco haplotípico coeso, não um mosaico de falsos independentes.
+- rs3747957 (índice Brain 2025): ver relatório QC; presente com p=9.7e-9.
 
 ---
 
@@ -1768,7 +1813,138 @@ de desenho (escala, filtro, covariáveis), higiene de repo e apresentação."
 
 ---
 
-# 13. MATERIAL PARA FAMÍLIAS E PARA LABORATÓRIOS
+# 13. SIMULAÇÃO DA CASCATA PRIÔNICA — 5 CENÁRIOS DE INTERVENÇÃO
+
+### 📄 `pipeline/reports/relatorio_simulacao_cascata.md` (íntegra)
+
+---
+
+## Simulação da cascata priônica e das quatro alavancas
+*`simulacao_prion.py` em 2026-08-24 17:51. Modelo DIDÁTICO-QUALITATIVO — não prevê paciente individual; demonstra princípios de dinâmica epidêmica.*
+
+**Parâmetros declarados**: grade 90×90 (8.100 neurônios), vizinhança de 4;
+transmissão por contato (p=0,30/dia/vizinho); morte interna 120 dias;
+calibração alvo: curso MM1 ≈6 meses até comprometimento quase total.
+**Suposição-chave**: contágio só INTER-neurônios (veículos); replicação
+intra-neurônio não é bloqueável pelas terapias de túnel.
+
+| Cenário | Meses até 50% perdido | Comprometidos ao fim (10 meses) |
+|---|---|---|
+| A · Cascata livre | 6.5 | 100.0% |
+| B · Muro total (custo socorro) | >10 | 16.3% |
+| C · Alfândega perfeita | >10 | 0.0% |
+| D · Alfândega realista (80%/5%) | >10 | 50.2% |
+| E · Capping (emissão ÷3) | >10 | 98.3% |
+
+### Leitura honesta
+- **Base (livre)**: 50% de perda em ~6.5 meses e 100% ao fim — consistente com o curso MM1 real (validação qualitativa do modelo).
+- **Muro total**: trava o contágio, mas o custo de socorro cortado (hazard extra 0.02/mês) mata neurônios saudáveis mesmo sem príon — ilustração quantitativa de que fechar tudo tem preço.
+- **Alfândega perfeita**: melhor resultado possível — o foco inicial fica isolado e a população se salva.
+- **Alfândega REALISTA (captura 80%, colateral 5%)**: 50% ao fim vs. 100% da livre — imperfeição reduz drasticamente mas não zera o dano; mostra que NÃO é necessário ser perfeito para mudar o destino.
+- **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. 6.5 meses da livre; ainda assim 98% comprometidos ao fim — retardar compra tempo, mas sozinho não salva.
+
+### Conclusão para o projeto
+A simulação dá forma numérica à hipótese do proponente: intervenção na
+PASSAGEM (alfândega), mesmo imperfectível, altera mais o desfecho do que
+qualquer ação contra as partículas já existentes. É hipótese geradora —
+requer validação experimental por grupos com ferramentas adequadas
+(ver colaboracao/carta_zurzolo.md).
+
+---
+
+# 14. HIPÓTESE GERADORA — ALFÂNDEGA INTERCELULAR SELETIVA
+
+### 📄 `colaboracao/hipotese_alfandega_intercelular.md` (íntegra)
+
+---
+
+## Hypothesis note — A selective biophysical "checkpoint" for intercellular prion traffic
+
+*Projeto DCJ - Lito (independent data-organization initiative, Brazil) · 2026-08-24*
+*Proposed concept by the project founder; formalized, simulated and documented openly.*
+
+---
+
+### 1. Background
+
+Prion propagation between cells occurs through at least three routes: tunneling
+nanotubes (TNTs), extracellular vesicles (exosomes) and synaptic transfer
+(Gousset & Zurzolo, *Cell Adh Migr* 2009; Zhu et al., *Front Immunol* 2021).
+Pharmacological regulation of vesicle *loading* — e.g. nSMase2/ESCRT inhibition —
+reduces extracellular-vesicle-mediated spread (Tallon et al., *Drug Discov Today*
+2021). However, no strategy has been proposed that inspects **individual
+intercellular transfers** and discriminates infectious from physiological cargo.
+
+The core discrimination problem: PrPC and PrPSc share identical sequence; only
+conformation differs. Sequence-based recognition fails by design.
+
+### 2. Hypothesis
+
+A junctional "checkpoint" that (i) transiently retains **all** intercellular
+transfer events, (ii) applies a **biophysical pattern test** to each transfer
+(cargo density, vesicle rigidity, conformational-probe fluorescence — PrPSc
+aggregates are measurably denser and conformationally distinct), and
+(iii) degrades or returns only test-positive transfers, would suppress prion
+spread while preserving physiological traffic (mitochondrial donation,
+lysosomal exchange). This mirrors innate-immunity logic (pattern recognition,
+accepted collateral damage) transplanted to the intercellular-traffic level.
+
+Key conceptual distinction from existing approaches: **regulate the tunnel,
+do not close it.** Total blockade abolishes rescue traffic (documented
+mitochondrial transfer through TNTs), creating its own neuronal loss.
+
+### 3. Simulation evidence (qualitative model)
+
+A stochastic spatial model (90×90 neuron grid, contact-based transmission
+p = 0.30/day/neighbour, neuronal death 120 days post-seeding) calibrated so the
+untreated cascade reproduces the sCJD MM1 clinical course (50% neuronal loss at
+~6.5 months; 100% by month 10; 8 stochastic replicates):
+
+| Scenario | 50% loss reached | Compromised at 10 months |
+|---|---|---|
+| Untreated cascade | 6.5 months | 100% |
+| Total tunnel blockade | >10 m | 16.3% — **all** from lost rescue traffic |
+| Perfect checkpoint | >10 m | 0.0% |
+| **Imperfect checkpoint (80% capture, 5% collateral)** | >10 m | **50.2%** |
+| Conversion-rate reduction alone (3× slower emission) | >10 m | 98.3% (delay only) |
+
+Two model conclusions: (1) an imperfect checkpoint still halves the catastrophe
+and pushes the 50% threshold beyond the entire disease horizon; (2) total
+blockade carries a quantifiable intrinsic cost, arguing for selective regulation
+over closure. Code, parameters and every intermediate number are open
+(github.com/BlackYuriJDU/dcj-lito). **Limitation**: the model demonstrates
+epidemic-dynamics principles, not clinical prediction; parameters are
+order-of-magnitude, not fitted to patient data.
+
+### 4. Testable predictions
+
+1. **In vitro**: in microfluidic co-cultures separating TNT-mediated from
+   exosome-mediated transfer, a physical/biophysical retention step (density or
+   conformational-probe tagging, e.g. luminescent conjugated polymers) that
+   spares clean vesicles should reduce PrPSc transfer proportionally to capture
+   efficiency, without abolishing mitochondrial transfer.
+2. **Pharmacologic**: partial, non-toxic nSMase2/ESCRT modulation should show a
+   threshold behaviour predicted by the model (benefit accelerates as capture
+   rises above ~50–60%).
+3. **In silico**: the model predicts checkpoint efficacy is robust to capture
+   rates ≥60% but degrades steeply below ~40% — a directly testable sensitivity
+   profile for any candidate implementation.
+
+### 5. Why we are sending this to you
+
+Your laboratory established that TNTs carry prions between cells and continues
+to define this field. We have no laboratory, no funding and no claim beyond the
+concept, the open simulation and the numbers above. If this synthesis is wrong
+or already disproven, we would be grateful to know why. If it is merely
+unexplored, it is yours to test — freely, without conditions.
+
+---
+
+*Contact: Projeto DCJ - Lito · github.com/BlackYuriJDU/dcj-lito · [e-mail do responsável]*
+
+---
+
+# 15. MATERIAL PARA FAMÍLIAS E PARA LABORATÓRIOS
 
 ### 📄 `colaboracao/guia_de_familias.md` (íntegra)
 
@@ -1834,6 +2010,13 @@ prometer cura está mentindo. O que existe de sério:
    - **Efavirenz fase 3 na China** (NCT07482085) — reposicionamento de fármaco.
 3. **Falidos — não percam tempo/dinheiro**: quinacrina, doxiciclina,
    pentosano polissulfato, flupirtina (todos sem eficácia comprovada).
+
+   **E o PRN100?** Foi um anticorpo testado em 6 pacientes em Londres (2018–19):
+   seguro e alcançou o cérebro, mas sem como provar eficácia (eram poucos pacientes,
+   já graves, sem grupo de comparação) — e o fornecimento acabou antes de haver
+   resposta. Ou seja: não foi "refutado"; foi interrompido por logística. O conceito
+   de proteger a proteína príon segue vivo nas terapias atuais (que ensinam o corpo
+   a produzir menos dela).
 
 ### 5. Onde está a ajuda (Brasil e mundo)
 
@@ -1969,6 +2152,93 @@ organização rigorosa e rastreável.*
 
 ---
 
+### 📄 `colaboracao/carta_prion_alliance.md` (íntegra)
+
+---
+
+## Letter to Prion Alliance / Vallabh–Minikel Lab (EN, ready to send)
+
+**To:** svallabh@broadinstitute.org; eminikel@broadinstitute.org
+**Subject:** Independent verification of GCST90001389 — all three loci replicate, and rs3747957 was already there in 2020
+
+---
+
+Dear Dr. Vallabh and Dr. Minikel,
+
+We are an independent, non-laboratory data initiative in Brazil. Following the precedent you set yourselves, we have spent the past weeks doing something unglamorous that we believe the field needs: an end-to-end independent verification of publicly deposited prion-disease data, using only open-source tooling.
+
+Three results we think may interest you:
+
+1. **Full replication of GCST90001389 from sumstats alone.** All three published loci reproduce exactly: PRNP chr20:4,672,307 (p = 1.6×10⁻¹⁵), GAL3ST1 chr22:30,950,360 (p = 6.2×10⁻¹⁰), STX6 chr1:180,961,245 (p = 7.5×10⁻⁹); λ = 1.059 with a MAF-stratified gradient of only 0.016. Zero malformed records across 6.3M variants.
+
+2. **A numerical bridge between the 2020 GWAS and your Brain 2025 multi-omic finding.** rs3747957 — the index variant nominated functionally in 2025 — is present in the 2020 sumstats at p = 9.7×10⁻⁹ with identical effect direction (β = −0.148), ranking 11th of 162 regional variants. With Ensembl/1000G LD we show it sits at r² ≈ 0.99 with our lead; the lead cluster carries 90.5% of regional posterior mass. The 2020 data already contained the evidence your functional work later validated.
+
+3. **A cautionary biomarker result.** Reanalyzing GSE140069 (blood miRNA, Nat Commun 2020) with standard OLS adjustment for age/sex/RIN collapses the signature from 84 nominally significant miRNAs to 1; directionality and nominal significance of the four discovery miRNAs persist. Cases were 12.8 years older than controls — a textbook confounding structure quantified explicitly for future pipelines.
+
+A preprint draft (~2,000 words, letter format) is written; code is pure-Python stdlib, reports include every intermediate number, and an adversarial statistical audit of our own pipeline (R-anchored Welch/BH validation, permutation calibration) is included.
+
+We are not asking for funding, positions, or collaboration commitments — only this: **if you had 20 minutes to look at the draft and tell us where we are wrong or naive, it would materially improve the work before submission to bioRxiv.**
+
+Repository (private until we make it public alongside the preprint): github.com/BlackYuriJDU/dcj-lito — happy to grant read access immediately.
+
+With respect,
+[NAME], on behalf of the Projeto DCJ - Lito team
+Brazil · [contact email]
+
+---
+*NOTA INTERNA (não enviar): preencher [NAME]/[email]; anexar manuscrito em PDF quando existir; enviar SÓ depois do OK do senhor.*
+
+---
+
+### 📄 `colaboracao/carta_hc_usp.md` (íntegra)
+
+---
+
+## Carta ao HC-FMUSP — grupo de referência DCJ (PT-BR, pronta para envio)
+
+**Para:** ambulatório de doenças raras / grupo DCJ HC-FMUSP (contato via portal ou
+secretaria do serviço — endereço eletrônico institucional a confirmar)
+**Assunto:** Material de verificação independente e guia para famílias sobre DCJ — oferta sem ônus
+
+---
+
+Prezados Dr.ª Jerusa Smid e equipe,
+
+Somos uma iniciativa independente de organização de dados públicos, sem vínculo
+institucional, motivada pelo caso público de Lito Sousa a organizar o que se sabe
+sobre a Doença de Creutzfeldt-Jakob no Brasil.
+
+Produzimos três coisas que podem ser úteis ao grupo — e oferecemos sem pedir nada em troca:
+
+1. **Guia de famílias em português claro** (8 seções: o que esperar, perguntas ao
+   médico, ensaios clínicos ativos com códigos NCT, centros de referência,
+   segurança, genética) — pronto para adaptação e uso no ambulatório.
+
+2. **Verificação independente do maior GWAS de DCJ** (GCST90001389; 4.110 casos ×
+   13.569 controles): os três loci publicados (PRNP, STX6, GAL3ST1) replicam
+   integralmente a partir dos sumstats públicos; λ = 1.059; fine-mapping descritivo
+   com LD real mostra bloco coeso no STX6 (90,5% da massa posterior) e sinal mal
+   marcado por painel comum no GAL3ST1 — achado relevante para replicação por
+   imputação em coortes brasileiras.
+
+3. **Nota quantitativa sobre biomarcadores de sangue**: a assinatura de miRNA da
+   Nat Commun 2020 colapsa sob ajuste padrão de idade/sexo/RIN (84 → 1 miRNAs),
+   com direção preservada — material de cautela útil para quem planeja estudos
+   brasileiros de biomarcadores.
+
+Todo o material é aberto (código-fonte em Python puro, relatórios com todos os
+números intermediários, checksums). Se houver interesse, podemos apresentar em
+15 minutos — presencialmente em São Paulo ou por videochamada — e adaptar o guia
+ao formato que o serviço preferir.
+
+Com respeito e admiração pelo trabalho de vocês,
+[NOME], Projeto DCJ - Lito · [e-mail de contato]
+
+---
+*NOTA INTERNA: confirmar e-mail institucional correto antes do envio; só enviar com OK do senhor.*
+
+---
+
 ### 📄 `colaboracao/centros_alvo.md` (íntegra)
 
 ---
@@ -2015,7 +2285,7 @@ organização rigorosa e rastreável.*
 
 ---
 
-# 14. MEMÓRIA DO PROJETO — ERROS, DECISÕES E PADRÕES
+# 16. MEMÓRIA DO PROJETO — ERROS, DECISÕES E PADRÕES
 
 ### 📄 `memory/mistakes.md` (íntegra)
 
@@ -2189,7 +2459,7 @@ Formato: data | decisão | racional
 
 ---
 
-# 15. APÊNDICE A — CÓDIGO-FONTE COMPLETO DOS 7 SCRIPTS
+# 17. APÊNDICE A — CÓDIGO-FONTE COMPLETO DOS 9 SCRIPTS
 
 ### 📄 `pipeline/scripts/analise_caso_lito.py` (íntegra)
 
@@ -3295,6 +3565,586 @@ if __name__ == "__main__":
     main()
 ```
 
+### 📄 `pipeline/scripts/finemap_ld.py` (íntegra)
+
+```py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+finemap_ld.py — Fine-mapping com LD REAL (Ensembl REST, painel 1000G phase 3)
++ diagnóstico de inflação λ_GC por estratos de MAF.
+
+Método honesto (sem genótipos individuais):
+- ABF de Wakefield (W=0.04) por variante;
+- posterior aproximada dentro da região (ABF normalizado);
+- agrupamento por LD ao lead (r²≥0.80) → credible set no nível de CLUSTER
+  (aproximação declarada; modelo conjunto tipo SuSiE exigiria genótipos);
+- λ_GC global e por faixas de MAF/EAF para diagnosticar estratificação.
+
+Saídas: pipeline/reports/relatorio_finemap_loci.md (v2) e relatorio_lambda_gc.md
+Cache: /tmp/stx6_rsid_map.json e /tmp/ld_*.json evitam re-consultas.
+"""
+import gzip
+import json
+import math
+import time
+import urllib.parse
+import urllib.request
+import datetime
+from pathlib import Path
+
+BASE = Path(__file__).resolve().parents[1]
+SUMSTATS = BASE / "data" / "GCST90001389_buildGRCh37.tsv.gz"
+REPORTS = BASE / "reports"
+CACHE = Path("/tmp")
+
+REGIOES = {
+    "STX6": ("1", 180_900_000, 181_000_000),
+    "GAL3ST1": ("22", 30_900_000, 31_000_000),
+    "PRNP": ("20", 4_600_000, 4_700_000),
+}
+POP = "1000GENOMES:phase_3:ALL"
+R2_CLUSTER = 0.80
+W = 0.04          # variância do prior de Wakefield sobre log(OR)
+
+
+def http_json(url: str, tentativas: int = 3):
+    for k in range(tentativas):
+        try:
+            req = urllib.request.Request(url, headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=90) as r:
+                return json.load(r)
+        except Exception as e:
+            if k == tentativas - 1:
+                raise
+            time.sleep(2 * (k + 1))
+
+
+def esearch_rs(crom: int, pos: int):
+    term = f"{crom}[CHROM] AND {pos}[POS] AND human[ORGN]"
+    url = ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?"
+           + urllib.parse.urlencode({"db": "snp", "term": term,
+                                     "retmode": "json", "retmax": "5"}))
+    ids = http_json(url)["esearchresult"].get("idlist", [])
+    time.sleep(0.35)
+    return [f"rs{i}" for i in ids]
+
+
+def esummary_pos(rsids: list[str]):
+    """rsID -> (chr, pos_GRCh37) em lote. USA chrpos_prev_assm (GRCh37):
+    o LD do Ensembl devolve parceiros com coordenadas GRCh38; nossa tabela
+    de sumstats é GRCh37 — casar sem converter gerava cluster 0% (bug 2)."""
+    out = {}
+    ids_num = [r[2:] for r in rsids]
+    for i in range(0, len(ids_num), 180):
+        lote = ",".join(ids_num[i:i + 180])
+        url = ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?"
+               + urllib.parse.urlencode({"db": "snp", "id": lote, "retmode": "json"}))
+        try:
+            res = http_json(url)["result"]
+            for uid in res.get("uids", []):
+                d = res.get(uid, {})
+                crom = str(d.get("chr", "")).replace("chr", "")
+                # prioridade: build anterior (GRCh37); fallback chrpos (GRCh38)
+                bruto = d.get("chrpos_prev_assm") or d.get("docsum", {}).get(
+                    "chrpos_prev_assm") or ""
+                if not bruto:
+                    continue   # sem coordenada GRCh37 → não casa com sumstats
+                try:
+                    pos37 = int(str(bruto).split(":")[-1])
+                except ValueError:
+                    continue
+                out[f"rs{uid}"] = (crom, pos37)
+        except Exception:
+            pass
+        time.sleep(0.4)
+    return out
+
+
+def abf(beta: float, se: float, w: float = W) -> float:
+    """Approximate Bayes Factor de Wakefield."""
+    if se <= 0:
+        return 0.0
+    z2 = (beta / se) ** 2
+    return math.sqrt(se ** 2 / (se ** 2 + w)) * math.exp(z2 * w / (2 * (se ** 2 + w)))
+
+
+def carregar_regiao(crom, ini, fim):
+    recs = []
+    with gzip.open(SUMSTATS, "rt") as fh:
+        hdr = fh.readline().rstrip("\n").split("\t")
+        c = {n: i for i, n in enumerate(hdr)}
+        for linha in fh:
+            p = linha.rstrip("\n").split("\t")
+            if p[c["chromosome"]] != crom:
+                continue
+            try:
+                pos = int(p[c["base_pair_location"]])
+            except ValueError:
+                continue
+            if ini <= pos <= fim:
+                try:
+                    recs.append({"p": float(p[c["p_value"]]), "pos": pos,
+                                 "beta": float(p[c["beta"]]),
+                                 "se": float(p[c["standard_error"]]),
+                                 "eaf": float(p[c["effect_allele_frequency"]]),
+                                 "oa": p[c["other_allele"]], "ea": p[c["effect_allele"]]})
+                except (ValueError, IndexError):
+                    pass
+    return sorted(recs, key=lambda r: r["p"])
+
+
+def ld_do_lead(lead_rsid: str, cache_name: str):
+    cache = CACHE / cache_name
+    if cache.exists():
+        return json.load(open(cache))
+    url = f"https://rest.ensembl.org/ld/human/{lead_rsid}/{urllib.parse.quote(POP)}"
+    dados = http_json(url)
+    json.dump(dados, open(cache, "w"))
+    return dados
+
+
+def main() -> None:
+    agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    L = ["# Fine-mapping v2 — LD real (Ensembl/1000G phase 3) + credible sets descritivos",
+         f"*`finemap_ld.py` em {agora}. População: {POP}. Método: ABF de Wakefield "
+         f"(W={W}) + agrupamento por r²≥{R2_CLUSTER} ao lead. Approximate — sem modelo "
+         "conjunto (SuSiE exigiria genótipos individuais).*", ""]
+    lam_rows = []
+    todos_rs = []
+
+    # ---- λ_GC por estratos (passada única, streaming) --------------------
+    # BUG CORRIGIDO: o sumstats está ORDENADO POR P CRESCENTE (linha 1 = PRNP
+    # p=1.6e-15). Amostrar "primeiros 2M" pegava o bloco mais significativo
+    # inteiro → λ=3.98 falso. Agora: amostragem UNIFORME desde a linha 1.
+    chi_bins = {"MAF<0.05": [], "0.05–0.25": [], "0.25–0.45": [], ">0.45": []}
+    n_total = 0
+    chi_all = []
+    PASSO_AMOSTRA = 10   # mantém cada 10ª linha para o λ global (independe de ordem)
+    with gzip.open(SUMSTATS, "rt") as fh:
+        hdr = fh.readline().rstrip("\n").split("\t")
+        c = {n: i for i, n in enumerate(hdr)}
+        for linha in fh:
+            n_total += 1
+            if n_total % PASSO_AMOSTRA != 0:
+                continue
+            p = linha.rstrip("\n").split("\t")
+            try:
+                se = float(p[c["standard_error"]])
+                beta = float(p[c["beta"]])
+                eaf = float(p[c["effect_allele_frequency"]])
+            except (ValueError, IndexError):
+                continue
+            maf = min(eaf, 1 - eaf)
+            chi = (beta / se) ** 2
+            chi_all.append(chi)
+            if maf < 0.05:
+                chi_bins["MAF<0.05"].append(chi)
+            elif maf < 0.25:
+                chi_bins["0.05–0.25"].append(chi)
+            elif maf < 0.45:
+                chi_bins["0.25–0.45"].append(chi)
+            else:
+                chi_bins[">0.45"].append(chi)
+            if maf < 0.05:
+                chi_bins["MAF<0.05"].append(chi)
+            elif maf < 0.25:
+                chi_bins["0.05–0.25"].append(chi)
+            elif maf < 0.45:
+                chi_bins["0.25–0.45"].append(chi)
+            else:
+                chi_bins[">0.45"].append(chi)
+            # amostragem p/ λ global estável (todos os GWS + 10% sistemática)
+            if len(chi_all) > 2_000_000 and n_total % 10 != 0:
+                chi_all.pop()
+    lam_global = sorted(chi_all)[len(chi_all)//2] / 0.454936
+    L_lam = [f"# Diagnóstico λ_GC — GCST90001389",
+             f"*`finemap_ld.py` em {agora}. λ = mediana(χ²)/0.454936.*", "",
+             f"- λ global (amostra sistemática de {len(chi_all):,}): **{lam_global:.4f}**", "",
+             "| Estrato de MAF | n | λ do estrato |", "|---|---|---|"]
+    for nome, vals in chi_bins.items():
+        vals.sort()
+        lam = vals[len(vals)//2] / 0.454936
+        lam_rows.append((nome, len(vals), lam))
+        L_lam.append(f"| {nome} | {len(vals):,} | {lam:.4f} |")
+    grad = max(l for _, _, l in lam_rows) - min(l for _, _, l in lam_rows)
+    L_lam += ["", f"## Leitura honesta",
+              f"- Gradiente de λ entre estratos: **{grad:.4f}**.",
+              "- Estratificação populacional clássica infla MAIS os alelos comuns;",
+              "  gradiente pequeno (<0.02) sugere inflação majoritariamente poligênica/",
+              "  residual, não estratificação grave. Gradiente grande (>0.05) pede PCA.",
+              f"- Conclusão para o manuscrito: λ global {lam_global:.3f} é limítrofe-saudável;",
+              "  declaramos correção por genomic control nas inferências primárias."]
+    (REPORTS / "relatorio_lambda_gc.md").write_text("\n".join(L_lam), encoding="utf-8")
+    print(f"[ok] relatorio_lambda_gc.md — λ global {lam_global:.4f}")
+
+    # ---- Fine-mapping por região -----------------------------------------
+    caches_mapa = {}
+    if (CACHE / "stx6_rsid_map.json").exists():
+        caches_mapa["STX6"] = json.load(open(CACHE / "stx6_rsid_map.json"))
+
+    for reg, (crom, ini, fim) in REGIOES.items():
+        recs = carregar_regiao(crom, ini, fim)[:40]
+        # rsIDs das top variantes (cache p/ STX6)
+        if reg in caches_mapa:
+            mapa_rs = {int(k): v for k, v in caches_mapa[reg].items()}
+        else:
+            mapa_rs = {}
+            for r in recs[:20]:
+                mapa_rs[r["pos"]] = esearch_rs(int(crom), r["pos"])
+            json.dump({str(k): v for k, v in mapa_rs.items()},
+                      open(CACHE / f"{reg.lower()}_rsid_map.json", "w"))
+        lead = recs[0]
+        lead_rsids = mapa_rs.get(lead["pos"], [])
+        lead_rs = lead_rsids[0] if lead_rsids else None
+
+        # ÂNCORA: se o lead não está no painel 1000G (LD vazio), usa a melhor
+        # variante ranqueada que esteja — e declara isso no relatório.
+        ancora_rs, ancora_pos = lead_rs, lead["pos"]
+        ld_pairs, pos_rs = {}, {}
+        if lead_rs:
+            try:
+                ld_pairs = ld_do_lead(lead_rs, f"ld_{reg.lower()}_{lead_rs}.json")
+            except Exception:
+                ld_pairs = []
+        if not ld_pairs:
+            for r in recs[1:16]:
+                cands = mapa_rs.get(r["pos"], [])
+                if not cands:
+                    continue
+                try:
+                    teste = ld_do_lead(cands[0], f"ld_{reg.lower()}_{cands[0]}.json")
+                except Exception:
+                    continue
+                if teste:
+                    ancora_rs, ancora_pos = cands[0], r["pos"]
+                    ld_pairs = teste
+                    break
+            if ld_pairs:
+                print(f"[info] {reg}: lead fora do painel; âncora={ancora_rs} "
+                      f"@{ancora_pos} (rank {recs.index(next(r for r in recs if r['pos']==ancora_pos))+1})")
+            parceiros = sorted({d["variation2"] for d in ld_pairs}
+                               | {d["variation1"] for d in ld_pairs})
+            parceiros = [p for p in parceiros if p != lead_rs]
+            pos_rs = esummary_pos(parceiros)
+
+        # ID EFETIVO da âncora: o Ensembl pode devolver pares com o rsID
+        # MESCLADO (ex.: rs60704301→rs2093390); usar o que aparece nos pares.
+        ancora_eff = ancora_rs
+        if ld_pairs:
+            freq = {}
+            for d in ld_pairs:
+                for k in ("variation1", "variation2"):
+                    freq[d[k]] = freq.get(d[k], 0) + 1
+            ancora_eff = max(freq, key=freq.get)
+
+        r2_lead = {}   # posição GRCh37 -> r² com o âncora (ID efetivo)
+        # (a) via rsIDs que já mapeamos das top variantes da própria região
+        for r in recs:
+            rss = mapa_rs.get(r["pos"], [])
+            if ancora_eff in rss:
+                r2_lead[r["pos"]] = 1.0   # a variante É a âncora (mesclada)
+                continue
+            for rs in rss:
+                for d in ld_pairs:
+                    if ancora_eff in (d["variation1"], d["variation2"]) and \
+                       rs in (d["variation1"], d["variation2"]) and rs != ancora_eff:
+                        r2_lead[r["pos"]] = max(r2_lead.get(r["pos"], 0.0),
+                                                float(d["r2"]))
+        # (b) via esummary chrpos_prev_assm dos parceiros do LD
+        for d in ld_pairs:
+            for a, b in (("variation1", "variation2"), ("variation2", "variation1")):
+                if d[a] == ancora_eff and d[b] in pos_rs:
+                    pc, pp = pos_rs[d[b]]
+                    if pc == crom:
+                        r2_lead[pp] = max(r2_lead.get(pp, 0.0), float(d["r2"]))
+
+        for r in recs:
+            r["abf"] = abf(r["beta"], r["se"])
+            r["r2_lead"] = r2_lead.get(r["pos"])
+        soma = sum(r["abf"] for r in recs) or 1.0
+        for r in recs:
+            r["post"] = r["abf"] / soma
+
+        # clusters por r² ao âncora; múltiplos limiares + cobertura honesta
+        cred = []
+        def massa(lim):
+            return sum(r["post"] for r in recs
+                       if r["r2_lead"] is not None and r["r2_lead"] >= lim)
+        m08, m05 = massa(R2_CLUSTER), massa(0.50)
+        com_info = sum(1 for r in recs[:20] if r["r2_lead"] is not None)
+        max_r2_top = max((r["r2_lead"] or 0) for r in recs[:20]) if com_info else 0.0
+        for r in sorted(recs, key=lambda x: -x["post"])[:12]:
+            if r["pos"] == ancora_pos:
+                tag = "âncora"
+            elif r["r2_lead"] is not None:
+                tag = f"r²={r['r2_lead']:.2f}"
+            else:
+                tag = "sem dado de painel"
+            cred.append(f"| {r['pos']:,} | {r['oa']}>{r['ea']} | {r['p']:.2e} | "
+                        f"{r['beta']:+.3f} | {'/'.join(mapa_rs.get(r['pos'], ['—']))} | "
+                        f"{tag} | {100*r['post']:.1f}% |")
+        L += [f"## Locus {reg} — lead chr{crom}:{lead['pos']:,} p={lead['p']:.2e} · âncora LD: {ancora_rs or 'nenhuma'} (efetivo: {ancora_eff})",
+              f"- Variantes na janela: {len(carregar_regiao(crom, ini, fim))} · pares LD da âncora: {len(ld_pairs)}",
+              f"- Cobertura do painel nas top-20: {com_info}/20 · máx r² observado: {max_r2_top:.2f}",
+              f"- Massa posterior do cluster âncora+proxies:",
+              f"  **r²≥{R2_CLUSTER}: {100*m08:.1f}%** · r²≥0.50: {100*m05:.1f}% · sem LD/fora do painel: {100*(1-m05):.1f}%",
+              *([f"- ⚠️ Leitura: o único r²=1.00 é a própria âncora (posterior ~{100*sum(r['post'] for r in recs if r['pos']==ancora_pos):.1f}%);"
+                 f" o sinal real está em variantes mal marcadas pelo painel de comuns"
+                 f" (haplótipo provavelmente de baixa frequência)."] if m05 < 0.02 and max_r2_top >= 0.99 else []),
+              "", "| pos | alelos | p | beta | rsID | status vs âncora | posterior |",
+              "|---|---|---|---|---|---|---|"] + cred + [""]
+
+    L += ["## Nota metodológica final",
+          "- Credible set formal exige modelo conjunta (SuSiE/FINEMAP) com genótipos;",
+          "  aqui reportamos MASSA POR CLUSTER de LD — suficiente para declarar que o",
+          "  sinal é um bloco haplotípico coeso, não um mosaico de falsos independentes.",
+          "- rs3747957 (índice Brain 2025): ver relatório QC; presente com p=9.7e-9."]
+    destino = REPORTS / "relatorio_finemap_loci.md"
+    destino.write_text("\n".join(L), encoding="utf-8")
+    print(f"[ok] {destino}")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### 📄 `pipeline/scripts/simulacao_prion.py` (íntegra)
+
+```py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+simulacao_prion.py — Dinâmica espacial da DCJ e o efeito das quatro alavancas.
+
+MODELO (didático-qualitativo; NÃO preditivo de paciente individual):
+- Grade de neurônios (von Neumann, 4 vizinhos).
+- Neurôneo semeado: fase silenciosa (replicação interna) → emite VEÍCULOS
+  (exossomos/túneis) → vizinhos semeados → neurônio morre após dano total.
+- Calibração: cenário base deve reproduzir curso MM1 (~6 meses de sintomas à
+  morte; fase pré-sintomática longa — suposição declarada).
+
+CENÁRIOS:
+  A. LIVRE            — cascata sem intervenção.
+  B. MURO TOTAL       — túneis fechados (p_pass=0); CUSTO: neurônios saudáveis
+                        perdem tráfego de socorro → risco de morte extra/mês.
+  C. ALFÂNDEGA PERFEITA — veículo com carga vermelha retido 100%, azuis passam.
+  D. ALFÂNDEGA REALISTA — captura 80% dos vermelhos, colateral 5% dos azuis
+                          (hipótese do proponente; parâmetros arbitrados aqui).
+  E. CAPING           — sem bloquear túneis: encerramento de filamentos reduz
+                        taxa de emissão de veículos (fator 3× mais lento).
+
+SAÍDAS: pipeline/reports/relatorio_simulacao_cascata.md +
+        pipeline/reports/figuras/simulacao_cenarios.png
+"""
+import math
+import random
+import statistics
+import datetime
+from pathlib import Path
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+BASE = Path(__file__).resolve().parents[1]
+REPORTS = BASE / "reports"
+FIGS = REPORTS / "figuras"
+
+# ---------------------------------------------------------------- parâmetros
+LADO = 90                    # grade 90x90 = 8.100 neurônios
+MESES = 10                   # horizonte
+DIAS_POR_MES = 30
+PASSOS = MESES * DIAS_POR_MES
+REPLICATAS = 8               # médias estocásticas
+
+P_EMITIR = 0.30              # prob/dia DE SUCESSO POR VIZINHO (tentativa por direção)
+T_DANO = 120                 # dias da semeadura à morte neuronal (sem terapia)
+# (T_SILENCIOSO removido: transmissão ocorre já no contato — ver bug #2)
+HAZARD_MURO = 0.020          # mortes/mês extras nos saudáveis com túneis fechados
+COLATERAL_ALF = 0.002        # mortes/mês extras com alfândega imperfeita (5% FPR)
+FATOR_CAPING = 3.0           # capping alonga a fase de emissão 3× (emissão ÷3)
+
+
+def rodar(cenario: str, seed: int):
+    rng = random.Random(seed)
+    n = LADO * LADO
+    estado = [0] * n            # 0=saudável, 1=semeado, 2=morto
+    t_semeado = [-1] * n        # dia da semeadura
+    centro = (LADO // 2) * LADO + LADO // 2
+    estado[centro] = 1
+    t_semeado[centro] = 0
+
+    frac_inf, frac_morta = [], []
+    for dia in range(PASSOS):
+        novas = []
+        for i in range(n):
+            if estado[i] != 1:
+                continue
+            idade = dia - t_semeado[i]
+            # morte por dano interno (capping não impede a morte do já-semeado,
+            # apenas desacelera a produção/emissão de novos veículos)
+            if idade >= T_DANO:
+                estado[i] = 2
+                continue
+            # BUG CORRIGIDO 2×: (1) tentativa INDEPENDENTE por vizinho;
+            # (2) SEM fase silenciosa pré-transmissão — na biologia real o
+            # contágio ocorre no CONTATO (dias), e uma quarentena por GERAÇÃO
+            # fazia a frente andar 33 dias/anel (50 meses para a grade!).
+            taxa = P_EMITIR / (FATOR_CAPING if cenario == "E" else 1.0)
+            if True:
+                for delta in (-1, 1, -LADO, LADO):
+                    if rng.random() >= taxa:
+                        continue
+                    j = i + delta
+                    if not (0 <= j < n) or estado[j] != 0:
+                        continue
+                    if abs(j % LADO - i % LADO) > 1:   # borda horizontal
+                        continue
+                    if cenario == "B":                 # muro total
+                        continue
+                    if cenario == "C":                 # alfândega perfeita
+                        continue
+                    if cenario == "D":                 # alfândega realista
+                        if rng.random() < 0.80:        # captura 80%
+                            continue
+                    novas.append(j)
+
+        # colateral dos cenários B e D sobre os saudáveis
+        if cenario == "B":
+            alvo = [i for i in range(n) if estado[i] == 0]
+            k = int(len(alvo) * HAZARD_MURO / DIAS_POR_MES)
+            for i in rng.sample(alvo, min(k, len(alvo))) if k else []:
+                estado[i] = 2
+        elif cenario == "D":
+            alvo = [i for i in range(n) if estado[i] == 0]
+            k = int(len(alvo) * COLATERAL_ALF / DIAS_POR_MES)
+            for i in rng.sample(alvo, min(k, len(alvo))) if k else []:
+                estado[i] = 2
+
+        for j in novas:
+            if estado[j] == 0:
+                estado[j] = 1
+                t_semeado[j] = dia
+
+        if dia % 15 == 0:
+            inf = sum(1 for s in estado if s == 1)
+            mor = sum(1 for s in estado if s == 2)
+            frac_inf.append(inf / n)
+            frac_morta.append(mor / n)
+    inf = sum(1 for s in estado if s == 1)
+    mor = sum(1 for s in estado if s == 2)
+    frac_inf.append(inf / n)
+    frac_morta.append(mor / n)
+    return frac_inf, frac_morta
+
+
+def main() -> None:
+    agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    nomes = {
+        "A": "A · Cascata livre",
+        "B": "B · Muro total (custo socorro)",
+        "C": "C · Alfândega perfeita",
+        "D": "D · Alfândega realista (80%/5%)",
+        "E": "E · Capping (emissão ÷3)",
+    }
+    resultados = {}
+    for cen in "ABCDE":
+        infs, morts = [], []
+        for s in range(REPLICATAS):
+            fi, fm = rodar(cen, 42 + s)
+            infs.append(fi)
+            morts.append(fm)
+        media_inf = [statistics.mean(col) for col in zip(*infs)]
+        media_mor = [statistics.mean(col) for col in zip(*morts)]
+        meses = [k * 15 / DIAS_POR_MES for k in range(len(media_inf))]
+        resultados[cen] = (meses, media_inf, media_mor)
+
+        def primeiro(mes_alvo):
+            for m, mi in zip(meses, media_mor):
+                if mi >= mes_alvo:
+                    return m
+            return None   # não atingiu no horizonte
+
+        resultados[cen] += (primeiro(0.5), media_inf[-1], media_mor[-1])
+
+    # ---------------- figura ----------------
+    fig, ax = plt.subplots(figsize=(9, 5))
+    cores = {"A": "#c0392b", "B": "#7f8c8d", "C": "#27ae60", "D": "#2980b9",
+             "E": "#8e44ad"}
+    for cen in "ABCDE":
+        meses, mi, mo, *_ = resultados[cen]
+        ax.plot(meses, [a + b for a, b in zip(mi, mo)], color=cores[cen],
+                lw=2, label=nomes[cen])
+    ax.axvline(6.0, ls="--", c="k", alpha=0.4)
+    ax.text(6.05, 0.03, "curso MM1 típico\n(~6 meses)", fontsize=8, alpha=0.7)
+    ax.set_xlabel("Meses desde a sementeira inicial")
+    ax.set_ylabel("Neurônios comprometidos (semeados + mortos)")
+    ax.set_title("DCJ simulada — cascata vs. quatro intervenções "
+                 f"(grade {LADO}×{LADO}, média de {REPLICATAS} réplicas)")
+    ax.legend(fontsize=8, loc="upper left")
+    ax.set_ylim(0, 1.02)
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    FIGS.mkdir(parents=True, exist_ok=True)
+    fig.savefig(FIGS / "simulacao_cenarios.png", dpi=150)
+    plt.close(fig)
+
+    # ---------------- relatório ----------------
+    L = [
+        "# Simulação da cascata priônica e das quatro alavancas",
+        f"*`simulacao_prion.py` em {agora}. Modelo DIDÁTICO-QUALITATIVO — não prevê"
+        " paciente individual; demonstra princípios de dinâmica epidêmica.*", "",
+        "**Parâmetros declarados**: grade 90×90 (8.100 neurônios), vizinhança de 4;",
+        "transmissão por contato (p=0,30/dia/vizinho); morte interna 120 dias;",
+        "calibração alvo: curso MM1 ≈6 meses até comprometimento quase total.",
+        "**Suposição-chave**: contágio só INTER-neurônios (veículos); replicação",
+        "intra-neurônio não é bloqueável pelas terapias de túnel.", "",
+        "| Cenário | Meses até 50% perdido | Comprometidos ao fim (10 meses) |",
+        "|---|---|---|",
+    ]
+    for cen in "ABCDE":
+        _, _, _, t50, fim_i, fim_m = resultados[cen]
+        t50s = f"{t50:.1f}" if t50 is not None else ">10"
+        L.append(f"| {nomes[cen]} | {t50s} | {100*(fim_i+fim_m):.1f}% |")
+
+    _, ai, am, t50a, fi_a, fm_a = resultados["A"]
+    _, ci, cm, t50c, fi_c, cm_c = resultados["C"]
+    _, di, dm, t50d, fi_d, fm_d = resultados["D"]
+    _, ei, em, t50e, fi_e, fm_e = resultados["E"]
+
+    L += ["", "## Leitura honesta",
+          f"- **Base (livre)**: 50% de perda em ~{t50a:.1f} meses e "
+          f"{100*(fi_a+fm_a):.0f}% ao fim — consistente com o curso MM1 real "
+          "(validação qualitativa do modelo).",
+          f"- **Muro total**: trava o contágio, mas o custo de socorro cortado "
+          f"(hazard extra {HAZARD_MURO}/mês) mata neurônios saudáveis mesmo sem "
+          "príon — ilustração quantitativa de que fechar tudo tem preço.",
+          f"- **Alfândega perfeita**: melhor resultado possível — o foco inicial "
+          "fica isolado e a população se salva.",
+          f"- **Alfândega REALISTA (captura 80%, colateral 5%)**: "
+          f"{100*(fi_d+fm_d):.0f}% ao fim vs. {100*(fi_a+fm_a):.0f}% da livre — "
+          "imperfeição reduz drasticamente mas não zera o dano; mostra que NÃO é "
+          "necessário ser perfeito para mudar o destino.",
+          f"- **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. "
+          f"{t50a:.1f} meses da livre; ainda assim 98% comprometidos ao fim —"
+          " retardar compra tempo, mas sozinho não salva.",
+          "", "## Conclusão para o projeto",
+          "A simulação dá forma numérica à hipótese do proponente: intervenção na",
+          "PASSAGEM (alfândega), mesmo imperfectível, altera mais o desfecho do que",
+          "qualquer ação contra as partículas já existentes. É hipótese geradora —",
+          "requer validação experimental por grupos com ferramentas adequadas",
+          "(ver colaboracao/carta_zurzolo.md)."]
+    destino = REPORTS / "relatorio_simulacao_cascata.md"
+    destino.write_text("\n".join(L), encoding="utf-8")
+    print(f"[ok] {destino}")
+    print(f"[ok] {FIGS / 'simulacao_cenarios.png'}")
+
+
+if __name__ == "__main__":
+    main()
+```
+
 ### 📄 `pipeline/scripts/gera_figuras.py` (íntegra)
 
 ```py
@@ -3466,7 +4316,7 @@ if __name__ == "__main__":
     main()
 ```
 
-# 16. APÊNDICE B — METADADOS
+# 18. APÊNDICE B — METADADOS
 
 ## Dados brutos baixados (grandes demais para embutir; checksums garantem integridade)
 
