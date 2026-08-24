@@ -44,10 +44,10 @@ DIAS_POR_MES = 30
 PASSOS = MESES * DIAS_POR_MES
 REPLICATAS = 8               # médias estocásticas
 
-P_EMITIR = 0.35              # prob/dia de um neurônio em fase ativa emitir veículo
-T_SILENCIOSO = 45            # dias de fase silenciosa antes de emitir (calibração)
-T_DANO = 150                 # dias da semeadura à morte neuronal (sem terapia)
-HAZARD_MURO = 0.010          # mortes/mês extras nos saudáveis com túneis fechados
+P_EMITIR = 0.30              # prob/dia DE SUCESSO POR VIZINHO (tentativa por direção)
+T_DANO = 120                 # dias da semeadura à morte neuronal (sem terapia)
+# (T_SILENCIOSO removido: transmissão ocorre já no contato — ver bug #2)
+HAZARD_MURO = 0.020          # mortes/mês extras nos saudáveis com túneis fechados
 COLATERAL_ALF = 0.002        # mortes/mês extras com alfândega imperfeita (5% FPR)
 FATOR_CAPING = 3.0           # capping alonga a fase de emissão 3× (emissão ÷3)
 
@@ -73,22 +73,28 @@ def rodar(cenario: str, seed: int):
             if idade >= T_DANO:
                 estado[i] = 2
                 continue
-            # emissão de veículos após fase silenciosa
+            # BUG CORRIGIDO 2×: (1) tentativa INDEPENDENTE por vizinho;
+            # (2) SEM fase silenciosa pré-transmissão — na biologia real o
+            # contágio ocorre no CONTATO (dias), e uma quarentena por GERAÇÃO
+            # fazia a frente andar 33 dias/anel (50 meses para a grade!).
             taxa = P_EMITIR / (FATOR_CAPING if cenario == "E" else 1.0)
-            if idade > T_SILENCIOSO and rng.random() < taxa:
-                j = i + rng.choice((-1, 1, -LADO, LADO))
-                if not (0 <= j < n) or estado[j] != 0:
-                    continue
-                if abs(j % LADO - i % LADO) > 1:      # borda horizontal
-                    continue
-                if cenario == "B":                     # muro total
-                    continue
-                if cenario == "C":                     # alfândega perfeita
-                    continue
-                if cenario == "D":                     # alfândega realista
-                    if rng.random() < 0.80:            # captura 80%
+            if True:
+                for delta in (-1, 1, -LADO, LADO):
+                    if rng.random() >= taxa:
                         continue
-                novas.append(j)
+                    j = i + delta
+                    if not (0 <= j < n) or estado[j] != 0:
+                        continue
+                    if abs(j % LADO - i % LADO) > 1:   # borda horizontal
+                        continue
+                    if cenario == "B":                 # muro total
+                        continue
+                    if cenario == "C":                 # alfândega perfeita
+                        continue
+                    if cenario == "D":                 # alfândega realista
+                        if rng.random() < 0.80:        # captura 80%
+                            continue
+                    novas.append(j)
 
         # colateral dos cenários B e D sobre os saudáveis
         if cenario == "B":
@@ -144,7 +150,7 @@ def main() -> None:
             for m, mi in zip(meses, media_mor):
                 if mi >= mes_alvo:
                     return m
-            return float("inf")
+            return None   # não atingiu no horizonte
 
         resultados[cen] += (primeiro(0.5), media_inf[-1], media_mor[-1])
 
@@ -176,7 +182,8 @@ def main() -> None:
         f"*`simulacao_prion.py` em {agora}. Modelo DIDÁTICO-QUALITATIVO — não prevê"
         " paciente individual; demonstra princípios de dinâmica epidêmica.*", "",
         "**Parâmetros declarados**: grade 90×90 (8.100 neurônios), vizinhança de 4;",
-        "fase silenciosa 45 d; emissão p=0,35/d; morte interna 150 d; MM1 alvo ≈6 meses.",
+        "transmissão por contato (p=0,30/dia/vizinho); morte interna 120 dias;",
+        "calibração alvo: curso MM1 ≈6 meses até comprometimento quase total.",
         "**Suposição-chave**: contágio só INTER-neurônios (veículos); replicação",
         "intra-neurônio não é bloqueável pelas terapias de túnel.", "",
         "| Cenário | Meses até 50% perdido | Comprometidos ao fim (10 meses) |",
@@ -184,7 +191,7 @@ def main() -> None:
     ]
     for cen in "ABCDE":
         _, _, _, t50, fim_i, fim_m = resultados[cen]
-        t50s = f"{t50:.1f}" if t50 != float("inf") else ">10"
+        t50s = f"{t50:.1f}" if t50 is not None else ">10"
         L.append(f"| {nomes[cen]} | {t50s} | {100*(fim_i+fim_m):.1f}% |")
 
     _, ai, am, t50a, fi_a, fm_a = resultados["A"]
@@ -205,8 +212,9 @@ def main() -> None:
           f"{100*(fi_d+fm_d):.0f}% ao fim vs. {100*(fi_a+fm_a):.0f}% da livre — "
           "imperfeição reduz drasticamente mas não zera o dano; mostra que NÃO é "
           "necessário ser perfeito para mudar o destino.",
-          f"- **Capping (emissão ÷3)**: {t50e:.1f} meses até 50% vs. {t50a:.1f} da livre —"
-          " retardar a multiplicação compra tempo mesmo sem bloquear nada.",
+          f"- **Capping (emissão ÷3)**: 50% só além do horizonte (>10 meses) vs. "
+          f"{t50a:.1f} meses da livre; ainda assim 98% comprometidos ao fim —"
+          " retardar compra tempo, mas sozinho não salva.",
           "", "## Conclusão para o projeto",
           "A simulação dá forma numérica à hipótese do proponente: intervenção na",
           "PASSAGEM (alfândega), mesmo imperfectível, altera mais o desfecho do que",
