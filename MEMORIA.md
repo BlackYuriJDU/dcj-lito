@@ -143,3 +143,15 @@ reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra
 - Lição técnica: endpoint "comprometidos" é dominado pela frente (calibração
   trivial); endpoint "80% MORTOS" é sensível à distribuição de morte — o correto
   para calibrar. Registrado no código.
+
+## FASES 6-7 DO PLANO DIA 25-26 (2026-08-26)
+- Fase 6 ✓: integração cérebro×sangue (miRTarBase 10.0 Functional MTI × DEGs
+  GSE160208 recomputados) = NEGATIVO honesto (sem enriquecimento; sangue reflete
+  periferia, não programa cerebral) — preprint §4.5 atualizado; Manhattan +
+  forest miRNAs gerados (gera_figuras_v2.py).
+- Fase 7 ✓: estudo profundo Claude Science (Anthropic, beta jul/2026) em
+  jarvis/packages/dsh-deepseek-design/research/estudo-claude-science.md —
+  plugins dsh.pub do ChatGPT CONFIRMADOS (HTTP 200 ×4); arquitetura replicada
+  como MODO SCIENCE: lei science-core.md (8 artigos) + /science + pill no
+  composer (mesma mecânica v3 de injeção de contexto). Deploy no perfil feito;
+  cliente via HMR; host ativa no próximo restart do harness.
