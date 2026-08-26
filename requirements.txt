@@ -1,0 +1,7 @@
+# Núcleo estatístico: stdlib puro (validado contra âncoras R ≤1e-13).
+# Dependências externas apenas para figuras e acesso remoto tabix:
+matplotlib>=3.7
+pysam>=0.23
+# Desenvolvimento (validação de regressão contra stack padrão):
+pytest>=7.4
+scipy>=1.11
