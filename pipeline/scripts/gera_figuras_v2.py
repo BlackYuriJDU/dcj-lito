@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""gera_figuras_v2.py — Manhattan (GWAS) + forest (miRNAs brutos vs ajustados)."""
+import gzip, math
+from pathlib import Path
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+BASE = Path(__file__).resolve().parents[1]
+FIGS = BASE / "reports" / "figuras"
+FIGS.mkdir(parents=True, exist_ok=True)
+
+# ---------- Manhattan (p<1e-4 para legibilidade; leads destacados) ----------
+LOCI = {"PRNP": ("20", 4_672_307), "GAL3ST1": ("22", 30_950_360),
+        "STX6": ("1", 180_961_245)}
+xs, ys, cs, labels = [], [], [], []
+offset, chr_max, cores = 0, {}, ["#2563eb", "#7c3aed"]
+with gzip.open(BASE / "data" / "GCST90001389_buildGRCh37.tsv.gz", "rt") as fh:
+    hdr = fh.readline().split("\t")
+    c = {n: i for i, n in enumerate(h) for h in [hdr]}[  # noqa
+        "p_value"] if False else {n: i for i, n in enumerate(hdr)}
+    c_chr, c_pos = c["chromosome"], c["base_pair_location"]
+    atual, off = None, 0
+    for line in fh:
+        f = line.split("\t")
+        p = float(f[c["p_value"]])
+        if p >= 1e-4:
+            continue
+        chrom, pos = f[c_chr], int(f[c_pos])
+        if chrom != atual:
+            atual, off = chrom, chr_max.get(chrom, offset)
+        x = pos + off
+        xs.append(x); ys.append(-math.log10(p))
+        cs.append(cores[ord(chrom[-1]) % 2])
+        chr_max[chrom] = max(chr_max.get(chrom, 0), x + 1e6)
+fig, ax = plt.subplots(figsize=(12, 5))
+ax.scatter(xs, ys, c=cs, s=4, alpha=0.6)
+ax.axhline(-math.log10(5e-8), ls="--", c="#dc2626", lw=1)
+ax.text(1, -math.log10(5e-8) + 0.15, "GWS 5×10⁻⁸", c="#dc2626", fontsize=8)
+for nome, (chrom, pos) in LOCI.items():
+    x = pos + chr_max.get(chrom, 0) - 1e6
+    ax.annotate(nome, (x, 9.2), fontsize=10, weight="bold",
+                ha="center", c="#111111")
+ax.set_xlabel("Genoma (GRCh37)"); ax.set_ylabel("−log10(p)")
+ax.set_title("GWAS sCJD — GCST90001389 (p<10⁻⁴ exibidos; QC independente)")
+fig.tight_layout(); fig.savefig(FIGS / "manhattan_gwas.png", dpi=150); plt.close(fig)
+
+# ---------- Forest: miRNAs (d bruto vs d ajustado) ----------
+dados = [  # (miRNA, d_bruto, d_ajustado) — relatorio_gse140069.md v3
+    ("hsa-miR-16-5p", -0.171, -0.146), ("hsa-miR-93-5p", -0.140, -0.048),
+    ("hsa-let-7i-5p", -0.260, -0.247), ("hsa-miR-106b-3p", -0.171, -0.146),
+    ("hsa-miR-500a-3p", -0.79, -1.20),
+]
+y = list(range(len(dados)))
+fig, ax = plt.subplots(figsize=(8, 4.5))
+ax.hlines(y, [-1.4]*len(y), [0.4]*len(y), color="#e5e7eb", zorder=1)
+ax.axvline(0, c="#9ca3af", lw=1)
+ax.scatter([d[1] for d in dados], [i+0.15 for i in y], c="#dc2626", s=45,
+           label="d bruto (não ajustado)", zorder=3)
+ax.scatter([d[2] for d in dados], [i-0.15 for i in y], c="#2563eb", s=45,
+           label="d ajustado (idade+sexo+RIN)", zorder=3)
+ax.set_yticks(y); ax.set_yticklabels([d[0] for d in dados])
+ax.invert_yaxis(); ax.set_xlabel("Cohen's d (CJD − controle)")
+ax.set_title("miRNAs sanguíneos sCJD — efeito bruto vs ajustado")
+ax.legend(fontsize=8, loc="lower right")
+fig.tight_layout(); fig.savefig(FIGS / "forest_mirnas.png", dpi=150); plt.close(fig)
+print("[ok] manhattan_gwas.png + forest_mirnas.png")
