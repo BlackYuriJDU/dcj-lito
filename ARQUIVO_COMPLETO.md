@@ -1,7 +1,7 @@
 # ARQUIVO COMPLETO TOTAL — Projeto DCJ - Lito
 ## A íntegra de tudo: contexto, dossiês, pesquisas, análises, validações,
 ## auditorias, cartas, memória e código-fonte — num único documento
-*Montado por `monta_arquivo_completo.py` em 2026-08-24 18:25*
+*Montado por `monta_arquivo_completo.py` em 2026-08-26 07:59*
 
 **ÍNDICE**
 
@@ -170,6 +170,16 @@ a invenção da alfândega intercelular, a blindagem G127V (limiar de percolaç�
 ~41%), o PRN100, a auto-destruição celular e a demanda de calibração por dados
 reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra.
 
+### CALIBRAÇÃO POR DADOS REAIS (2026-08-24, fim de tarde)
+- simulacao_calibrada.py: morte Weibull estocástica; 3 validações contra literatura:
+  V1 MM1 → 4,3 meses (publicado 4-5) ✅; V2 subtipo lento 2,7× → 10,5 meses
+  (publicado 12-14; levemente abaixo — compressão não-linear frente+morte, honesto);
+  V3 dose→incubação log-linear (slope -19d/década) ✅ consistente com iatrogênica
+  (GH 12a → dura 22-48a, Rudge 2015/Will 2003/CDC 48,3a).
+- Lição técnica: endpoint "comprometidos" é dominado pela frente (calibração
+  trivial); endpoint "80% MORTOS" é sensível à distribuição de morte — o correto
+  para calibrar. Registrado no código.
+
 ---
 
 # 2. CONTEXTO DO CASO REAL E LIMITES ÉTICOS
@@ -228,7 +238,7 @@ reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra
 
 # 3. CASO REFERÊNCIA (SIMULADO) — DOSSIÊ, EXAMES, LINHA DO TEMPO E FONTES
 
-### 📄 `caso_lito/dossie_clinico.md` (íntegra)
+### 📄 `caso_referencia/dossie_clinico.md` (íntegra)
 
 ---
 
@@ -288,7 +298,7 @@ Confirmação definitiva exige histopatologia/imunohistoquímica ou Western blot
 
 ---
 
-### 📄 `caso_lito/exames_simulados.csv` (íntegra)
+### 📄 `caso_referencia/exames_simulados.csv` (íntegra)
 
 ```csv
 exame,resultado_simulado,valor_referencia,interpretacao,codigos_hl7_loinc_sugestao,fonte_validacao
@@ -302,7 +312,7 @@ Teste genético PRNP,"Sem mutação patogênica; polimorfismo códon 129 = Met/M
 Autópsia cerebral,"(não realizada na simulação) — seria a confirmação definitiva: PrPSc por IHC/Western blot","—","Única confirmação definitiva segundo OMS/CDC","NPDPSC autopsy protocol","NPDPSC / critérios definitivos CDC"
 ```
 
-### 📄 `caso_lito/linha_do_tempo.csv` (íntegra)
+### 📄 `caso_referencia/linha_do_tempo.csv` (íntegra)
 
 ```csv
 mes_fase,titulo,sintomas_observados,funcionalidade,fonte_validacao
@@ -314,7 +324,7 @@ mes_fase,titulo,sintomas_observados,funcionalidade,fonte_validacao
 5,"Terminal","Disfagia grave, incontinência, redução do nível de consciência","Cuidados paliativos intensivos","Sobrevida mediana sCJD ~4-6 meses após início (MM1)"
 ```
 
-### 📄 `caso_lito/fontes.md` (íntegra)
+### 📄 `caso_referencia/fontes.md` (íntegra)
 
 ---
 
@@ -358,7 +368,7 @@ via API Tavily (`pipeline/scripts/tavily_search.sh`), search_depth=advanced.
 
 ---
 
-### 📄 `pipeline/reports/relatorio_caso_lito.md` (íntegra)
+### 📄 `pipeline/reports/relatorio_caso_referencia.md` (íntegra)
 
 ---
 
@@ -1119,7 +1129,7 @@ em si uma contribuição de verificação independente.
 
 # 8. PONTE CASO SIMULADO × COORTE REAL
 
-### 📄 `pipeline/reports/relatorio_ponte_lito_real.md` (íntegra)
+### 📄 `pipeline/reports/relatorio_ponte_caso_referencia.md` (íntegra)
 
 ---
 
@@ -2616,19 +2626,19 @@ Formato: data | decisão | racional
 
 # 19. APÊNDICE A — CÓDIGO-FONTE COMPLETO DOS 11 SCRIPTS
 
-### 📄 `pipeline/scripts/analise_caso_lito.py` (íntegra)
+### 📄 `pipeline/scripts/analise_caso_referencia.py` (íntegra)
 
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-analise_caso_lito.py — Pipeline v1 de análise do caso simulado "Caso Referência".
+analise_caso_referencia.py — Pipeline v1 de análise do caso simulado "Caso Referência".
 
 Lê os dados tabulares do caso em pipeline/data/, valida consistência,
 calcula métricas simples e gera relatório markdown em pipeline/reports/.
 
 Uso:
-    python3 analise_caso_lito.py
+    python3 analise_caso_referencia.py
 
 Princípios:
 - Reproduzível: sem dependências além da stdlib.
@@ -2692,7 +2702,7 @@ def main() -> None:
     agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     linhas = [
         "# Relatório automático — Caso Caso Referência (SIMULADO)",
-        f"*Gerado por `analise_caso_lito.py` em {agora}. Dados fictícios.*",
+        f"*Gerado por `analise_caso_referencia.py` em {agora}. Dados fictícios.*",
         "",
         "## Consistência dos dados",
         f"- Exames processados: **{len(exames)}** · Marcos clínicos: **{len(linha)}**",
@@ -2713,7 +2723,7 @@ def main() -> None:
                "", "---",
                "*Nota: este relatório não constitui diagnóstico médico real.*"]
 
-    destino = REPORTS / "relatorio_caso_lito.md"
+    destino = REPORTS / "relatorio_caso_referencia.md"
     destino.write_text("\n".join(linhas), encoding="utf-8")
     print(f"[ok] Relatório gerado: {destino}")
     print(f"[ok] {len(exames)} exames, {len(linha)} marcos, {len(problemas)} problemas")
@@ -2925,13 +2935,13 @@ def main() -> None:
         partes = ", ".join(f"{v}: {n}" for v, n in sorted(contagem.items()))
         L.append(f"- {k_chave}: {partes}")
 
-    # --- Estratificação por subtipo (MM1 = subtipo do caso Lito) ---------
+    # --- Estratificação por subtipo (MM1 = subtipo do caso de referência) ---------
     mm1_fc = subtipos_cjd_fc.get("MM1", [])
     L += ["", "## Estratificação por subtipo — córtex frontal CJD",
           f"- Grupos CJD-FC por subtipo: "
           + ", ".join(f"{st}: {len(ix)}" for st, ix in sorted(subtipos_cjd_fc.items()))]
     if mm1_fc:
-        # Top 5 genes MM1 vs controles (Δ de médias) — foco no subtipo do Lito
+        # Top 5 genes MM1 vs controles (Δ de médias) — foco no subtipo do caso de referência
         diffs_mm1 = []
         for gi, g in enumerate(genes):
             m_mm1 = media(gi, mm1_fc)
@@ -3336,18 +3346,18 @@ if __name__ == "__main__":
     main()
 ```
 
-### 📄 `pipeline/scripts/ponte_lito_real.py` (íntegra)
+### 📄 `pipeline/scripts/ponte_caso_referencia.py` (íntegra)
 
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ponte_lito_real.py — Item 1 do plano de melhoria: conectar o caso simulado
+ponte_caso_referencia.py — Item 1 do plano de melhoria: conectar o caso simulado
 "Caso Referência" à coorte REAL do GSE160208.
 
-Lê os dados simulados (caso_lito/) e extrai estatísticas reais do series
+Lê os dados simulados (caso_referencia/) e extrai estatísticas reais do series
 matrix, gerando uma tabela-ponte: cada achado do Lito vs. evidência real.
-Saída: pipeline/reports/relatorio_ponte_lito_real.md
+Saída: pipeline/reports/relatorio_ponte_caso_referencia.md
 """
 import sys
 import datetime
@@ -3358,7 +3368,7 @@ from analise_gse160208 import extrair_tabela, MATRIX  # noqa: E402
 
 BASE = Path(__file__).resolve().parents[1]
 REPORTS = BASE / "reports"
-CASO = BASE.parent / "caso_lito"
+CASO = BASE.parent / "caso_referencia"
 
 
 def main() -> None:
@@ -3413,7 +3423,7 @@ def main() -> None:
 
     L = [
         "# Ponte Caso↔Real — Caso Referência (simulado) × GSE160208 (real)",
-        f"*Gerado por `ponte_lito_real.py` em {agora}.*",
+        f"*Gerado por `ponte_caso_referencia.py` em {agora}.*",
         "",
         f"Coorte real: {n_total} amostras — {n_pac_cjd} pacientes CJD "
         f"({len(fc_cjd)} amostras de córtex frontal) vs. {n_pac_ct} controles. "
@@ -3428,7 +3438,7 @@ def main() -> None:
         "| Neuroinflamação (GFAP↑, tau↑, NfL↑ no Lito) | Δ médio CJD−CT no córtex frontal: "
         + ", ".join(f"{g} {'+' if d>0 else ''}{d:.1f}" for g, d in marcadores.items())
         + " | ✅ gliose↑ e perda neuronal↓ confirmadas nos dados reais |",
-        "| RM DWI/FLAIR típica | Não avaliável neste dataset (expressão gênica, não imagem) | ➖ fora do escopo do dataset — embasado na literatura (caso_lito/fontes.md) |",
+        "| RM DWI/FLAIR típica | Não avaliável neste dataset (expressão gênica, não imagem) | ➖ fora do escopo do dataset — embasado na literatura (caso_referencia/fontes.md) |",
         "| RT-QuIC positivo / 14-3-3 / EEG PSWC | Idem — dados líquóricos/eletrofisiológicos não fazem parte da série | ➖ idem |",
         "", "## Leitura honesta",
         "- A ponte cobre o que o dataset REAL pode responder: demografia, genética do hospedeiro",
@@ -3436,7 +3446,7 @@ def main() -> None:
         f"- O subgrupo MM1-FC real (n={len(mm1_fc)}) é pequeno: diferenças por subtipo aqui são",
         "  descritivas, não inferenciais (n insuficiente para Welch com potência adequada).",
     ]
-    destino = REPORTS / "relatorio_ponte_lito_real.md"
+    destino = REPORTS / "relatorio_ponte_caso_referencia.md"
     destino.write_text("\n".join(L), encoding="utf-8")
     print(f"[ok] {destino}")
 
@@ -4701,7 +4711,7 @@ gera_figuras.py — Item 5 do plano de melhoria: visualizações.
 Figuras geradas em pipeline/reports/figuras/:
 1. volcano_gse160208.png  — genes córtex frontal (CJD vs CT), FDR<0.05 destacado
 2. volcano_gse140069.png  — miRNAs sanguíneos (CJD vs CT)
-3. timeline_lito.png      — linha do tempo clínica do caso simulado
+3. timeline_caso_referencia.png      — linha do tempo clínica do caso simulado
 4. heatmap_top_genes.png  — top 25 genes × amostras FC
 
 Reusa as funções dos scripts de análise (fonte única de verdade).
@@ -4803,7 +4813,7 @@ def main() -> None:
             [(m, l) for m, l, _ in topo140],
             "GSE140069 — sangue sCJD vs. CT (OLS ajustado idade+sexo+RIN)")
 
-    # --- Timeline Lito -------------------------------------------------------
+    # --- Timeline caso de referência -------------------------------------------------------
     meses = ["M0\ninespecífico", "M1\ncognitivo", "M2\nataxia",
              "M3\nmioclonias", "M4\navançada", "M5\nterminal"]
     dependencia = [10, 35, 60, 80, 95, 100]
@@ -4818,7 +4828,7 @@ def main() -> None:
     for x, y in zip(range(6), dependencia):
         ax.annotate(f"{y}%", (x, y + 3), ha="center", fontsize=8)
     fig.tight_layout()
-    destino = FIGS / "timeline_lito.png"
+    destino = FIGS / "timeline_caso_referencia.png"
     fig.savefig(destino, dpi=150)
     plt.close(fig)
     print(f"[ok] {destino}")
@@ -4881,7 +4891,7 @@ if __name__ == "__main__":
 | volcano_gse160208.png | Córtex frontal sCJD×CT, FDR<0.05 destacado |
 | volcano_gse140069.png | Sangue, modelo OLS ajustado idade+sexo+RIN (v3) |
 | heatmap_top_genes.png | Top 25 genes × 24 amostras FC (z-score por gene) |
-| timeline_lito.png | Progressão típica sCJD MM1 (simulado) |
+| timeline_caso_referencia.png | Progressão típica sCJD MM1 (simulado) |
 
 ## Regras éticas (repetidas no fim, porque importa)
 - Somente dados públicos/anonimizados; nenhum dado novo de pacientes.

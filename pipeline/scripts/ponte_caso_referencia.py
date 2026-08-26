@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ponte_lito_real.py — Item 1 do plano de melhoria: conectar o caso simulado
+ponte_caso_referencia.py — Item 1 do plano de melhoria: conectar o caso simulado
 "Caso Referência" à coorte REAL do GSE160208.
 
-Lê os dados simulados (caso_lito/) e extrai estatísticas reais do series
+Lê os dados simulados (caso_referencia/) e extrai estatísticas reais do series
 matrix, gerando uma tabela-ponte: cada achado do Lito vs. evidência real.
-Saída: pipeline/reports/relatorio_ponte_lito_real.md
+Saída: pipeline/reports/relatorio_ponte_caso_referencia.md
 """
 import sys
 import datetime
@@ -17,7 +17,7 @@ from analise_gse160208 import extrair_tabela, MATRIX  # noqa: E402
 
 BASE = Path(__file__).resolve().parents[1]
 REPORTS = BASE / "reports"
-CASO = BASE.parent / "caso_lito"
+CASO = BASE.parent / "caso_referencia"
 
 
 def main() -> None:
@@ -72,7 +72,7 @@ def main() -> None:
 
     L = [
         "# Ponte Caso↔Real — Caso Referência (simulado) × GSE160208 (real)",
-        f"*Gerado por `ponte_lito_real.py` em {agora}.*",
+        f"*Gerado por `ponte_caso_referencia.py` em {agora}.*",
         "",
         f"Coorte real: {n_total} amostras — {n_pac_cjd} pacientes CJD "
         f"({len(fc_cjd)} amostras de córtex frontal) vs. {n_pac_ct} controles. "
@@ -87,7 +87,7 @@ def main() -> None:
         "| Neuroinflamação (GFAP↑, tau↑, NfL↑ no Lito) | Δ médio CJD−CT no córtex frontal: "
         + ", ".join(f"{g} {'+' if d>0 else ''}{d:.1f}" for g, d in marcadores.items())
         + " | ✅ gliose↑ e perda neuronal↓ confirmadas nos dados reais |",
-        "| RM DWI/FLAIR típica | Não avaliável neste dataset (expressão gênica, não imagem) | ➖ fora do escopo do dataset — embasado na literatura (caso_lito/fontes.md) |",
+        "| RM DWI/FLAIR típica | Não avaliável neste dataset (expressão gênica, não imagem) | ➖ fora do escopo do dataset — embasado na literatura (caso_referencia/fontes.md) |",
         "| RT-QuIC positivo / 14-3-3 / EEG PSWC | Idem — dados líquóricos/eletrofisiológicos não fazem parte da série | ➖ idem |",
         "", "## Leitura honesta",
         "- A ponte cobre o que o dataset REAL pode responder: demografia, genética do hospedeiro",
@@ -95,7 +95,7 @@ def main() -> None:
         f"- O subgrupo MM1-FC real (n={len(mm1_fc)}) é pequeno: diferenças por subtipo aqui são",
         "  descritivas, não inferenciais (n insuficiente para Welch com potência adequada).",
     ]
-    destino = REPORTS / "relatorio_ponte_lito_real.md"
+    destino = REPORTS / "relatorio_ponte_caso_referencia.md"
     destino.write_text("\n".join(L), encoding="utf-8")
     print(f"[ok] {destino}")
 

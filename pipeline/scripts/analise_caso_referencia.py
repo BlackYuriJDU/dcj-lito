@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-analise_caso_lito.py — Pipeline v1 de análise do caso simulado "Caso Referência".
+analise_caso_referencia.py — Pipeline v1 de análise do caso simulado "Caso Referência".
 
 Lê os dados tabulares do caso em pipeline/data/, valida consistência,
 calcula métricas simples e gera relatório markdown em pipeline/reports/.
 
 Uso:
-    python3 analise_caso_lito.py
+    python3 analise_caso_referencia.py
 
 Princípios:
 - Reproduzível: sem dependências além da stdlib.
@@ -71,7 +71,7 @@ def main() -> None:
     agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     linhas = [
         "# Relatório automático — Caso Caso Referência (SIMULADO)",
-        f"*Gerado por `analise_caso_lito.py` em {agora}. Dados fictícios.*",
+        f"*Gerado por `analise_caso_referencia.py` em {agora}. Dados fictícios.*",
         "",
         "## Consistência dos dados",
         f"- Exames processados: **{len(exames)}** · Marcos clínicos: **{len(linha)}**",
@@ -92,7 +92,7 @@ def main() -> None:
                "", "---",
                "*Nota: este relatório não constitui diagnóstico médico real.*"]
 
-    destino = REPORTS / "relatorio_caso_lito.md"
+    destino = REPORTS / "relatorio_caso_referencia.md"
     destino.write_text("\n".join(linhas), encoding="utf-8")
     print(f"[ok] Relatório gerado: {destino}")
     print(f"[ok] {len(exames)} exames, {len(linha)} marcos, {len(problemas)} problemas")

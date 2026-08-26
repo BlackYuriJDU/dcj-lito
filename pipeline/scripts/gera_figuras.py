@@ -6,7 +6,7 @@ gera_figuras.py — Item 5 do plano de melhoria: visualizações.
 Figuras geradas em pipeline/reports/figuras/:
 1. volcano_gse160208.png  — genes córtex frontal (CJD vs CT), FDR<0.05 destacado
 2. volcano_gse140069.png  — miRNAs sanguíneos (CJD vs CT)
-3. timeline_lito.png      — linha do tempo clínica do caso simulado
+3. timeline_caso_referencia.png      — linha do tempo clínica do caso simulado
 4. heatmap_top_genes.png  — top 25 genes × amostras FC
 
 Reusa as funções dos scripts de análise (fonte única de verdade).
@@ -108,7 +108,7 @@ def main() -> None:
             [(m, l) for m, l, _ in topo140],
             "GSE140069 — sangue sCJD vs. CT (OLS ajustado idade+sexo+RIN)")
 
-    # --- Timeline Lito -------------------------------------------------------
+    # --- Timeline caso de referência -------------------------------------------------------
     meses = ["M0\ninespecífico", "M1\ncognitivo", "M2\nataxia",
              "M3\nmioclonias", "M4\navançada", "M5\nterminal"]
     dependencia = [10, 35, 60, 80, 95, 100]
@@ -123,7 +123,7 @@ def main() -> None:
     for x, y in zip(range(6), dependencia):
         ax.annotate(f"{y}%", (x, y + 3), ha="center", fontsize=8)
     fig.tight_layout()
-    destino = FIGS / "timeline_lito.png"
+    destino = FIGS / "timeline_caso_referencia.png"
     fig.savefig(destino, dpi=150)
     plt.close(fig)
     print(f"[ok] {destino}")

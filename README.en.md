@@ -20,7 +20,7 @@ Open reanalysis of publicly deposited sporadic Creutzfeldt–Jakob disease (sCJD
 ARQUIVO_COMPLETO.md      ← EVERYTHING: all reports + code inline (start here)
 preprint/                ← English manuscript draft
 research/                ← state of the art, dataset catalogs, ecosystem map
-caso_lito/               ← simulated reference case (training/didactic; not a real patient)
+caso_referencia/               ← simulated reference case (training/didactic; not a real patient)
 pipeline/scripts/        ← all analysis code (pure stdlib + matplotlib/openpyxl)
 pipeline/reports/        ← every generated report with intermediate numbers
 colaboracao/             ← family guide (PT-BR), engagement letters, audit reports

@@ -197,13 +197,13 @@ def main() -> None:
         partes = ", ".join(f"{v}: {n}" for v, n in sorted(contagem.items()))
         L.append(f"- {k_chave}: {partes}")
 
-    # --- Estratificação por subtipo (MM1 = subtipo do caso Lito) ---------
+    # --- Estratificação por subtipo (MM1 = subtipo do caso de referência) ---------
     mm1_fc = subtipos_cjd_fc.get("MM1", [])
     L += ["", "## Estratificação por subtipo — córtex frontal CJD",
           f"- Grupos CJD-FC por subtipo: "
           + ", ".join(f"{st}: {len(ix)}" for st, ix in sorted(subtipos_cjd_fc.items()))]
     if mm1_fc:
-        # Top 5 genes MM1 vs controles (Δ de médias) — foco no subtipo do Lito
+        # Top 5 genes MM1 vs controles (Δ de médias) — foco no subtipo do caso de referência
         diffs_mm1 = []
         for gi, g in enumerate(genes):
             m_mm1 = media(gi, mm1_fc)

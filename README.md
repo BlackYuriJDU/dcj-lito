@@ -13,16 +13,16 @@ a laboratórios reais de pesquisa em príons.
 | Caminho | Conteúdo | Status |
 |---|---|---|
 | [`MEMORIA.md`](MEMORIA.md) | Diário de sessão — contexto e pendências | vivo |
-| `caso_lito/dossie_clinico.md` | Dossiê clínico simulado (sCJD MM1) validado por fontes | ✅ v0.2 |
-| `caso_lito/linha_do_tempo.csv` · `exames_simulados.csv` · `fontes.md` | Dados estruturados + citações | ✅ |
+| `caso_referencia/dossie_clinico.md` | Dossiê clínico simulado (sCJD MM1) validado por fontes | ✅ v0.2 |
+| `caso_referencia/linha_do_tempo.csv` · `exames_simulados.csv` · `fontes.md` | Dados estruturados + citações | ✅ |
 | `research/estado_da_arte_dcj.md` | Estado da arte 2024–2025 completo com URLs | ✅ |
 | `research/datasets_publicos.md` | Catálogo GEO (curadoria direta via E-utilities) | ✅ |
 | `research/catalogo_datasets_prionicas_CJD.md` | Catálogo completo verificado: WGS/ENA, GWAS, proteômica PRIDE + o que NÃO existe | ✅ |
 | `pipeline/data/GSE160208_series_matrix.txt.gz` | Dataset REAL baixado (47 amostras sCJD/CT, Copenhagen) | ✅ |
 | `pipeline/scripts/tavily_search.sh` | Busca padrão via API Tavily | ✅ |
-| `pipeline/scripts/analise_caso_lito.py` → `reports/relatorio_caso_lito.md` | Validação + critérios CDC/NPDPSC sobre o caso simulado | ✅ |
+| `pipeline/scripts/analise_caso_referencia.py` → `reports/relatorio_caso_referencia.md` | Validação + critérios CDC/NPDPSC sobre o caso simulado | ✅ |
 | `pipeline/scripts/analise_gse160208.py` → `reports/relatorio_gse160208.md` | Análise REAL: covariáveis + Welch/FDR + estratificação MM1 vs. VV2 | ✅ v3 |
-| `pipeline/scripts/ponte_lito_real.py` → `reports/relatorio_ponte_lito_real.md` | Tabela-ponte: cada achado do Lito × evidência na coorte real | ✅ |
+| `pipeline/scripts/ponte_caso_referencia.py` → `reports/relatorio_ponte_caso_referencia.md` | Tabela-ponte: cada achado do Lito × evidência na coorte real | ✅ |
 | `pipeline/scripts/analise_gse140069.py` → `reports/relatorio_gse140069.md` | Cross-modal REAL: miRNA SANGUE (57 sCJD vs. 48 CT) — 60 miRNAs sig. | ✅ |
 | `pipeline/scripts/gera_figuras.py` → `reports/figuras/` | Volcanos ×2, heatmap top-25, timeline do Lito | ✅ 4 figuras |
 | `colaboracao/centros_alvo.md` | NPDPSC, UCL, vigilância BR — contatos e estratégia | ✅ |
