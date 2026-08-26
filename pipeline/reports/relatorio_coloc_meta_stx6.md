@@ -1,5 +1,5 @@
 # Colocalização STX6 — META-eQTL (poder ampliado)
-*`coloc_meta_stx6.py` em 2026-08-26 07:40. Meta IVW de 5 datasets
+*`coloc_meta_stx6.py` em 2026-08-26 07:44. Meta IVW de 5 datasets
 cerebrais (eQTL Catalogue r8, tabix remoto) vs GWAS sCJD.*
 
 | Dataset | n | pares STX6 |
@@ -37,11 +37,20 @@ Posições na meta (≥3 datasets): **651** · casadas com GWAS: **390**
 | 180,953,038 | 9.73e-09 | 6.86e-47 |
 
 ## Interpretação honesta
-- Com ~2.182 amostras cerebrais no meta, o eQTL ganha ~1,6× o z do
-  maior dataset individual. Se H4 seguir baixo mesmo assim, o sinal
-  GWAS de STX6 provavelmente NÃO é mediação simples de expressão em
-  tecido adulto — hipótese alternativa: efeito em desenvolvimento,
-  splicing (sQTL), ou célula-específico (microglia). Reportar como
-  achado, não como falha.
+- **H3+H4 ≈ 1,0 com H0=H1=H2≈0**: ambos os sinais são reais e vivem
+  no MESMO bloco de LD — colocalização suportada no nível do bloco.
+  A divisão H3 vs H4 é indistinguível aqui porque as variantes do
+  cluster são r²≥0,97 entre si (limitação clássica do coloc sob LD
+  forte): 'duas variantes distintas em LD perfeito' e 'uma variante
+  compartilhada' produzem verossimilhanças idênticas.
+- O que decide na direção da partilha: (i) o lead GWAS É eQTL
+  significativo do STX6 no meta (p=7×10⁻⁴⁷, z≈14); (ii) concordância
+  de direção em 89% das variantes; (iii) o fine-mapping GWAS mostra
+  um único cluster posterior (90,5% em r²≥0,8) — não há segundo sinal
+  real para justificar H3 por variantes distintas.
+- Conclusão para o preprint: consistente com o sinal de STX6 ser
+  mediado por expressão gênica no cérebro adulto; H4 estrito não é
+  afirmável sob r²=1,0 — reportar H3+H4 combinado e concordância.
 - Limitações: meta assume heterogeneidade baixa entre datasets;
-  coloc assume 1 sinal causal por traço.
+  coloc assume 1 sinal causal por traço; DLPFC/cerebelo ≠ todos os
+  tecidos afetados na DCJ.
