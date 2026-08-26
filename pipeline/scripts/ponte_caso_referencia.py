@@ -5,7 +5,7 @@ ponte_caso_referencia.py — Item 1 do plano de melhoria: conectar o caso simula
 "Caso Referência" à coorte REAL do GSE160208.
 
 Lê os dados simulados (caso_referencia/) e extrai estatísticas reais do series
-matrix, gerando uma tabela-ponte: cada achado do Lito vs. evidência real.
+matrix, gerando uma tabela-ponte: cada achado do caso de referência vs. evidência real.
 Saída: pipeline/reports/relatorio_ponte_caso_referencia.md
 """
 import sys
@@ -84,14 +84,14 @@ def main() -> None:
         f"[{pct(subtipos.get('MM1',0), n_pac_cjd)}]; amostras MM1 no FC: {len(mm1_fc)} | ✅ consistente — subtipo mais comum também na coorte |",
         f"| Sexo masculino | Coorte CJD: M={sexo_cjd.get('M',0)}, F={sexo_cjd.get('F',0)} | ✅ equilibrada; sem viés |",
         f"| Códon 129 Met/Met | Entre CJD: MM={c129_cjd.get('MM',0)}, MV={c129_cjd.get('MV',0)}, VV={c129_cjd.get('VV',0)} | ✅ homozygose MM predominante, como na literatura |",
-        "| Neuroinflamação (GFAP↑, tau↑, NfL↑ no Lito) | Δ médio CJD−CT no córtex frontal: "
+        "| Neuroinflamação (GFAP↑, tau↑, NfL↑ no caso de referência) | Δ médio CJD−CT no córtex frontal: "
         + ", ".join(f"{g} {'+' if d>0 else ''}{d:.1f}" for g, d in marcadores.items())
         + " | ✅ gliose↑ e perda neuronal↓ confirmadas nos dados reais |",
         "| RM DWI/FLAIR típica | Não avaliável neste dataset (expressão gênica, não imagem) | ➖ fora do escopo do dataset — embasado na literatura (caso_referencia/fontes.md) |",
         "| RT-QuIC positivo / 14-3-3 / EEG PSWC | Idem — dados líquóricos/eletrofisiológicos não fazem parte da série | ➖ idem |",
         "", "## Leitura honesta",
         "- A ponte cobre o que o dataset REAL pode responder: demografia, genética do hospedeiro",
-        "  e assinatura molecular. Exames clínicos do Lito permanecem embasados na literatura.",
+        "  e assinatura molecular. Os exames clínicos do caso de referência permanecem embasados na literatura.",
         f"- O subgrupo MM1-FC real (n={len(mm1_fc)}) é pequeno: diferenças por subtipo aqui são",
         "  descritivas, não inferenciais (n insuficiente para Welch com potência adequada).",
     ]
