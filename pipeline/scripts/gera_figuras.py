@@ -108,7 +108,7 @@ def main() -> None:
             [(m, l) for m, l, _ in topo140],
             "GSE140069 — sangue sCJD vs. CT (OLS ajustado idade+sexo+RIN)")
 
-    # --- Timeline Caso Referência -------------------------------------------------------
+    # --- Timeline caso de referência -------------------------------------------------------
     meses = ["M0\ninespecífico", "M1\ncognitivo", "M2\nataxia",
              "M3\nmioclonias", "M4\navançada", "M5\nterminal"]
     dependencia = [10, 35, 60, 80, 95, 100]
