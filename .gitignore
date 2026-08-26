@@ -1,3 +1,4 @@
 pipeline/data/GCST90001389_buildGRCh37.tsv.gz
 *.zip
 __pycache__/
+dist/
