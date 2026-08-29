@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lithos Foundation — Laboratório aberto de doenças priônicas</title>
+<meta name="description" content="Lithos Foundation — laboratório de ciência aberta dedicado às doenças priônicas, incluída a Doença de Creutzfeldt-Jakob. Registro público de pesquisa: dados, verificações e caminhos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- marca: gema lapidada — a faceta laranja é a diferença que procuramos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="marca-lithos" viewBox="0 0 64 64">
+      <rect x="1" y="1" width="62" height="62" rx="14" fill="var(--dsd-accent)"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32" fill="var(--dsd-accent2)"/>
+      <polygon points="17.3,23.5 32,32 32,49 17.3,40.5" fill="#fff" opacity=".92"/>
+      <polygon points="46.7,23.5 32,32 32,49 46.7,40.5" fill="#fff" opacity=".55"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32 17.3,40.5 17.3,23.5" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="32" y1="32" x2="32" y2="49" stroke="#fff" stroke-width="1.2" opacity=".45"/>
+    </symbol>
+    <symbol id="ic-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke-width="1.5"/><circle cx="12" cy="12" r="4.5" fill="none" stroke-width="1.5"/><line x1="12" y1="12" x2="18.5" y2="5.5" stroke-width="1.5"/></symbol>
+    <symbol id="ic-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke-width="1.5"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke-width="1.5"/></symbol>
+    <symbol id="ic-doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z" fill="none" stroke-width="1.5"/><path d="M9 12h7M9 16h7M9 8h3" fill="none" stroke-width="1.5"/></symbol>
+    <symbol id="ic-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" fill="none" stroke-width="1.5"/><path d="M4.5 5.5v13c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8v-13" fill="none" stroke-width="1.5"/><path d="M4.5 12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8" fill="none" stroke-width="1.5"/></symbol>
+    <symbol id="ic-mapa" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke-width="1.5"/><line x1="9" y1="4" x2="9" y2="18" stroke-width="1.5"/><line x1="15" y1="6" x2="15" y2="20" stroke-width="1.5"/></symbol>
+    <symbol id="ic-livro" viewBox="0 0 24 24"><path d="M12 6c-2-1.8-5-2-9-1v14c4-1 7-.8 9 1 2-1.8 5-2 9-1V5c-4-1-7-.8-9 1z" fill="none" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="20" stroke-width="1.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#topo" aria-label="Lithos Foundation — início">
+      <svg aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <span class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#registro" data-i18n="nav_registro">Registro</a>
+      <a href="#situacao" data-i18n="nav_situacao">Situação</a>
+      <a href="#relatorios" data-i18n="nav_relatorios">Relatórios</a>
+      <a href="#operacao" data-i18n="nav_operacao">Operação</a>
+      <a href="#roadmap" data-i18n="nav_roadmap">A seguir</a>
+      <a href="#transparencia" data-i18n="nav_transp">Transparência</a>
+    </nav>
+    <div class="lang-sw" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" class="ativo" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="hamb" id="hamb" aria-label="Abrir menu" aria-expanded="false" aria-controls="navmob">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navmob" aria-label="Menu">
+    <a href="#registro" data-i18n="nav_registro">Registro</a><a href="#situacao" data-i18n="nav_situacao">Situação</a>
+    <a href="#relatorios" data-i18n="nav_relatorios">Relatórios</a><a href="#operacao" data-i18n="nav_operacao">Operação</a>
+    <a href="#roadmap" data-i18n="nav_roadmap">A seguir</a><a href="#transparencia" data-i18n="nav_transp">Transparência</a>
+  </nav>
+</header>
+<div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+<main id="topo">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="titulo-hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="status-strip"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero_status">PRiSM (NCT07444580) recrutando — única via anti-PRNP aberta a novos participantes</span></p>
+        <p class="eyebrow" data-i18n="hero_eyebrow">LABORATÓRIO ABERTO · DOENÇAS PRIÔNICAS · BRASIL</p>
+        <h1 id="titulo-hero" data-i18n-html="hero_h1">Pedra sobre <em>pedra.</em></h1>
+        <p class="lead" data-i18n="hero_lead">A Lithos Foundation é um laboratório de ciência aberta dedicado às doenças priônicas — incluída a Doença de Creutzfeldt-Jakob. Nascemos da urgência de um caso real e público no Brasil e trabalhamos do único jeito que a janela clínica permite: verificar dados que já existem, replicar o que foi publicado e transformar evidência em caminho navegável para famílias e médicos.</p>
+        <div class="cta-linha">
+          <a class="btn btn-solido" href="#registro" data-i18n="hero_cta1">Ver o registro de pesquisa</a>
+          <a class="btn btn-linha" href="#situacao" data-i18n="hero_cta2">Situação dos ensaios</a>
+        </div>
+        <div class="stats" role="list">
+          <div class="stat" role="listitem"><b>03</b><span data-i18n="stat1">datasets reais analisados</span></div>
+          <div class="stat" role="listitem"><b>03<sup>/3</sup></b><span data-i18n="stat2">loci GWAS replicados</span></div>
+          <div class="stat" role="listitem"><b>1.000</b><span data-i18n="stat3">r da réplica exata</span></div>
+          <div class="stat" role="listitem"><b>60</b><span data-i18n="stat4">miRNAs significantes</span></div>
+        </div>
+      </div>
+      <div class="hero-logo" aria-label="Marca provisória da Lithos Foundation">
+        <svg aria-hidden="true"><use href="#marca-lithos"/></svg>
+        <div class="hero-wm" aria-hidden="true">
+          <div class="wm-top">LITHOS</div>
+          <div class="wm-mid">·</div>
+          <div class="wm-bottom">FOUNDATION</div>
+        </div>
+        <p class="hero-logo-nota" data-i18n="hero_logo_nota">marca provisória — a pedra lapidada é o registro que fica; a faceta laranja, a diferença que procuramos</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ REGISTRO ============ -->
+  <section id="registro" aria-labelledby="t-reg">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="reg_eyebrow">FEITO · 24—28·08·2026</p>
+        <h2 id="t-reg" data-i18n="reg_h2">O registro — o que já fizemos</h2>
+        <p class="sec-sub" data-i18n="reg_sub">Cada camada abaixo é datada, rastreada à fonte primária e verificável no repositório. Nada aqui se apaga: o registro é a nossa matéria-prima.</p>
+      </div>
+      <div class="reg-grid">
+        <aside class="reg-nota reveal" aria-label="Como ler o registro">
+          <h3 data-i18n="reg_como_t">COMO LER</h3>
+          <p data-i18n="reg_como_p">O registro é organizado em formações geológicas: o que foi colocado primeiro sustenta o que veio depois. Todas as afirmações apontam para fonte primária, com URL e data de acesso.</p>
+          <div class="legenda">
+            <span><i class="lz"></i><span data-i18n="reg_leg1">dados &amp; verificação</span></span>
+            <span><i class="lv"></i><span data-i18n="reg_leg2">clínica &amp; urgência</span></span>
+          </div>
+        </aside>
+
+        <div class="estratos">
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e1h"><b>FORMAÇÃO 1 · DADOS REAIS</b><time>24—26·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r11"><time>24·08</time><b>Fundação do laboratório.</b> Duas trilhas: “caso referência” (simulação didática sCJD MM1, dossiê validado pelos critérios CDC/NPDPSC) e trilha real — somente dados públicos e anonimizados. Pacote completo distribuído: 36 documentos, 7 scripts, checksums MD5.</li>
+              <li data-i18n-html="r12"><time>24·08</time><b>GSE160208</b> (47 amostras sCJD/controles, Copenhagen): análise completa — 437/800 genes significantes (Welch + BH-FDR); neuroinflamação massiva (MYD88, TLR2, C1QA, CSF1 — FDR &lt; 10⁻⁴).</li>
+              <li data-i18n-html="r13"><time>24·08</time><b>Catálogos verificados:</b> GEO, ENA (WGS PRJEB57720), GWAS Catalog (GCST90001389), proteômica PRIDE (PXD050656) — incluindo o que <b>não</b> existe.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e2h"><b>FORMAÇÃO 2 · VERIFICAÇÃO INDEPENDENTE</b><time>24·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r21"><time>24·08</time><b>Réplica exata do artigo do GSE160208:</b> top-10 de genes idêntico na ordem, r = 1.000 (184 DEGs pelo critério dos autores).</li>
+              <li data-i18n-html="r22"><time>24·08</time><b>GSE140069</b> (miRNA no sangue, 57 sCJD × 48 controles): 60 miRNAs significantes; os 4 achados do artigo replicados (let-7i-5p, miR-16-5p, miR-93-5p, miR-106b-3p); AUC 0.788 (sCJD×CT) e 0.924 (sCJD×AD).</li>
+              <li data-i18n-html="r23"><time>24·08</time><b>GWAS GCST90001389</b> (197 MB): QC de 6.314.492 variantes (0 malformadas, λGC = 1.059) e <b>réplica independente 3/3 dos loci publicados</b> — PRNP p=1,6e-15 · STX6 p=7,5e-9 · GAL3ST1 p=6,2e-10 — com fine-mapping de rs3747957 (mesma direção do Brain 2025).</li>
+              <li data-i18n-html="r24"><time>24·08</time><b>Auditoria cética adversarial:</b> máquina estatística validada (Welch/BH corretos a 1e-13); fragilidades de assinaturas publicadas, documentadas com honestidade.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e3h"><b>FORMAÇÃO 3 · HIPÓTESES &amp; SIMULAÇÃO</b><time>24·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r31"><time>24·08</time><b>Hipótese geradora “alfândega intercelular”</b> (checkpoint biofísico seletivo nas pontes entre células) submetida ao Institut Pasteur — grupo Chiara Zurzolo — com 3 previsões testáveis.</li>
+              <li data-i18n-html="r32"><time>24·08</time><b>Blindagem G127V:</b> varredura encontrou limiar de percolação em ~41% de cobertura para colapsar o espalhamento priônico.</li>
+              <li data-i18n-html="r33"><time>24·08</time><b>Simulação calibrada por literatura</b> (Weibull estocástico): 3 validações — incluindo sobrevida MM1 de 4,3 meses contra 4–5 publicado.</li>
+            </ul>
+          </article>
+
+          <article class="estrato cli reveal">
+            <div class="estrato-head" data-i18n-html="e4h"><b>FORMAÇÃO 4 · CLÍNICA &amp; REDE</b><time>28·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r41"><time>28·08</time><b>Cenário de ensaios mapeado e repriorizado:</b> PRiSM (NCT07444580) recrutando → via prioritária; ION717 fechado a novos desde 26·08; efavirenz (NCT07482085) ainda sem recrutamento.</li>
+              <li data-i18n-html="r42"><time>28·08</time><b>Logística internacional:</b> visto B-2 médico, cronograma de deslocamento do PRiSM, contatos dos 5 sites e do sponsor (Broad Institute).</li>
+              <li data-i18n-html="r43"><time>28·08</time><b>Dossiê médico modelo:</b> RM (DWI/FLAIR), LCR (14-3-3/t-tau), RT-QuIC e escala MRC-PDRS — pronto para a decisão dos médicos assistentes.</li>
+              <li data-i18n-html="r44"><time>28·08</time><b>Rede Brasil consolidada:</b> RT-QuIC (HC-FMUSP · A.C. Camargo · UFRJ/LAB3DDI), centros de referência por região e canal oficial do Ministério da Saúde.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e5h"><b>FORMAÇÃO 5 · INSTITUCIONAL</b><time>28·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r51"><time>28·08</time><b>Engajamento científico:</b> cartas formais ao Prion Alliance (Broad Institute) e ao HC-FMUSP (Neurologia Cognitiva), com o pacote completo do laboratório.</li>
+              <li data-i18n-html="r52"><time>28·08</time><b>Guia de famílias em PT-BR</b> publicado — sem jargão, sem promessa.</li>
+              <li data-i18n-html="r53"><time>28·08</time><b>Batismo: Lithos Foundation</b> — homenagem mineral à origem da missão; terreno verificado (sem colisões de marca, domínios livres).</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ SITUAÇÃO ============ -->
+  <section id="situacao" aria-labelledby="t-sit">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="sit_eyebrow">SITUAÇÃO ATUAL · VERIFICADO 29·08·2026</p>
+        <h2 id="t-sit" data-i18n="sit_h2">Ensaios e vias, agora</h2>
+        <p class="sec-sub" data-i18n="sit_sub">O cenário muda em dias — esta placa reflete a última verificação viva dos registros oficiais e comunicados das organizações de pacientes.</p>
+      </div>
+      <div class="ensaio-grid">
+        <article class="ensaio reveal">
+          <div class="ensaio-top">
+            <div><h3>PRiSM · NN112</h3><p class="nct">NCT07444580 · siRNA divalente anti-PRNP · Broad + UMass + Prion Alliance</p></div>
+            <span class="badge" data-i18n="sit1_b">RECRUTANDO · VIA PRIORITÁRIA</span>
+          </div>
+          <p data-i18n-html="sit1_p">Fase 1, <span class="destaque">dose única intratecal</span> com distribuição pan-cerebral. Em camundongos: −49% de PrP e <span class="destaque">+64% de sobrevida mesmo pós-sintomas</span>. Cinco sites nos EUA; custos de viagem apoiados por doações à Prion Alliance.</p>
+          <p class="nota-mono" data-i18n="sit1_n">fase 1 avalia segurança — participação é pesquisa, não tratamento garantido</p>
+        </article>
+        <article class="ensaio reveal">
+          <div class="ensaio-top">
+            <div><h3>ION717 · PrProfile</h3><p class="nct">NCT06153966 · ASO anti-PRNP · Ionis</p></div>
+            <span class="badge v" data-i18n="sit2_b">FECHADO A NOVOS PARTICIPANTES</span>
+          </div>
+          <p data-i18n-html="sit2_p">“Active, not recruiting” desde 26·08 (regimes 1–2 completos; regime 3 encerrou a inclusão). <span class="destaque">Leitura primária estimada para fev/2027</span> — vigilância semanal para eventual reabertura.</p>
+        </article>
+        <article class="ensaio reveal">
+          <div class="ensaio-top">
+            <div><h3>Efavirenz</h3><p class="nct">NCT07482085 · fase 2/3 randomizada, controlada por placebo</p></div>
+            <span class="badge c" data-i18n="sit3_b">AINDA NÃO RECRUTA</span>
+          </div>
+          <p data-i18n-html="sit3_p">Medicamento reposicionado (anti-HIV), via oral. Xuanwu Hospital / Capital Medical University, Pequim. <span class="destaque">Sem via prática</span> para paciente brasileiro no momento.</p>
+        </article>
+        <article class="ensaio reveal">
+          <div class="ensaio-top">
+            <div><h3 data-i18n="sit4_t">Acesso expandido / compassivo</h3><p class="nct">ANVISA RDC 38/2013 · FDA formulário 3926</p></div>
+            <span class="badge v" data-i18n="sit4_b">NENHUM PROGRAMA PÚBLICO</span>
+          </div>
+          <p data-i18n-html="sit4_p">Nenhum sponsor anunciou programa público; a droga do PRiSM <span class="destaque">não sai dos EUA</span>. A via realista continua sendo a inclusão direta no ensaio, pelo neurologista assistente.</p>
+        </article>
+      </div>
+      <p class="gargalo reveal" data-i18n-html="gargalo"><b>O gargalo decisivo:</b> RT-QuIC+ (ou mutação PRNP documentada) é o passaporte diagnóstico; MRC-PDRS ≥ 15 é o filtro de elegibilidade. Dossiê pronto em <b>dias — não semanas</b> — é o que encurta o caminho.</p>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ RELATÓRIOS VISUAIS ============ -->
+  <section id="relatorios" aria-labelledby="t-rel">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="rel_eyebrow">RELATÓRIOS VISUAIS</p>
+        <h2 id="t-rel" data-i18n="rel_h2">Placas de leitura rápida</h2>
+        <p class="sec-sub" data-i18n="rel_sub">Cada número aponta para o relatório completo no repositório, com fonte primária, código e checksum. Réplica é verificação para o campo — não descoberta nova.</p>
+      </div>
+      <div class="placas">
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p1_t">GWAS · réplica independente 3/3</h3><span class="placa-num">PLACA 01 · GCST90001389</span></div>
+          <svg viewBox="0 0 340 132" role="img" data-i18n-aria="p1_aria" aria-label="Barras de menos log10 do valor p: PRNP 15,8; GAL3ST1 9,2; STX6 8,1; linha de significância genômica em 7,3">
+            <line x1="8" y1="94" x2="332" y2="94" stroke="#DDE4E7" stroke-width="1"/>
+            <line x1="8" y1="46.5" x2="332" y2="46.5" stroke="#A85B3F" stroke-width="1" stroke-dasharray="4 4" opacity=".6"/>
+            <text x="8" y="42" font-family="IBM Plex Mono" font-size="8" fill="#A85B3F">GWS −log10(p) = 7.3</text>
+            <rect x="8" y="10" width="316" height="12" rx="3" fill="#A85B3F"/>
+            <text x="8" y="36" font-family="IBM Plex Mono" font-size="9" fill="#16191C" font-weight="600">PRNP chr20 · p = 1.6e-15</text>
+            <rect x="8" y="102" width="182" height="12" rx="3" fill="#17657F"/>
+            <text x="8" y="128" font-family="IBM Plex Mono" font-size="9" fill="#56626A">GAL3ST1 chr22 · p = 6.2e-10</text>
+            <rect x="8" y="58" width="160" height="12" rx="3" fill="#17657F"/>
+            <text x="8" y="84" font-family="IBM Plex Mono" font-size="9" fill="#56626A">STX6 chr1 (intragenic) · p = 7.5e-9</text>
+          </svg>
+          <div class="mini-badges"><span>6.314.492 variantes QC</span><span>λ = 1.059</span><span>41 hits GWS</span><span class="v" data-i18n="p1_badge">réplica 3/3 dos loci</span></div>
+          <p class="placa-note" data-i18n="p1_note">fine-mapping: rs3747957 (chr1) p = 9.7e-9, mesma direção β = −0.148 do Brain 2025 · anotação Ensembl GRCh37</p>
+        </article>
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p2_t">Transcriptoma cerebral</h3><span class="placa-num">PLACA 02 · GSE160208</span></div>
+          <svg viewBox="0 0 340 132" role="img" data-i18n-aria="p2_aria" aria-label="Barra: 437 genes significantes de 800 testados, 54,6 por cento">
+            <rect x="8" y="24" width="316" height="20" rx="5" fill="#E7EDF0"/>
+            <rect x="8" y="24" width="172.5" height="20" rx="5" fill="#17657F"/>
+            <text x="16" y="38" font-family="IBM Plex Mono" font-size="10" fill="#fff" font-weight="600">437 DEGs</text>
+            <text x="188" y="38" font-family="IBM Plex Mono" font-size="10" fill="#56626A">800 · 54.6%</text>
+            <line x1="8" y1="64" x2="332" y2="64" stroke="#DDE4E7"/>
+            <text x="8" y="82" font-family="IBM Plex Mono" font-size="9" fill="#56626A">47 amostras sCJD/controles · Copenhagen</text>
+            <text x="8" y="98" font-family="IBM Plex Mono" font-size="9" fill="#56626A">Welch + BH-FDR · validado a 1e-13</text>
+            <rect x="8" y="108" width="124" height="14" rx="4" fill="#16191C"/>
+            <text x="16" y="118" font-family="IBM Plex Mono" font-size="8.5" fill="#fff" font-weight="600">r = 1.000 réplica exata</text>
+          </svg>
+          <div class="chips"><span class="chip">MYD88</span><span class="chip">TLR2</span><span class="chip">C1QA</span><span class="chip">CSF1</span><span class="chip">FDR &lt; 10⁻⁴</span></div>
+          <p class="placa-note" data-i18n="p2_note">neuroinflamação massiva confirmada na sCJD — coerente com a literatura do campo</p>
+        </article>
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p3_t">miRNA no sangue</h3><span class="placa-num">PLACA 03 · GSE140069</span></div>
+          <svg viewBox="0 0 340 132" role="img" data-i18n-aria="p3_aria" aria-label="Dois medidores semicirculares: AUC 0,788 para sCJD contra controles; AUC 0,924 para sCJD contra Alzheimer">
+            <path d="M20 96 A46 46 0 0 1 112 96" fill="none" stroke="#E7EDF0" stroke-width="10" stroke-linecap="round"/>
+            <path d="M20 96 A46 46 0 0 1 112 96" fill="none" stroke="#17657F" stroke-width="10" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="30.7"/>
+            <text x="66" y="92" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" font-weight="600" fill="#16191C">0.788</text>
+            <text x="66" y="112" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#56626A">sCJD × CT</text>
+            <path d="M196 96 A46 46 0 0 1 288 96" fill="none" stroke="#E7EDF0" stroke-width="10" stroke-linecap="round"/>
+            <path d="M196 96 A46 46 0 0 1 288 96" fill="none" stroke="#A85B3F" stroke-width="10" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="11"/>
+            <text x="242" y="92" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" font-weight="600" fill="#16191C">0.924</text>
+            <text x="242" y="112" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#56626A">sCJD × Alzheimer</text>
+            <text x="170" y="20" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#56626A">57 sCJD × 48 controles · sangue</text>
+          </svg>
+          <div class="mini-badges"><span>60 miRNAs sig.</span><span class="v" data-i18n="p3_badge">4/4 hits do artigo replicados</span><span>let-7i-5p · miR-16-5p · miR-93-5p · miR-106b-3p</span></div>
+          <p class="placa-note" data-i18n="p3_note">honestidade da casa: com covariáveis (idade+sexo+RIN), 1 miRNA sobrevive ao FDR — fragilidade documentada e publicada no relatório</p>
+        </article>
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p4_t">Simulação calibrada</h3><span class="placa-num">PLACA 04 · MODELO WEIBULL</span></div>
+          <svg viewBox="0 0 340 132" role="img" data-i18n-aria="p4_aria" aria-label="Barras de dano esperado: sem intervenção 100 por cento; alfândega intercelular 50,2 por cento; limiar de blindagem em 41 por cento">
+            <rect x="8" y="14" width="316" height="18" rx="4" fill="#C6CFD4"/>
+            <text x="16" y="27" font-family="IBM Plex Mono" font-size="9.5" fill="#16191C" font-weight="600" data-i18n="p4_svg1">sem intervenção · 100%</text>
+            <rect x="8" y="42" width="158.6" height="18" rx="4" fill="#17657F"/>
+            <text x="16" y="55" font-family="IBM Plex Mono" font-size="9.5" fill="#fff" font-weight="600" data-i18n="p4_svg2">alfândega 80/5 · 50,2%</text>
+            <line x1="137.6" y1="70" x2="137.6" y2="76" stroke="#A85B3F" stroke-width="2"/>
+            <text x="8" y="88" font-family="IBM Plex Mono" font-size="8.5" fill="#A85B3F" data-i18n="p4_svg3">↑ limiar de blindagem G127V: ~41% de cobertura colapsa o espalhamento</text>
+            <text x="8" y="108" font-family="IBM Plex Mono" font-size="9" fill="#56626A">MM1 → 4,3 meses (publicado: 4–5) ✓ · dose→incubação log-linear ✓</text>
+            <rect x="8" y="114" width="120" height="14" rx="4" fill="#16191C"/>
+            <text x="16" y="124" font-family="IBM Plex Mono" font-size="8.5" fill="#fff" font-weight="600" data-i18n="p4_svg4">calibração 3/3 validações</text>
+          </svg>
+          <div class="chips"><span class="chip" data-i18n="p4_chip">hipótese “alfândega intercelular” → Institut Pasteur</span><span class="chip" data-i18n="p4_chip2">3 previsões testáveis</span></div>
+          <p class="placa-note" data-i18n="p4_note">modelo gerador de hipóteses — não é previsão clínica; a síntese não existia na literatura (verificado)</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ OPERAÇÃO ============ -->
+  <section id="operacao" aria-labelledby="t-op">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="op_eyebrow">FAZEMOS · SEMPRE</p>
+        <h2 id="t-op" data-i18n="op_h2">Operação contínua</h2>
+        <p class="sec-sub" data-i18n="op_sub">O que roda toda semana, sem exceção — porque o cenário muda em dias e a informação atrasada não ajuda ninguém.</p>
+      </div>
+      <div class="op-grid">
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-radar"/></svg></span>
+          <div><h3 data-i18n="op1_t">VIGILÂNCIA DE ENSAIOS</h3><p data-i18n="op1_p">Semanal: ClinicalTrials.gov + comunicados da CJD Foundation, CureFFI e Prion Alliance — historicamente mais rápidos que o registro oficial.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-lupa"/></svg></span>
+          <div><h3 data-i18n="op2_t">INTELIGÊNCIA CIENTÍFICA</h3><p data-i18n="op2_p">Varredura PubMed de terapia priônica dos últimos 30 dias, a cada sessão de trabalho.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-doc"/></svg></span>
+          <div><h3 data-i18n="op3_t">DOSSIÊS PARA MÉDICOS</h3><p data-i18n="op3_p">Material informativo pronto (imagem, LCR, RT-QuIC, MRC-PDRS) para a decisão dos assistentes — nunca conselho clínico direto.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-db"/></svg></span>
+          <div><h3 data-i18n="op4_t">CURADORIA DE DADOS</h3><p data-i18n="op4_p">GEO · ENA · PRIDE · GWAS Catalog: o que existe, o que falta e o que não existe — com checksums MD5.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-mapa"/></svg></span>
+          <div><h3 data-i18n="op5_t">REDE BRASIL</h3><p data-i18n="op5_p">RT-QuIC (HC-FMUSP · A.C. Camargo · UFRJ/LAB3DDI), centros de referência por região, pesquisadores-chave e canal oficial do MS.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-livro"/></svg></span>
+          <div><h3 data-i18n="op6_t">GUIA DE FAMÍLIAS</h3><p data-i18n="op6_p">PT-BR claro: o que é a doença, o que é um ensaio, o que é promessa — sem jargão e sem esperança vendida.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ ROADMAP ============ -->
+  <section id="roadmap" aria-labelledby="t-road">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="road_eyebrow">VAMOS FAZER · PRÓXIMO ESTRATO</p>
+        <h2 id="t-road" data-i18n="road_h2">O que vem a seguir</h2>
+        <p class="sec-sub" data-i18n="road_sub">A ordem importa: publicar antes de falar, constituir antes de captar, presença antes de promessa.</p>
+      </div>
+      <div class="roadmap">
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">01</span>
+          <div><h3 data-i18n="r1_t">Preprint &amp; DOI</h3><p data-i18n="r1_p">Manuscrito em inglês no bioRxiv, arquivo completo no Zenodo (DOI citável) e repositório público com o código de análise.</p></div>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">02</span>
+          <div><h3 data-i18n="r2_t">Constituição formal</h3><p data-i18n="r2_p">Associação sem fins lucrativos: estatuto, CNPJ, CEBAS e registro de marca no INPI — a fundação sai do papel.</p></div>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">03</span>
+          <div><h3 data-i18n="r3_t">Presença própria</h3><p data-i18n="r3_p">Reserva dos domínios verificados livres em 28·08 (lithosfoundation.org e afins) e endereço de contato institucional.</p></div>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">04</span>
+          <div><h3 data-i18n="r4_t">Plataforma de famílias</h3><p data-i18n="r4_p">Navegação em PT-BR: do primeiro sintoma ao ensaio, com checklists de exames, perguntas para o médico e fontes verificadas.</p></div>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">05</span>
+          <div><h3 data-i18n="r5_t">Advocacy</h3><p data-i18n="r5_p">Ministério da Saúde, ANVISA e Congresso: diagnóstico RT-QuIC acessível no SUS e ensaios clínicos de doenças priônicas no Brasil.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ TRANSPARÊNCIA ============ -->
+  <section id="transparencia" aria-labelledby="t-transp">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="tr_eyebrow">TRANSPARÊNCIA</p>
+        <h2 id="t-transp" data-i18n="tr_h2">Regras de casa</h2>
+      </div>
+      <div class="regras">
+        <article class="regra reveal">
+          <h3 data-i18n="tr1_t">SÓ DADOS PÚBLICOS</h3>
+          <p data-i18n="tr1_p">Nenhum dado de paciente individual. Saúde é dado sensível (LGPD): a trilha real usa somente datasets públicos e anonimizados que já existiam.</p>
+        </article>
+        <article class="regra reveal">
+          <h3 data-i18n="tr2_t">EVIDÊNCIA COM NÍVEL</h3>
+          <p data-i18n="tr2_p">Pré-clínico ≠ humano. Réplica ≠ descoberta. Fase 1 = segurança, não promessa. Cada afirmação carrega o seu nível de evidência.</p>
+        </article>
+        <article class="regra reveal">
+          <h3 data-i18n="tr3_t">RASTREÁVEL</h3>
+          <p data-i18n="tr3_p">Toda afirmação aponta para fonte primária com URL e data de acesso. Dados com checksum MD5; código versionado no repositório.</p>
+        </article>
+      </div>
+      <p class="aviso-med reveal" data-i18n="aviso">ESTA PÁGINA É INFORMATIVA E NÃO SUBSTITUI DECISÃO MÉDICA. Nada aqui é conselho individual; todo material clínico é entregue aos médicos assistentes, que decidem.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-marca">
+      <svg aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <div class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></div>
+    </div>
+    <p class="foot-nota" data-i18n="foot_nota">Nome provisório. Nasce da urgência de um caso real e público no Brasil, anunciado pela família em 21·08·2026 — e de uma pergunta simples: por que a informação certa chega tarde demais?</p>
+    <p class="foot-meta" data-i18n-html="foot_meta">registro vivo · atualizado em 29·08·2026<br>contato: em breve, junto da constituição formal<br>feito em PT-BR · tudo verificável</p>
+  </div>
+  <div class="wrap"><div class="dual dual-foot" aria-hidden="true"><i></i><i></i></div></div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
