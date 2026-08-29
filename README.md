@@ -29,6 +29,11 @@ a laboratórios reais de pesquisa em príons.
 | `colaboracao/carta_projeto.md` | Carta de apresentação (rascunho — não enviar sem revisão) | ✍️ |
 | `memory/` | Aprendizados (decisões, erros, padrões) | vivo |
 
+> **Nota de privacidade (2026-08-29)**: `MEMORIA.md`, `memory/`, `colaboracao/` e
+> `ARQUIVO_COMPLETO.md` continuam a existir localmente, mas deixaram de ser
+> rastreados neste repo público — a face pública do projeto é o código,
+> relatórios, preprint e este README.
+
 ## Destaques científicos
 - **Tratamento**: frente mais promissora = redução do alvo PrP (ASO ION717, NCT06153966; siRNA Broad, NCT07444580); quinacrina/doxiciclina/pentosano: capítulos encerrados.
 - **Dados reais**: GSE160208 confirma neuroinflamação massiva na sCJD (MYD88, TLR2, C1QA, CSF1 com FDR<10⁻⁴).

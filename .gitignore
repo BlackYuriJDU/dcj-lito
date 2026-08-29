@@ -2,3 +2,10 @@ pipeline/data/GCST90001389_buildGRCh37.tsv.gz
 *.zip
 __pycache__/
 dist/
+
+# privacidade (29/08/2026): conteúdo pessoal/local — não rastrear daqui em diante
+# (histórico anterior preservado; face pública = código, relatórios, preprint, README)
+MEMORIA.md
+memory/
+colaboracao/
+ARQUIVO_COMPLETO.md
