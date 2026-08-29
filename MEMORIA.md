@@ -155,3 +155,33 @@ reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra
   como MODO SCIENCE: lei science-core.md (8 artigos) + /science + pill no
   composer (mesma mecânica v3 de injeção de contexto). Deploy no perfil feito;
   cliente via HMR; host ativa no próximo restart do harness.
+
+## AUDITORIA DE CONSISTÊNCIA GSE140069 v1→v3 (2026-08-29)
+- **Núcleo já era consistente**: script v3 (15.224 B, idêntico no dist), relatório
+  v3 (regenerado 24/08 14:29), volcano regenerado 24/08 14:31 — a pendência do
+  decisions.md estava RESOLVIDA no papel, apenas obsoleta no registro.
+- **Verificação reexecutável (WSL, Python 3.12.3)**: `analise_gse140069.py` →
+  A=84, A′=69, B=1, inter=1 (idêntico); relatório reproduzido byte-a-byte (só o
+  timestamp difere); `volcano_gse140069.png` md5-idêntico à regeneração
+  (c92c5b029fc2007d33543d85c73ecb32) — prova de que a figura arquivada já era v3.
+  pytest: 14/14 aprovados.
+- **Resíduos v1 corrigidos/selados** (padrão mistakes.md #4: documento derivado
+  sobrevivendo à correção do fonte): README.md (60→84→1), ecossistema mapa
+  (2 ocorrências), laudo adversarial (selo STATUS no topo; transcrição verbatim
+  preservada), validacao_cruzada_gse140069 (marca RESOLVIDO + ADDENDUM com
+  números finais), mistakes.md #4 e decisions.md:13 (marcas de resolução).
+- **Wording estatístico (preprint + nota Prion Alliance)**: "84 nominally
+  significant" → "84 significant at FDR<0.05 without covariate adjustment";
+  nota também corrigida ("1 surviving at nominal p<0.05" → "at FDR<0.05
+  (939 tests)" — nominal seria ~47, não 1).
+- **ARQUIVO_COMPLETO.md regenerado** (366 KB): ESTRUTURA do monta_arquivo_completo.py
+  completada com o que faltava (coloc_stx6 + coloc_meta, clumping cego, integração
+  cérebro×sangue, preprint EN, nota Prion Alliance; apêndice A agora com 16 scripts).
+- **dist/public-repo ressincronizado** via prepara_repo_publico.py: 56 arquivos
+  (eram 47), 10 figuras, sanitização limpa, git init fresco. Nota Prion Alliance
+  permanece FORA do repo (colaboracao/ excluída por política).
+- **Limpeza**: `timeline_lito.png` removido (duplicata md5-idêntica de
+  timeline_caso_referencia.png, nome legado que a renomeação "Caso Referência"
+  não alcançou; zero referências ativas).
+- Próximo passo natural (inalterado): fila de publicação — repo público + Zenodo
+  DOI (rota_zenodo.md) + bioRxiv; decisão de envio da nota Prion Alliance.

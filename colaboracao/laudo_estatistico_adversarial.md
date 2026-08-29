@@ -2,6 +2,13 @@
 *Revisor independente automatizado · reexecução verbatim + âncoras do R · 2026-08-24*
 *(Transcrito integralmente da entrega do revisor; é o registro oficial da auditoria)*
 
+> **STATUS 2026-08-29**: laudo histórico transcrito verbatim — os números que nele constam
+> (ex.: "60 miRNAs", item 4) refletem o estado do pipeline NO MOMENTO da auditoria. Após o
+> laudo, as correções C2/M3/M4 foram aplicadas: `analise_gse140069.py` v3 (OLS
+> idade+sexo+RIN) regenerou `relatorio_gse140069.md` (84 sig. brutos → 1 ajustado;
+> filtrado: 5; miR-93-5p q=0.048). Re-execução em 29/08 confirma reprodução byte-a-byte.
+> Ver relatorio_gse140069.md v3 e memoria/mistakes.md.
+
 ## O QUE ESTÁ CORRETO (validado numericamente)
 
 1. **Welch à mão CORRETO**: âncora R `sleep` exata (t=-1.860813, df=17.77647, p=0.079394)

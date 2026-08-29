@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-page="dados">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dados &amp; Relatórios — Lithos Foundation</title>
+<meta name="description" content="Catálogo e relatórios visuais dos dados públicos analisados pela Lithos Foundation: transcriptoma cerebral (GSE160208), miRNA no sangue (GSE140069), GWAS (GCST90001389) e simulação calibrada.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="marca-lithos" viewBox="0 0 64 64">
+      <rect x="1" y="1" width="62" height="62" rx="14" fill="var(--dsd-accent)"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32" fill="var(--dsd-accent2)"/>
+      <polygon points="17.3,23.5 32,32 32,49 17.3,40.5" fill="#fff" opacity=".92"/>
+      <polygon points="46.7,23.5 32,32 32,49 46.7,40.5" fill="#fff" opacity=".55"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32 17.3,40.5 17.3,23.5" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="32" y1="32" x2="32" y2="49" stroke="#fff" stroke-width="1.2" opacity=".45"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="index.html" aria-label="Lithos Foundation — início">
+      <svg class="marca-svg" aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <span class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="index.html" data-i18n="nav_inicio">Início</a>
+      <a href="processo.html" data-i18n="nav_processo">Processo</a>
+      <a href="dados.html" aria-current="page" data-i18n="nav_dados">Dados</a>
+      <a href="index.html#roadmap" data-i18n="nav_roadmap">A seguir</a>
+      <a href="index.html#transparencia" data-i18n="nav_transp">Transparência</a>
+    </nav>
+    <div class="lang-sw" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" class="ativo" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="hamb" id="hamb" aria-label="Abrir menu" aria-expanded="false" aria-controls="navmob">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navmob" aria-label="Menu">
+    <a href="index.html" data-i18n="nav_inicio">Início</a><a href="processo.html" data-i18n="nav_processo">Processo</a>
+    <a href="dados.html" data-i18n="nav_dados">Dados</a><a href="index.html#roadmap" data-i18n="nav_roadmap">A seguir</a>
+    <a href="index.html#transparencia" data-i18n="nav_transp">Transparência</a>
+  </nav>
+</header>
+<div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="page-hero" aria-labelledby="t-dados">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="dados_eyebrow">DADOS · RELATÓRIOS · VERIFICAÇÃO</p>
+      <h1 id="t-dados" data-i18n="dados_h1">Os dados, abertos de ponta a ponta</h1>
+      <p class="lead" data-i18n="dados_lead">Tudo nesta página vem de repositórios públicos que qualquer pessoa pode baixar hoje. Cada gráfico é uma leitura-sumário de relatórios completos, com código versionado e checksum MD5 — e cada réplica é um serviço de verificação ao campo, não uma descoberta nossa.</p>
+    </div>
+  </section>
+
+  <!-- ============ CATÁLOGO ============ -->
+  <section id="catalogo" aria-labelledby="t-cat">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="cat_eyebrow">CATÁLOGO</p>
+        <h2 id="t-cat" data-i18n="cat_h2">Os datasets do laboratório</h2>
+        <p class="sec-sub" data-i18n="cat_sub">Analisados a fundo ou catalogados como próximos na fila — incluindo o que decidimos não perseguir, e por quê.</p>
+      </div>
+      <div class="tabela-wrap reveal">
+        <table class="tabela-dados">
+          <thead>
+            <tr>
+              <th data-i18n="th1">ACESSO</th>
+              <th data-i18n="th2">CONTEÚDO</th>
+              <th data-i18n="th3">ESCALA</th>
+              <th data-i18n="th4">SITUAÇÃO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">GSE160208</td>
+              <td data-i18n="d1">Transcriptoma cerebral (sCJD × controles), Copenhagen</td>
+              <td class="mono">47 amostras</td>
+              <td><span class="badge" data-i18n="st_analisado">ANALISADO · v3</span></td>
+            </tr>
+            <tr>
+              <td class="mono">GSE140069</td>
+              <td data-i18n="d2">miRNA no sangue (sCJD × CT × Alzheimer)</td>
+              <td class="mono">57 + 48 amostras</td>
+              <td><span class="badge" data-i18n="st_analisado">ANALISADO · v3</span></td>
+            </tr>
+            <tr>
+              <td class="mono">GCST90001389</td>
+              <td data-i18n="d3">GWAS de sCJD — sumários estatísticos completos</td>
+              <td class="mono">6.314.492 variantes · 197 MB</td>
+              <td><span class="badge" data-i18n="st_analisado">ANALISADO · QC + RÉPLICA</span></td>
+            </tr>
+            <tr>
+              <td class="mono">PRJEB57720</td>
+              <td data-i18n="d4">WGS (sequenciamento completo) — ENA</td>
+              <td class="mono">coorte aberta</td>
+              <td><span class="badge c" data-i18n="st_cat">CATALOGADO</span></td>
+            </tr>
+            <tr>
+              <td class="mono">PXD050656</td>
+              <td data-i18n="d5">Proteômica de príons — PRIDE</td>
+              <td class="mono">—</td>
+              <td><span class="badge c" data-i18n="st_cat">CATALOGADO</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ PLACAS ============ -->
+  <section id="placas" aria-labelledby="t-placas">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="rel_eyebrow">RELATÓRIOS VISUAIS</p>
+        <h2 id="t-placas" data-i18n="rel_h2">Gráficos, com os números por trás</h2>
+      </div>
+      <div class="placas">
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p1_t">GWAS · réplica independente 3/3</h3><span class="placa-num">GCST90001389</span></div>
+          <svg viewBox="0 0 660 176" role="img" data-i18n-aria="p1_aria" aria-label="Três cromossomos com os loci replicados nas posições reais: PRNP no braço curto do cromossomo 20 a 4,67 megabases, p igual a 1,6 vezes dez elevado a menos quinze; STX6 no cromossomo 1 a 180,96 megabases, p igual a 7,5 vezes dez elevado a menos nove; GAL3ST1 no cromossomo 22 a 30,95 megabases, p igual a 6,2 vezes dez elevado a menos dez.">
+            <g font-family="IBM Plex Mono" font-size="9.5">
+              <!-- chr20 -->
+              <text x="8" y="20" fill="#56626A">chr20 · 64 Mb</text>
+              <line x1="8" y1="34" x2="88" y2="34" stroke="#DDE4E7" stroke-width="6" stroke-linecap="round"/>
+              <line x1="14.8" y1="34" x2="14.8" y2="10" stroke="#A85B3F" stroke-width="2"/>
+              <circle cx="14.8" cy="10" r="4.5" fill="#A85B3F"/>
+              <text x="98" y="14" fill="#16191C" font-weight="600">PRNP · 4.67 Mb · p = 1.6e-15</text>
+              <!-- chr1 -->
+              <text x="8" y="86" fill="#56626A">chr1 · 249 Mb</text>
+              <line x1="8" y1="100" x2="324" y2="100" stroke="#DDE4E7" stroke-width="6" stroke-linecap="round"/>
+              <line x1="237.9" y1="100" x2="237.9" y2="76" stroke="#17657F" stroke-width="2"/>
+              <circle cx="237.9" cy="76" r="4.5" fill="#17657F"/>
+              <text x="250" y="80" fill="#16191C" font-weight="600">STX6 · 180.96 Mb · p = 7.5e-9</text>
+              <text x="250" y="92" fill="#8B98A0">rs3747957 · 180.95 Mb · β = −0.148 (Brain 2025)</text>
+              <!-- chr22 -->
+              <text x="8" y="152" fill="#56626A">chr22 · 51 Mb</text>
+              <line x1="8" y1="166" x2="66" y2="166" stroke="#DDE4E7" stroke-width="6" stroke-linecap="round"/>
+              <line x1="47.3" y1="166" x2="47.3" y2="142" stroke="#17657F" stroke-width="2"/>
+              <circle cx="47.3" cy="142" r="4.5" fill="#17657F"/>
+              <text x="76" y="146" fill="#16191C" font-weight="600">GAL3ST1 · 30.95 Mb · p = 6.2e-10</text>
+              <line x1="8" y1="122" x2="652" y2="122" stroke="#A85B3F" stroke-width="1" stroke-dasharray="4 4" opacity=".5"/>
+              <text x="652" y="132" text-anchor="end" fill="#A85B3F" data-i18n="p1_gws">significância genômica (−log10 p = 7.3)</text>
+            </g>
+          </svg>
+          <div class="mini-badges"><span>6.314.492 variantes QC</span><span>λ = 1.059</span><span>41 hits GWS</span><span class="v" data-i18n="p1_badge">réplica 3/3 dos loci</span></div>
+          <p class="placa-note" data-i18n="p1_note">posições dos marcadores em coordenadas reais do genoma (GRCh37); alturas proporcionais a −log10(p) · anotação Ensembl + NCBI</p>
+        </article>
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p2_t">Transcriptoma cerebral</h3><span class="placa-num">GSE160208</span></div>
+          <svg viewBox="0 0 660 176" role="img" data-i18n-aria="p2_aria" aria-label="Barra: 437 genes significantes de 800 testados, 54,6 por cento; réplica exata com r igual a 1.000">
+            <rect x="8" y="26" width="636" height="26" rx="6" fill="#E7EDF0"/>
+            <rect x="8" y="26" width="347" height="26" rx="6" fill="#17657F"/>
+            <text x="20" y="44" font-family="IBM Plex Mono" font-size="12" fill="#fff" font-weight="600">437 DEGs</text>
+            <text x="363" y="44" font-family="IBM Plex Mono" font-size="11" fill="#56626A">800 testados · 54,6% · Welch + BH-FDR</text>
+            <line x1="8" y1="72" x2="652" y2="72" stroke="#DDE4E7"/>
+            <text x="8" y="92" font-family="IBM Plex Mono" font-size="10" fill="#56626A" data-i18n="p2_linha1">neuroinflamação: os 4 hubs acima do limiar em toda a coorte</text>
+            <rect x="8" y="104" width="82" height="16" rx="4" fill="#17657F"/><text x="16" y="116" font-family="IBM Plex Mono" font-size="9.5" fill="#fff">MYD88</text>
+            <rect x="98" y="104" width="82" height="16" rx="4" fill="#17657F"/><text x="106" y="116" font-family="IBM Plex Mono" font-size="9.5" fill="#fff">TLR2</text>
+            <rect x="188" y="104" width="82" height="16" rx="4" fill="#17657F"/><text x="196" y="116" font-family="IBM Plex Mono" font-size="9.5" fill="#fff">C1QA</text>
+            <rect x="278" y="104" width="82" height="16" rx="4" fill="#17657F"/><text x="286" y="116" font-family="IBM Plex Mono" font-size="9.5" fill="#fff">CSF1</text>
+            <rect x="372" y="104" width="140" height="16" rx="4" fill="none" stroke="#A85B3F"/><text x="380" y="116" font-family="IBM Plex Mono" font-size="9.5" fill="#A85B3F">FDR &lt; 10⁻⁴ em todos</text>
+            <rect x="8" y="134" width="210" height="18" rx="4" fill="#16191C"/>
+            <text x="18" y="147" font-family="IBM Plex Mono" font-size="9.5" fill="#fff" font-weight="600">réplica exata: top-10 idêntico · r = 1.000</text>
+            <text x="228" y="147" font-family="IBM Plex Mono" font-size="9.5" fill="#8B98A0" data-i18n="p2_linha2">47 amostras · Copenhagen · MM1 vs. VV2 estratificado</text>
+          </svg>
+          <p class="placa-note" data-i18n="p2_note">contagem dupla registrada com honestidade: 437 DEGs pelo nosso critério (BH-FDR) e 184 pelo critério do artigo original — os dois universos estão no relatório</p>
+        </article>
+
+        <article class="placa reveal">
+          <div class="placa-head"><h3 data-i18n="p3_t">miRNA no sangue</h3><span class="placa-num">GSE140069</span></div>
+          <svg viewBox="0 0 660 176" role="img" data-i18n-aria="p3_aria" aria-label="Dois medidores semicirculares: AUC 0,788 para sCJD contra controles; AUC 0,924 para sCJD contra Alzheimer; quatro de quatro achados do artigo replicados">
+            <path d="M150 120 A70 70 0 0 1 290 120" fill="none" stroke="#E7EDF0" stroke-width="14" stroke-linecap="round"/>
+            <path d="M150 120 A70 70 0 0 1 290 120" fill="none" stroke="#17657F" stroke-width="14" stroke-linecap="round" stroke-dasharray="219.9" stroke-dashoffset="46.7"/>
+            <text x="220" y="112" text-anchor="middle" font-family="IBM Plex Mono" font-size="19" font-weight="600" fill="#16191C">0.788</text>
+            <text x="220" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" fill="#56626A">sCJD × CT</text>
+            <path d="M370 120 A70 70 0 0 1 510 120" fill="none" stroke="#E7EDF0" stroke-width="14" stroke-linecap="round"/>
+            <path d="M370 120 A70 70 0 0 1 510 120" fill="none" stroke="#A85B3F" stroke-width="14" stroke-linecap="round" stroke-dasharray="219.9" stroke-dashoffset="16.7"/>
+            <text x="440" y="112" text-anchor="middle" font-family="IBM Plex Mono" font-size="19" font-weight="600" fill="#16191C">0.924</text>
+            <text x="440" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" fill="#56626A">sCJD × Alzheimer</text>
+            <text x="330" y="24" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#56626A">57 sCJD × 48 controles · sangue</text>
+            <rect x="176" y="152" width="308" height="18" rx="4" fill="#16191C"/>
+            <text x="186" y="165" font-family="IBM Plex Mono" font-size="9.5" fill="#fff" font-weight="600" data-i18n="p3_linha">4/4 hits do artigo replicados · 60 miRNAs significantes</text>
+          </svg>
+          <div class="chips"><span class="chip">let-7i-5p</span><span class="chip">miR-16-5p</span><span class="chip">miR-93-5p</span><span class="chip">miR-106b-3p</span></div>
+          <p class="placa-note" data-i18n="p3_note">honestidade da casa: com covariáveis (idade+sexo+RIN), 1 miRNA sobrevive ao FDR — a assinatura final do artigo é de 3 miRNAs por qPCR, e a fragilidade está documentada no nosso relatório</p>
+        </article>
+
+        <article class="placa placa-neg reveal">
+          <div class="placa-head"><h3 data-i18n="p5_t">Integração cérebro × sangue</h3><span class="placa-num">miRTarBase 10.0</span></div>
+          <div class="neg-caixa">
+            <span class="badge v" data-i18n="p5_badge">RESULTADO NEGATIVO · DOCUMENTADO</span>
+            <p data-i18n="p5_p">Cruzamos os miRNAs do sangue com os 437 DEGs cerebrais do GSE160208 (alvos funcionais validados): <b>nenhum enriquecimento.</b> Interpretação honesta: o sangue reflete a periferia, não o programa transcricional cerebral — biomarcadores sanguíneos e mecanismo cerebral não são a mesma conversa.</p>
+          </div>
+          <p class="placa-note" data-i18n="p5_note">negativos se publicam: este resultado integra o §4.5 do preprint e evita que o próximo laboratório perca semanas na mesma hipótese</p>
+        </article>
+
+        <article class="placa placa-full reveal">
+          <div class="placa-head"><h3 data-i18n="p4_t">Simulação calibrada</h3><span class="placa-num">MODELO WEIBULL</span></div>
+          <svg viewBox="0 0 660 150" role="img" data-i18n-aria="p4_aria" aria-label="Barras de dano esperado: sem intervenção 100 por cento; alfândega intercelular 50,2 por cento; muro total 16,3 por cento; limiar de blindagem em 41 por cento">
+            <rect x="8" y="12" width="636" height="20" rx="4" fill="#C6CFD4"/>
+            <text x="18" y="26" font-family="IBM Plex Mono" font-size="10" fill="#16191C" font-weight="600" data-i18n="p4_svg1">sem intervenção · 100%</text>
+            <rect x="8" y="42" width="319.3" height="20" rx="4" fill="#17657F"/>
+            <text x="18" y="56" font-family="IBM Plex Mono" font-size="10" fill="#fff" font-weight="600" data-i18n="p4_svg2">alfândega 80/5 · 50,2%</text>
+            <rect x="8" y="72" width="103.6" height="20" rx="4" fill="#8B98A0"/>
+            <text x="18" y="86" font-family="IBM Plex Mono" font-size="10" fill="#fff" font-weight="600" data-i18n="p4_svg5">muro total · 16,3%</text>
+            <line x1="268.8" y1="100" x2="268.8" y2="106" stroke="#A85B3F" stroke-width="2"/>
+            <text x="8" y="118" font-family="IBM Plex Mono" font-size="9" fill="#A85B3F" data-i18n="p4_svg3">↑ limiar de blindagem G127V: ~41% de cobertura colapsa o espalhamento (percolação p_c = 0,593)</text>
+            <text x="8" y="136" font-family="IBM Plex Mono" font-size="9.5" fill="#56626A">MM1 → 4,3 meses (publicado: 4–5) ✓ · subtipo lento 2,7× → 10,5 meses ✓ · dose→incubação log-linear ✓</text>
+          </svg>
+          <div class="chips"><span class="chip" data-i18n="p4_chip">hipótese “alfândega intercelular” → Institut Pasteur</span><span class="chip" data-i18n="p4_chip2">3 previsões testáveis</span></div>
+          <p class="placa-note" data-i18n="p4_note">modelo gerador de hipóteses — não é previsão clínica; a síntese não existia na literatura (verificado por busca amplo antes do envio)</p>
+        </article>
+      </div>
+
+      <p class="aviso-med reveal" data-i18n="dados_nota">FIGURAS COMPLETAS NO REPOSITÓRIO: vulcões (cérebro e sangue), heatmap dos top-25 genes e linha do tempo do caso de referência — com código e checksums MD5. Esta página mostra leituras-sumário; o detalhe estatístico integral vive nos relatórios.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-marca">
+      <svg class="marca-svg" aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <div class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></div>
+    </div>
+    <p class="foot-nota" data-i18n="foot_nota">Nome provisório. Nasce da urgência de um caso real e público no Brasil, anunciado pela família em 21·08·2026 — e de uma pergunta simples: por que a informação certa chega tarde demais?</p>
+    <p class="foot-meta" data-i18n-html="foot_meta">registro vivo · atualizado em 29·08·2026<br>contato: em breve, junto da constituição formal<br>feito em PT-BR · tudo verificável</p>
+  </div>
+  <div class="wrap"><div class="dual dual-foot" aria-hidden="true"><i></i><i></i></div></div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

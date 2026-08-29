@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-page="processo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processo — Lithos Foundation</title>
+<meta name="description" content="Como a Lithos Foundation obtém, verifica e publica dados sobre doenças priônicas: fontes públicas, replicação independente, auditoria adversarial e vigilância clínica contínua.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="marca-lithos" viewBox="0 0 64 64">
+      <rect x="1" y="1" width="62" height="62" rx="14" fill="var(--dsd-accent)"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32" fill="var(--dsd-accent2)"/>
+      <polygon points="17.3,23.5 32,32 32,49 17.3,40.5" fill="#fff" opacity=".92"/>
+      <polygon points="46.7,23.5 32,32 32,49 46.7,40.5" fill="#fff" opacity=".55"/>
+      <polygon points="17.3,23.5 32,15 46.7,23.5 32,32 17.3,40.5 17.3,23.5" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="32" y1="32" x2="32" y2="49" stroke="#fff" stroke-width="1.2" opacity=".45"/>
+    </symbol>
+    <symbol id="ic-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" fill="none" stroke-width="1.5"/><path d="M4.5 5.5v13c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8v-13" fill="none" stroke-width="1.5"/><path d="M4.5 12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8" fill="none" stroke-width="1.5"/></symbol>
+    <symbol id="ic-trial" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke-width="1.5"/><path d="M8 12h8M12 8v8" fill="none" stroke-width="1.5"/></symbol>
+    <symbol id="ic-livro" viewBox="0 0 24 24"><path d="M12 6c-2-1.8-5-2-9-1v14c4-1 7-.8 9 1 2-1.8 5-2 9-1V5c-4-1-7-.8-9 1z" fill="none" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="20" stroke-width="1.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="index.html" aria-label="Lithos Foundation — início">
+      <svg class="marca-svg" aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <span class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="index.html" data-i18n="nav_inicio">Início</a>
+      <a href="processo.html" aria-current="page" data-i18n="nav_processo">Processo</a>
+      <a href="dados.html" data-i18n="nav_dados">Dados</a>
+      <a href="index.html#roadmap" data-i18n="nav_roadmap">A seguir</a>
+      <a href="index.html#transparencia" data-i18n="nav_transp">Transparência</a>
+    </nav>
+    <div class="lang-sw" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" class="ativo" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="hamb" id="hamb" aria-label="Abrir menu" aria-expanded="false" aria-controls="navmob">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navmob" aria-label="Menu">
+    <a href="index.html" data-i18n="nav_inicio">Início</a><a href="processo.html" data-i18n="nav_processo">Processo</a>
+    <a href="dados.html" data-i18n="nav_dados">Dados</a><a href="index.html#roadmap" data-i18n="nav_roadmap">A seguir</a>
+    <a href="index.html#transparencia" data-i18n="nav_transp">Transparência</a>
+  </nav>
+</header>
+<div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+<main>
+  <!-- ============ HERO DA PÁGINA ============ -->
+  <section class="page-hero" aria-labelledby="t-proc">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="proc_eyebrow">PROCESSO · METODOLOGIA ABERTA</p>
+      <h1 id="t-proc" data-i18n="proc_h1">Como cada número nasce, é posto à prova e vira registro</h1>
+      <p class="lead" data-i18n="proc_lead">Nada aqui começa numa intuição: começa num repositório público. O que garante a confiança não é o resultado — é o caminho que o resultado percorreu até aqui. Este é esse caminho, de ponta a ponta.</p>
+    </div>
+  </section>
+
+  <!-- ============ FLUXO ============ -->
+  <section aria-labelledby="t-fluxo">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="fluxo_eyebrow">O FLUXO</p>
+        <h2 id="t-fluxo" data-i18n="fluxo_h2">Seis estágios, uma regra: nenhum atalho</h2>
+      </div>
+      <figure class="fluxo reveal">
+        <svg viewBox="0 0 680 178" role="img" data-i18n-aria="fluxo_aria" aria-label="Fluxo em seis estágios: fontes públicas, aquisição com checksum, análise estatística, réplica contra o artigo original, auditoria adversarial, preprint e engajamento; vigilância clínica semanal alimenta os dossiês.">
+          <defs><marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#56626A"/></marker></defs>
+          <g font-family="IBM Plex Mono" font-size="10.5" font-weight="600">
+            <rect x="4" y="10" width="200" height="40" rx="10" fill="#F1F4F5" stroke="#DDE4E7"/><text x="104" y="34" text-anchor="middle" fill="#17657F" data-i18n="fl1">FONTES PÚBLICAS</text>
+            <rect x="240" y="10" width="200" height="40" rx="10" fill="#F1F4F5" stroke="#DDE4E7"/><text x="340" y="34" text-anchor="middle" fill="#17657F" data-i18n="fl2">AQUISIÇÃO + MD5</text>
+            <rect x="476" y="10" width="200" height="40" rx="10" fill="#F1F4F5" stroke="#DDE4E7"/><text x="576" y="34" text-anchor="middle" fill="#17657F" data-i18n="fl3">ANÁLISE ESTATÍSTICA</text>
+            <line x1="204" y1="30" x2="236" y2="30" stroke="#56626A" stroke-width="1.5" marker-end="url(#seta)"/>
+            <line x1="440" y1="30" x2="472" y2="30" stroke="#56626A" stroke-width="1.5" marker-end="url(#seta)"/>
+            <line x1="576" y1="50" x2="576" y2="86" stroke="#56626A" stroke-width="1.5" marker-end="url(#seta)"/>
+            <rect x="476" y="90" width="200" height="40" rx="10" fill="#F1F4F5" stroke="#DDE4E7"/><text x="576" y="114" text-anchor="middle" fill="#17657F" data-i18n="fl4">RÉPLICA × ARTIGO</text>
+            <line x1="472" y1="110" x2="440" y2="110" stroke="#56626A" stroke-width="1.5" marker-end="url(#seta)"/>
+            <rect x="240" y="90" width="200" height="40" rx="10" fill="#A85B3F"/><text x="340" y="114" text-anchor="middle" fill="#fff" data-i18n="fl5">AUDITORIA ADVERSARIAL</text>
+            <line x1="236" y1="110" x2="204" y2="110" stroke="#56626A" stroke-width="1.5" marker-end="url(#seta)"/>
+            <rect x="4" y="90" width="200" height="40" rx="10" fill="#17657F"/><text x="104" y="114" text-anchor="middle" fill="#fff" data-i18n="fl6">PREPRINT &amp; ENGAJAMENTO</text>
+            <rect x="4" y="146" width="436" height="28" rx="8" fill="none" stroke="#A85B3F" stroke-width="1.2" stroke-dasharray="5 4"/><text x="222" y="164" text-anchor="middle" fill="#A85B3F" data-i18n="fl7">VIGILÂNCIA CLÍNICA SEMANAL → DOSSIÊS</text>
+          </g>
+        </svg>
+        <figcaption data-i18n="fluxo_cap">O estágio vermelho é deliberado: todo resultado é atacado por nós mesmos antes de ver alguém de fora.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ FONTES & AQUISIÇÃO ============ -->
+  <section id="fontes" aria-labelledby="t-fontes">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="fontes_eyebrow">ESTÁGIOS 1–2 · FONTES &amp; AQUISIÇÃO</p>
+        <h2 id="t-fontes" data-i18n="fontes_h2">De onde vem cada byte</h2>
+      </div>
+      <div class="op-grid">
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-db"/></svg></span>
+          <div><h3 data-i18n="f1_t">REPOSITÓRIOS DE DADOS</h3><p data-i18n="f1_p">GEO e ENA (transcriptomas, WGS), PRIDE (proteômica), GWAS Catalog (sumários estatísticos). Download direto da fonte primária — nunca de espelho ou repositório de terceiros.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-trial"/></svg></span>
+          <div><h3 data-i18n="f2_t">REGISTROS DE ENSAIOS</h3><p data-i18n="f2_p">ClinicalTrials.gov verificado a cada sessão, cruzado com os comunicados da CJD Foundation, CureFFI e Prion Alliance — que historicamente antecipam o registro oficial.</p></div>
+        </article>
+        <article class="op reveal">
+          <span class="op-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><use href="#ic-livro"/></svg></span>
+          <div><h3 data-i18n="f3_t">LITERATURA &amp; SUPLEMENTOS</h3><p data-i18n="f3_p">PubMed (janela de 30 dias) e os suplementos oficiais dos autores: quando o GEO vem sem tabela (caso GSE140069), a análise usa o arquivo oficial distribuído com a publicação.</p></div>
+        </article>
+      </div>
+      <div class="regras-duas reveal">
+        <div>
+          <h3 data-i18n="aq_t">Regras de aquisição</h3>
+          <ul class="lista-check">
+            <li data-i18n="aq1">Somente dados públicos e anonimizados — saúde é dado sensível (LGPD); nenhum dado individual entra no laboratório.</li>
+            <li data-i18n="aq2">Checksum MD5 por arquivo baixado; dados grandes ficam fora do git, mas são re-baixáveis com o checksum documentado (ex.: GWAS de 197 MB).</li>
+            <li data-i18n="aq3">Catálogo inclui os vazios: registrar o que NÃO existe (ex.: ausência de certos cohortes abertos) evita que outros procurem o que não há.</li>
+            <li data-i18n="aq4">Data de acesso anotada em toda fonte — datasets mudam; o registro fixa o estado usado pela análise.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="an_t">Regras de análise</h3>
+          <ul class="lista-check">
+            <li data-i18n="an1">Covariáveis explícitas em todo modelo: sexo, códon 129 e subtipo no cérebro; idade, sexo e RIN no sangue (OLS).</li>
+            <li data-i18n="an2">Testes clássicos auditáveis — Welch com correção BH-FDR; QC de GWAS com λGC reportado (1.059 em 6,31 milhões de variantes).</li>
+            <li data-i18n="an3">Anotação funcional via fontes oficiais (Ensembl GRCh37 REST + NCBI), nunca por memória de modelo.</li>
+            <li data-i18n="an4">Resultado negativo é resultado: a integração cérebro×sangue (miRTarBase 10.0 × DEGs) foi negativa e está documentada.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ REGISTRO (FORMAÇÕES) ============ -->
+  <section id="registro" aria-labelledby="t-reg">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="reg_eyebrow">O REGISTRO · 24—28·08·2026</p>
+        <h2 id="t-reg" data-i18n="reg_h2">O processo em ação, camada por camada</h2>
+        <p class="sec-sub" data-i18n="reg_sub">Cada camada abaixo é datada, rastreada à fonte primária e verificável no repositório. Nada aqui se apaga: o registro é a nossa matéria-prima.</p>
+      </div>
+      <div class="reg-grid">
+        <aside class="reg-nota reveal" aria-label="Como ler o registro">
+          <h3 data-i18n="reg_como_t">COMO LER</h3>
+          <p data-i18n="reg_como_p">O registro é organizado em formações geológicas: o que foi colocado primeiro sustenta o que veio depois. Todas as afirmações apontam para fonte primária, com URL e data de acesso.</p>
+          <div class="legenda">
+            <span><i class="lz"></i><span data-i18n="reg_leg1">dados &amp; verificação</span></span>
+            <span><i class="lv"></i><span data-i18n="reg_leg2">clínica &amp; urgência</span></span>
+          </div>
+        </aside>
+
+        <div class="estratos">
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e1h"><b>FORMAÇÃO 1 · DADOS REAIS</b><time>24—26·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r11"><time>24·08</time><b>Fundação do laboratório.</b> Duas trilhas: “caso referência” (simulação didática sCJD MM1, dossiê validado pelos critérios CDC/NPDPSC) e trilha real — somente dados públicos e anonimizados. Pacote completo distribuído: 36 documentos, 7 scripts, checksums MD5.</li>
+              <li data-i18n-html="r12"><time>24·08</time><b>GSE160208</b> (47 amostras sCJD/controles, Copenhagen): análise completa — 437/800 genes significantes (Welch + BH-FDR); neuroinflamação massiva (MYD88, TLR2, C1QA, CSF1 — FDR &lt; 10⁻⁴).</li>
+              <li data-i18n-html="r13"><time>24·08</time><b>Catálogos verificados:</b> GEO, ENA (WGS PRJEB57720), GWAS Catalog (GCST90001389), proteômica PRIDE (PXD050656) — incluindo o que <b>não</b> existe.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e2h"><b>FORMAÇÃO 2 · VERIFICAÇÃO INDEPENDENTE</b><time>24·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r21"><time>24·08</time><b>Réplica exata do artigo do GSE160208:</b> top-10 de genes idêntico na ordem, r = 1.000 (184 DEGs pelo critério dos autores).</li>
+              <li data-i18n-html="r22"><time>24·08</time><b>GSE140069</b> (miRNA no sangue, 57 sCJD × 48 controles): 60 miRNAs significantes; os 4 achados do artigo replicados (let-7i-5p, miR-16-5p, miR-93-5p, miR-106b-3p); AUC 0.788 (sCJD×CT) e 0.924 (sCJD×AD).</li>
+              <li data-i18n-html="r23"><time>24·08</time><b>GWAS GCST90001389</b> (197 MB): QC de 6.314.492 variantes (0 malformadas, λGC = 1.059) e <b>réplica independente 3/3 dos loci publicados</b> — PRNP p=1,6e-15 · STX6 p=7,5e-9 · GAL3ST1 p=6,2e-10 — com fine-mapping de rs3747957 (mesma direção do Brain 2025).</li>
+              <li data-i18n-html="r24"><time>24·08</time><b>Auditoria cética adversarial:</b> máquina estatística validada (Welch/BH corretos a 1e-13); fragilidades de assinaturas publicadas, documentadas com honestidade.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e3h"><b>FORMAÇÃO 3 · HIPÓTESES &amp; SIMULAÇÃO</b><time>24·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r31"><time>24·08</time><b>Hipótese geradora “alfândega intercelular”</b> (checkpoint biofísico seletivo nas pontes entre células) submetida ao Institut Pasteur — grupo Chiara Zurzolo — com 3 previsões testáveis.</li>
+              <li data-i18n-html="r32"><time>24·08</time><b>Blindagem G127V:</b> varredura encontrou limiar de percolação em ~41% de cobertura para colapsar o espalhamento priônico.</li>
+              <li data-i18n-html="r33"><time>24·08</time><b>Simulação calibrada por literatura</b> (Weibull estocástico): 3 validações — incluindo sobrevida MM1 de 4,3 meses contra 4–5 publicado.</li>
+            </ul>
+          </article>
+
+          <article class="estrato cli reveal">
+            <div class="estrato-head" data-i18n-html="e4h"><b>FORMAÇÃO 4 · CLÍNICA &amp; REDE</b><time>28·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r41"><time>28·08</time><b>Cenário de ensaios mapeado e repriorizado:</b> PRiSM (NCT07444580) recrutando → via prioritária; ION717 fechado a novos desde 26·08; efavirenz (NCT07482085) ainda sem recrutamento.</li>
+              <li data-i18n-html="r42"><time>28·08</time><b>Logística internacional:</b> visto B-2 médico, cronograma de deslocamento do PRiSM, contatos dos 5 sites e do sponsor (Broad Institute).</li>
+              <li data-i18n-html="r43"><time>28·08</time><b>Dossiê médico modelo:</b> RM (DWI/FLAIR), LCR (14-3-3/t-tau), RT-QuIC e escala MRC-PDRS — pronto para a decisão dos médicos assistentes.</li>
+              <li data-i18n-html="r44"><time>28·08</time><b>Rede Brasil consolidada:</b> RT-QuIC (HC-FMUSP · A.C. Camargo · UFRJ/LAB3DDI), centros de referência por região e canal oficial do Ministério da Saúde.</li>
+            </ul>
+          </article>
+
+          <article class="estrato reveal">
+            <div class="estrato-head" data-i18n-html="e5h"><b>FORMAÇÃO 5 · INSTITUCIONAL</b><time>28·08·2026</time></div>
+            <ul class="camada">
+              <li data-i18n-html="r51"><time>28·08</time><b>Engajamento científico:</b> cartas formais ao Prion Alliance (Broad Institute) e ao HC-FMUSP (Neurologia Cognitiva), com o pacote completo do laboratório.</li>
+              <li data-i18n-html="r52"><time>28·08</time><b>Guia de famílias em PT-BR</b> publicado — sem jargão, sem promessa.</li>
+              <li data-i18n-html="r53"><time>28·08</time><b>Batismo: Lithos Foundation</b> — homenagem mineral à origem da missão; terreno verificado (sem colisões de marca, domínios livres).</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dual" aria-hidden="true"><i></i><i></i></div>
+
+  <!-- ============ GARANTIAS ============ -->
+  <section id="garantias" aria-labelledby="t-gar">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow" data-i18n="gar_eyebrow">GARANTIAS DO PROCESSO</p>
+        <h2 id="t-gar" data-i18n="gar_h2">Por que acreditar neste registro</h2>
+      </div>
+      <div class="regras">
+        <article class="regra reveal">
+          <h3 data-i18n="g1_t">MD5 EM TUDO</h3>
+          <p data-i18n="g1_p">Cada arquivo baixado carrega checksum documentado; o pacote completo do laboratório (36 documentos + 7 scripts) foi distribuído com verificação de integridade.</p>
+        </article>
+        <article class="regra reveal">
+          <h3 data-i18n="g2_t">CÓDIGO VERSIONADO</h3>
+          <p data-i18n="g2_p">Os 7 scripts de análise vivem no repositório com histórico de commits — cada figura e cada número são regeneráveis a partir do dado bruto.</p>
+        </article>
+        <article class="regra reveal">
+          <h3 data-i18n="g3_t">AUDITORIA ANTES DE PUBLICAR</h3>
+          <p data-i18n="g3_p">Crítica estatística adversarial interna obrigatória: erros de desenho identificados foram corrigidos antes da distribuição — e documentados quando não foram evitados.</p>
+        </article>
+        <article class="regra reveal">
+          <h3 data-i18n="g4_t">NADA DE PACIENTE INDIVIDUAL</h3>
+          <p data-i18n="g4_p">O caso real que motiva a missão nunca entra no banco de dados: a trilha clínica orienta famílias e médicos com informação pública, sem tocar em prontuário.</p>
+        </article>
+      </div>
+      <p class="aviso-med reveal" data-i18n="aviso">ESTA PÁGINA É INFORMATIVA E NÃO SUBSTITUI DECISÃO MÉDICA. Nada aqui é conselho individual; todo material clínico é entregue aos médicos assistentes, que decidem.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-marca">
+      <svg class="marca-svg" aria-hidden="true"><use href="#marca-lithos"/></svg>
+      <div class="wm"><span class="wm-top">LITHOS</span><span class="wm-bottom">FOUNDATION</span></div>
+    </div>
+    <p class="foot-nota" data-i18n="foot_nota">Nome provisório. Nasce da urgência de um caso real e público no Brasil, anunciado pela família em 21·08·2026 — e de uma pergunta simples: por que a informação certa chega tarde demais?</p>
+    <p class="foot-meta" data-i18n-html="foot_meta">registro vivo · atualizado em 29·08·2026<br>contato: em breve, junto da constituição formal<br>feito em PT-BR · tudo verificável</p>
+  </div>
+  <div class="wrap"><div class="dual dual-foot" aria-hidden="true"><i></i><i></i></div></div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

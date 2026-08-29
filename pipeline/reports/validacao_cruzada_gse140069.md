@@ -81,7 +81,7 @@ Controles negativos também convergem: **miR-25-3p** ns nos dois (q 0.125 vs 0.1
 O núcleo do artigo **reproduz integralmente na nossa análise independente**: os 4 miRNAS significantes da descoberta estão entre os nossos significativos, mesma direção, magnitudes quase idênticas (diferença ≤0.35 em log2); let-7d-3p limítrofe-up nos dois; os dois controles negativos deles (miR-25-3p, miR-484) são não-significativos nos dois; correlação de efeitos r=+0.64. Pipeline diferente (xlsx processado × counts brutos), mesmo sinal — isso é genuína replicação analítica.
 
 ### ERROS/EXAGEROS nossos (corrigir)
-1. **CRÍTICO — inconsistência interna no `relatorio_gse140069.md`:** os números publicados (60 sig; log2FC da tabela) vieram do script **v1**: Welch em escala LINEAR + "log2FC" calculado como razão de médias aritméticas — duas escalas diferentes misturadas no mesmo relatório. O script atual (v2, com log2(x+1) antes do teste) produz **84 significativos (10↑/74↓)** com rankings diferentes (ex.: miR-320b cai para q=0.12; aparecem miR-500a/miR-29c/miR-144 no topo-down). **O relatório precisa ser regenerado com o v2.**
+1. **CRÍTICO — inconsistência interna no `relatorio_gse140069.md`:** os números publicados (60 sig; log2FC da tabela) vieram do script **v1**: Welch em escala LINEAR + "log2FC" calculado como razão de médias aritméticas — duas escalas diferentes misturadas no mesmo relatório. O script atual (v2, com log2(x+1) antes do teste) produz **84 significativos (10↑/74↓)** com rankings diferentes (ex.: miR-320b cai para q=0.12; aparecem miR-500a/miR-29c/miR-144 no topo-down). **O relatório precisa ser regenerado com o v2.** *(RESOLVIDO 2026-08-24 14:29 — regenerado como v3 com OLS idade+sexo+RIN; ver ADDENDUM ao fim.)*
 2. Chamar nossos 60/84 de resultado comparável ao "do artigo" induz a erro: eles testaram 101 pós-filtro; nós, 939 sem filtro. Comparação justa exige aplicar filtro de detecção.
 3. Nossos top hits fora dos 101 deles (miR-29a, miR-221, miR-106b-5p etc.) são **hipóteses novas não testadas por eles** — não podem ser apresentados como confirmação ou contradição.
 4. Sem ajuste por idade (eles ajustaram); pseudocount 1 sobre piso 0.0001 infla efeitos de não-detecção — preferível filtrar ou usar método de contagens.
@@ -94,3 +94,15 @@ O núcleo do artigo **reproduz integralmente na nossa análise independente**: o
 
 ---
 *Fontes primárias: PMC7414116 (texto completo, acesso aberto CC-BY 4.0); Supplementary Data 1 (MOESM3, xlsx oficial dos autores, 101 miRNAs); Supplementary Table 6 referenciada mas não necessária ao veredicto.*
+
+---
+
+## ADDENDUM (2026-08-29) — estado final pós-correção
+
+Este documento foi escrito às 13:28 de 24/08, ANTES da regeneração do relatório (14:29).
+Estado entregue e verificado por re-execução em 29/08:
+
+- `analise_gse140069.py` **v3** (log2(x+1) + OLS com idade+sexo+RIN + filtro de detecção ≥25% + Cohen's d) → `relatorio_gse140069.md` v3.
+- Números finais: **84** significativos não-ajustado (FDR<0.05) → **69** com filtro de detecção → **1** após ajuste de covariáveis → **5** no universo filtrado (n=269). Núcleo do artigo: direção ↓ preservada nos 4; apenas **miR-93-5p** sobrevive ao FDR no universo filtrado (q=0.048).
+- Re-execução em 29/08 reproduz o relatório byte-a-byte (única diferença: timestamp) e o `volcano_gse140069.png` é md5-idêntico à regeneração (c92c5b029fc2007d33543d85c73ecb32) — figura gerada pela mesma lógica v3.
+- Os itens 1–4 da seção (iv) acima foram executados; o item 5 (nota de limitação) permanece correto como escrito.

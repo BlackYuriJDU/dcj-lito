@@ -93,7 +93,7 @@
 
 ### O que é REDUNDANTE (dizer sem rodeio)
 - **Welch+BH-FDR sobre GSE160208**: os dados já foram publicados pelos donos (Laursen et al., IJMS 2021) E minerados por terceiros com WGCNA+limma (Sci Rep 2023, PMC10465546). Nossa replicação coerente com a literatura vale como exercício de verificação, mas como CIÊNCIA nova é redundante — e nosso método é mais simples que os já publicados.
-- **60 miRNAs significativos no GSE140069**: a assinatura sanguínea de miRNAs é o resultado ORIGINAL dos donos dos dados (Nat Commun 2020). Reproduzi-la confirma que sabemos ler o dataset; não agrega conhecimento novo ao campo.
+- **Assinatura sanguínea do GSE140069 (84 sig. brutos → 1 após ajuste idade/sexo/RIN)**: a assinatura sanguínea de miRNAs é o resultado ORIGINAL dos donos dos dados (Nat Commun 2020). Reproduzi-la confirma que sabemos ler o dataset; não agrega conhecimento novo ao campo. *(Atualizado 2026-08-29: números v1 "60" → v3, ver relatorio_gse140069.md.)*
 - **Catálogo de datasets**: concorre com NLM Dataset Catalog, OmixAtlas comercial e o préprint de 25 anos de história natural priônica. Em escala global, é redundante.
 
 ### O que é ÚNICO/ÚTIL
@@ -120,7 +120,7 @@
 
 **R3 — Elevar o rigor estatístico ao padrão do campo.** Adicionar covariáveis (idade, sexo, códon 129, subtipo — já extraídas), checagem de lote, tamanhos de efeito com IC, e validação cruzada da assinatura de miRNA (treino/teste, AUC). Isso nos diferencia positivamente do "mining paper" típico e é o mínimo que um revisor de laboratório espera.
 
-**R4 — Mirar o ecossistema brasileiro primeiro.** Cartas personalizadas para o grupo HC-USP/autores do The Conversation e centros implantando RT-QuIC, oferecendo algo concreto e pequeno: "validariam nossa lista de 60 miRNAs contra sua série local?" ou "o catálogo PT-BR é útil para seu serviço?". Destinatário local sem equivalente = maior probabilidade de primeira aceitação.
+**R4 — Mirar o ecossistema brasileiro primeiro.** Cartas personalizadas para o grupo HC-USP/autores do The Conversation e centros implantando RT-QuIC, oferecendo algo concreto e pequeno: "validariam nossa reanálise da assinatura de miRNAs (ajustada por idade/sexo/RIN) contra sua série local?" ou "o catálogo PT-BR é útil para seu serviço?". Destinatário local sem equivalente = maior probabilidade de primeira aceitação.
 
 **R5 — Trilhar credibilidade incremental à la Minikel-Vallabh.** Buscar coautoria/adendo de um pesquisador estabelecido antes de qualquer ambição editorial; monitorar mgh_prnp_freeze2 (dados biomarcadores Vallabh-Minikel) e séries futuras do NPDPSC para oferecer análises que eles explicitamente pedirem; quando o catálogo atingir padrão FAIR, submetê-lo como Data Descriptor (Scientific Data / GigaScience / F1000).
 

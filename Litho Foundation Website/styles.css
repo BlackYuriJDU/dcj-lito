@@ -255,3 +255,34 @@ footer{ border-top:1px solid var(--linha); padding:calc(var(--sp)*1.8) 0 calc(va
 @media (min-width:1440px){
   .wrap{ width:min(1240px, 100% - 3rem); }
 }
+
+/* ============ páginas internas (processo / dados) ============ */
+.page-hero{
+  padding:calc(var(--sp)*2.2) 0 calc(var(--sp)*1.8); border-bottom:1px solid var(--linha);
+  background:linear-gradient(0deg, var(--papel), color-mix(in srgb, var(--petroleo) 5%, var(--papel)));
+}
+.page-hero h1{ font-size:clamp(2.1rem, 5.5vw, 3.5rem); max-width:22ch; }
+.page-hero .lead{ font-size:1.04rem; margin-top:1rem; }
+.fluxo{ margin:0; }
+.fluxo svg{ width:100%; height:auto; }
+.fluxo figcaption{ font-family:var(--fonte-mono); font-size:.66rem; color:var(--cinza); margin-top:.8rem; text-align:center; }
+.regras-duas{ display:grid; gap:calc(var(--sp)*1.4); margin-top:calc(var(--sp)*1.6); }
+.regras-duas h3{ font-family:var(--fonte-display); font-weight:600; font-size:1.25rem; margin-bottom:.6rem; letter-spacing:.02em; }
+.lista-check{ list-style:none; display:grid; gap:.6rem; }
+.lista-check li{ position:relative; padding-left:1.75rem; font-size:.9rem; color:#333B40; }
+.lista-check li::before{ content:""; position:absolute; left:.1rem; top:.4rem; width:11px; height:11px; border-radius:3px; background:var(--petroleo); }
+.lista-check li:nth-child(even)::before{ background:var(--laranja); }
+.tabela-wrap{ overflow-x:auto; border:1px solid var(--linha); border-radius:var(--raio); background:var(--papel); }
+.tabela-dados{ width:100%; border-collapse:collapse; font-size:.88rem; min-width:660px; }
+.tabela-dados th{ font-family:var(--fonte-mono); font-size:.66rem; letter-spacing:.14em; color:var(--cinza); text-align:left; padding:.85rem 1rem; background:var(--nevoa); border-bottom:1px solid var(--linha); }
+.tabela-dados td{ padding:.9rem 1rem; border-bottom:1px solid var(--nevoa); vertical-align:top; color:#333B40; }
+.tabela-dados tr:last-child td{ border-bottom:none; }
+.tabela-dados .mono{ font-family:var(--fonte-mono); font-size:.8rem; font-weight:600; color:var(--petroleo); white-space:nowrap; }
+.placa-neg{ border-color:color-mix(in srgb, var(--laranja) 45%, var(--linha)); }
+.neg-caixa{ display:grid; gap:.7rem; justify-items:start; }
+.neg-caixa p{ font-size:.9rem; color:var(--cinza); }
+.neg-caixa b{ color:var(--tinta); }
+.placa-full{ grid-column:1 / -1; }
+@media (min-width:768px){
+  .regras-duas{ grid-template-columns:1fr 1fr; }
+}
