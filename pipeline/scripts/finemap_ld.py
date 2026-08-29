@@ -17,6 +17,7 @@ Cache: /tmp/stx6_rsid_map.json e /tmp/ld_*.json evitam re-consultas.
 import gzip
 import json
 import math
+import os
 import time
 import urllib.parse
 import urllib.request
@@ -33,7 +34,8 @@ REGIOES = {
     "GAL3ST1": ("22", 30_900_000, 31_000_000),
     "PRNP": ("20", 4_600_000, 4_700_000),
 }
-POP = "1000GENOMES:phase_3:ALL"
+POP = os.environ.get("LD_POP", "1000GENOMES:phase_3:ALL")
+POP_TAG = POP.split(":")[-1]   # ALL/EUR/... — sufixo de cache e relatório
 R2_CLUSTER = 0.80
 W = 0.04          # variância do prior de Wakefield sobre log(OR)
 
@@ -176,14 +178,6 @@ def main() -> None:
                 chi_bins["0.25–0.45"].append(chi)
             else:
                 chi_bins[">0.45"].append(chi)
-            if maf < 0.05:
-                chi_bins["MAF<0.05"].append(chi)
-            elif maf < 0.25:
-                chi_bins["0.05–0.25"].append(chi)
-            elif maf < 0.45:
-                chi_bins["0.25–0.45"].append(chi)
-            else:
-                chi_bins[">0.45"].append(chi)
             # amostragem p/ λ global estável (todos os GWS + 10% sistemática)
             if len(chi_all) > 2_000_000 and n_total % 10 != 0:
                 chi_all.pop()
@@ -234,7 +228,7 @@ def main() -> None:
         ld_pairs, pos_rs = {}, {}
         if lead_rs:
             try:
-                ld_pairs = ld_do_lead(lead_rs, f"ld_{reg.lower()}_{lead_rs}.json")
+                ld_pairs = ld_do_lead(lead_rs, f"ld_{POP_TAG}_{reg.lower()}_{lead_rs}.json")
             except Exception:
                 ld_pairs = []
         if not ld_pairs:
@@ -243,7 +237,7 @@ def main() -> None:
                 if not cands:
                     continue
                 try:
-                    teste = ld_do_lead(cands[0], f"ld_{reg.lower()}_{cands[0]}.json")
+                    teste = ld_do_lead(cands[0], f"ld_{POP_TAG}_{reg.lower()}_{cands[0]}.json")
                 except Exception:
                     continue
                 if teste:
@@ -330,7 +324,8 @@ def main() -> None:
           "  aqui reportamos MASSA POR CLUSTER de LD — suficiente para declarar que o",
           "  sinal é um bloco haplotípico coeso, não um mosaico de falsos independentes.",
           "- rs3747957 (índice Brain 2025): ver relatório QC; presente com p=9.7e-9."]
-    destino = REPORTS / "relatorio_finemap_loci.md"
+    destino = REPORTS / (f"relatorio_finemap_loci_{POP_TAG}.md"
+                         if POP_TAG != "ALL" else "relatorio_finemap_loci.md")
     destino.write_text("\n".join(L), encoding="utf-8")
     print(f"[ok] {destino}")
 
