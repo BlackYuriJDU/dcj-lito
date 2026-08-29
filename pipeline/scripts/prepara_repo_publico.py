@@ -97,7 +97,6 @@ def main() -> None:
         "  caso_referencia/, ARQUIVO_COMPLETO.md, zips, pipeline/data/",
         "",
         "**Pendente antes de `git push` (decisão do fundador)**:",
-        "- nome de autor real no CITATION.cff e no preprint",
         "- Zenodo DOI + bioRxiv submission",
     ]
     (DEST.parent / "SANITIZACAO.md").write_text("\n".join(relatorio))
