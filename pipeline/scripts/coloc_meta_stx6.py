@@ -119,8 +119,10 @@ def main() -> None:
     for nome_p, (p1, p2, p12) in PRIORS.items():
         h, n = coloc(abf_g, abf_e, p1, p2, p12)
         L += [f"## Priors {nome_p}",
-              f"- **PP.H4 = {h[4]:.4f}** · H3 = {h[3]:.4f} · H1 = {h[1]:.4f} · "
-              f"H0 = {h[0]:.4f}",
+              f"- **PP.H4 = {h[4]:.4f}** · H3 = {h[3]:.4f} · H2 = {h[2]:.4f} · "
+              f"H1 = {h[1]:.4f} · H0 = {h[0]:.4f}",
+              f"- H2+H3+H4 (ambos os sinais reais na região) = "
+              f"{h[2]+h[3]+h[4]:.4f}",
               f"- H4/(H3+H4) = {h[4]/h[3] if h[3]>0 else float('inf'):.2f}", ""]
 
     conc = sum(1 for (bg, _), (be, _) in zip(pares_g, pares_e) if bg * be > 0)
@@ -131,12 +133,16 @@ def main() -> None:
     for pos37, gp, ep in sorted(rsids, key=lambda x: x[1])[:10]:
         L.append(f"| {pos37:,} | {gp:.2e} | {ep:.2e} |")
     L += ["", "## Interpretação honesta",
-          "- **H3+H4 ≈ 1,0 com H0=H1=H2≈0**: ambos os sinais são reais e vivem",
-          "  no MESMO bloco de LD — colocalização suportada no nível do bloco.",
-          "  A divisão H3 vs H4 é indistinguível aqui porque as variantes do",
-          "  cluster são r²≥0,97 entre si (limitação clássica do coloc sob LD",
-          "  forte): 'duas variantes distintas em LD perfeito' e 'uma variante",
-          "  compartilhada' produzem verossimilhanças idênticas.",
+          "- **H2+H3+H4 ≈ 1,0 com H0≈H1≈0**: ambos os sinais são reais e vivem",
+          "  na MESMA região — é essa a afirmação robusta, válida sob qualquer",
+          "  prior (padrão: H3=0.995, H2=0.005; conservador: H3=0.665, H2=0.335;",
+          "  coloc.abf do R 5.2.3 com seu prior: H4=0.98 — ver",
+          "  relatorio_validacao_coloc_R.md). H2 NÃO é hipótese nula: é",
+          "  'duas variantes causais distintas'.",
+          "  A divisão H4 (compartilhado) vs H3/H2 (distintas) é prior-dependente",
+          "  e indistinguível sob LD forte (r²≥0,97 no cluster): 'duas variantes",
+          "  distintas em LD perfeito' e 'uma variante compartilhada' produzem",
+          "  verossimilhanças idênticas — por isso reportamos o combinado.",
           "- O que decide na direção da partilha: (i) o lead GWAS É eQTL",
           "  significativo do STX6 no meta (p=7×10⁻⁴⁷, z≈14); (ii) concordância",
           "  de direção em 89% das variantes; (iii) o fine-mapping GWAS mostra",

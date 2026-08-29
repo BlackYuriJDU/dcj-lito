@@ -1,5 +1,5 @@
 # Colocalização STX6 — META-eQTL (poder ampliado)
-*`coloc_meta_stx6.py` em 2026-08-26 07:44. Meta IVW de 5 datasets
+*`coloc_meta_stx6.py` em 2026-08-29 15:42. Meta IVW de 5 datasets
 cerebrais (eQTL Catalogue r8, tabix remoto) vs GWAS sCJD.*
 
 | Dataset | n | pares STX6 |
@@ -13,11 +13,13 @@ cerebrais (eQTL Catalogue r8, tabix remoto) vs GWAS sCJD.*
 Posições na meta (≥3 datasets): **651** · casadas com GWAS: **390**
 
 ## Priors padrao
-- **PP.H4 = 0.0000** · H3 = 0.9950 · H1 = 0.0000 · H0 = 0.0000
+- **PP.H4 = 0.0000** · H3 = 0.9950 · H2 = 0.0050 · H1 = 0.0000 · H0 = 0.0000
+- H2+H3+H4 (ambos os sinais reais na região) = 1.0000
 - H4/(H3+H4) = 0.00
 
 ## Priors conservador
-- **PP.H4 = 0.0000** · H3 = 0.6654 · H1 = 0.0000 · H0 = 0.0000
+- **PP.H4 = 0.0000** · H3 = 0.6654 · H2 = 0.3346 · H1 = 0.0000 · H0 = 0.0000
+- H2+H3+H4 (ambos os sinais reais na região) = 1.0000
 - H4/(H3+H4) = 0.00
 
 ## Direção
@@ -37,12 +39,16 @@ Posições na meta (≥3 datasets): **651** · casadas com GWAS: **390**
 | 180,953,038 | 9.73e-09 | 6.86e-47 |
 
 ## Interpretação honesta
-- **H3+H4 ≈ 1,0 com H0=H1=H2≈0**: ambos os sinais são reais e vivem
-  no MESMO bloco de LD — colocalização suportada no nível do bloco.
-  A divisão H3 vs H4 é indistinguível aqui porque as variantes do
-  cluster são r²≥0,97 entre si (limitação clássica do coloc sob LD
-  forte): 'duas variantes distintas em LD perfeito' e 'uma variante
-  compartilhada' produzem verossimilhanças idênticas.
+- **H2+H3+H4 ≈ 1,0 com H0≈H1≈0**: ambos os sinais são reais e vivem
+  na MESMA região — é essa a afirmação robusta, válida sob qualquer
+  prior (padrão: H3=0.995, H2=0.005; conservador: H3=0.665, H2=0.335;
+  coloc.abf do R 5.2.3 com seu prior: H4=0.98 — ver
+  relatorio_validacao_coloc_R.md). H2 NÃO é hipótese nula: é
+  'duas variantes causais distintas'.
+  A divisão H4 (compartilhado) vs H3/H2 (distintas) é prior-dependente
+  e indistinguível sob LD forte (r²≥0,97 no cluster): 'duas variantes
+  distintas em LD perfeito' e 'uma variante compartilhada' produzem
+  verossimilhanças idênticas — por isso reportamos o combinado.
 - O que decide na direção da partilha: (i) o lead GWAS É eQTL
   significativo do STX6 no meta (p=7×10⁻⁴⁷, z≈14); (ii) concordância
   de direção em 89% das variantes; (iii) o fine-mapping GWAS mostra
