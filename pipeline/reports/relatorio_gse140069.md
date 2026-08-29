@@ -1,5 +1,5 @@
 # Relatório — GSE140069 (SANGUE) — v3 com ajuste de idade/sexo/RIN
-*`analise_gse140069.py` v3 em 2026-08-24 14:29. Correções da auditoria adversarial C2/M3/M4.*
+*`analise_gse140069.py` v3 em 2026-08-29 09:40. Correções da auditoria adversarial C2/M3/M4.*
 
 - Amostras: 57 sCJD vs. 48 controles · miRNAs: 939
 - Covariáveis do series matrix: idade (casos ~66 vs. controles ~54 anos — confusão grave), sexo, RIN

@@ -23,7 +23,7 @@ a laboratórios reais de pesquisa em príons.
 | `pipeline/scripts/analise_caso_referencia.py` → `reports/relatorio_caso_referencia.md` | Validação + critérios CDC/NPDPSC sobre o caso simulado | ✅ |
 | `pipeline/scripts/analise_gse160208.py` → `reports/relatorio_gse160208.md` | Análise REAL: covariáveis + Welch/FDR + estratificação MM1 vs. VV2 | ✅ v3 |
 | `pipeline/scripts/ponte_caso_referencia.py` → `reports/relatorio_ponte_caso_referencia.md` | Tabela-ponte: cada achado do caso de referência × evidência na coorte real | ✅ |
-| `pipeline/scripts/analise_gse140069.py` → `reports/relatorio_gse140069.md` | Cross-modal REAL: miRNA SANGUE (57 sCJD vs. 48 CT) — 60 miRNAs sig. | ✅ |
+| `pipeline/scripts/analise_gse140069.py` → `reports/relatorio_gse140069.md` | Cross-modal REAL: miRNA SANGUE (57 sCJD vs. 48 CT) — 84 sig. brutos → 1 após ajuste idade/sexo/RIN; direção ↓ e núcleo nominal preservados | ✅ v3 |
 | `pipeline/scripts/gera_figuras.py` → `reports/figuras/` | Volcanos ×2, heatmap top-25, timeline do caso de referência | ✅ 4 figuras |
 | `colaboracao/centros_alvo.md` | NPDPSC, UCL, vigilância BR — contatos e estratégia | ✅ |
 | `colaboracao/carta_projeto.md` | Carta de apresentação (rascunho — não enviar sem revisão) | ✍️ |
