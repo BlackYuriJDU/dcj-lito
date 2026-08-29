@@ -183,5 +183,10 @@ reais. Todas as ideias centrais da fase final partiram dele. Registrar com honra
 - **Limpeza**: `timeline_lito.png` removido (duplicata md5-idêntica de
   timeline_caso_referencia.png, nome legado que a renomeação "Caso Referência"
   não alcançou; zero referências ativas).
+- **Citável pronto (29/08)**: autoria real "Arthur Araújo — Independent Researcher,
+  Brazil" no CITATION.cff (date-released 2026-08-29) e no preprint (draft v0.2);
+  pendência do SANITIZACAO removida do prepara_repo_publico.py; commit 4bcf2f6.
+  Obs.: commits paralelos de 29/08 09:31-09:56 (site Litho Foundation) já haviam
+  varrido o estado da auditoria para o HEAD.
 - Próximo passo natural (inalterado): fila de publicação — repo público + Zenodo
   DOI (rota_zenodo.md) + bioRxiv; decisão de envio da nota Prion Alliance.
