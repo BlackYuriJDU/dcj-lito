@@ -127,7 +127,7 @@ Finally, our cluster-level credible analysis shows the STX6 signal is one cohesi
 - Single-author independent initiative; peer review pending (bioRxiv DOI upon submission).
 
 ## 7. Data & code availability
-Sumstats GCST90001389 (GWAS Catalog); GEO GSE160208/GSE140069. Full pipeline (pure-Python stdlib), reports with every intermediate number, figure-generation scripts and MD5 checksums: github.com/BlackYuriJDU/dcj-lito (+ Zenodo DOI upon acceptance of this preprint).
+Sumstats GCST90001389 (GWAS Catalog); GEO GSE160208/GSE140069. Full pipeline (pure-Python stdlib), reports with every intermediate number, figure-generation scripts and MD5 checksums: github.com/BlackYuriJDU/dcj-lito (release v1.0.0-preprint; archived on Zenodo, DOI 10.5281/zenodo.22164910).
 
 ## 8. References
 1. Mead S. et al. *Lancet Neurol* 2020;19:793–802 (PMID 32949544).
