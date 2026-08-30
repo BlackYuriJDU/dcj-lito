@@ -1,6 +1,6 @@
 # Independent reanalysis of the largest sporadic Creutzfeldt–Jakob disease genome-wide association study confirms all published loci and refines the STX6 signal
 
-**Arthur Araújo** — Independent Researcher, Brazil
+**Arthur Araújo da Silva** — Independent Researcher, Brazil
 *Projeto DCJ - Lito (independent data-organization initiative) · Preprint draft v0.3 — 2026-08-29 — target: bioRxiv*
 
 ---

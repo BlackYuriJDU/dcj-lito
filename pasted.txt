@@ -1,0 +1,33 @@
+Li os documentos centrais — MEMORIA, a sua própria auditoria cética, os erros documentados, e os relatórios técnicos (QC do GWAS, fine-mapping, colocalização, a verificação do ION717 de 26/08). Isso muda a leitura do projeto: não é um exercício de bioinformática isolado — está entrelaçado com o caso real do Lito Sousa, e o "Jarvis" já tomou ações no mundo real (e-mails para a família, para pesquisadores do Broad e Pasteur, para o HC-USP). Vou ser direto nos dois planos.
+
+## 1. A ciência: o que é genuinamente forte
+
+**O GWAS (GCST90001389) é o seu melhor trabalho, de longe:**
+- QC independente e limpo: 6.314.492 variantes, 0 malformadas, λGC=1,059 avaliado por estrato de MAF (gradiente pequeno = inflação poligênica, não estratificação — leitura correta)
+- **Replicação independente 3/3** dos loci publicados (PRNP p=1.6e-15, STX6 p=7.5e-9, GAL3ST1 p=6.2e-10) — isso é verificação real, com valor para o campo
+- Fine-mapping com LD real (1000G) identificando cluster haplotípico coeso em STX6 (90,5% massa posterior em r²≥0,8)
+- Colocalização STX6×eQTL: você fez a coisa certa quando o resultado do primeiro dataset deu inconclusivo por poder (H4=0,000 mas honestamente rotulado "inconclusivo", não "negativo") e foi buscar mais poder num meta de 5 datasets, que resolveu (H3+H4≈1,0, p=7e-47, concordância de direção 89%). Isso é rigor de verdade, não é comum ver isso em trabalho não-institucional.
+
+Isso é publicável como réplica/reanálise. É o único artefato do projeto onde um pesquisador do campo (o próprio MRC Prion Unit, autor do GWAS) tem interesse objetivo no resultado.
+
+**O que é mais fraco** — e aqui sua própria auditoria já acertou o diagnóstico, então só reforço com detalhe técnico: as reanálises de GSE160208/GSE140069 são estatisticamente corretas mas não respondem pergunta nova (os artigos originais já mostraram isso); o painel de LD do 1000G "ALL" não é populacional-matched com a coorte do GWAS; os tamanhos amostrais de eQTL (n=272-586) são pequenos para coloc individual. Nada disso invalida o trabalho — só limita o que dá pra afirmar.
+
+## 2. O que me preocupa — não é a ciência
+
+Você escreveu uma auditoria que identifica com precisão cirúrgica os riscos: nome colidindo com pessoa real viva, carta genérica que ninguém pediu, risco de "mais um explorando a tragédia do influenciador", sequência recomendada — **renomear → pergunta do GWAS → preprint → canal Prion Alliance → só então contato direto**, e "nunca carta fria antes de publicação."
+
+Pelo MEMORIA, e-mails foram enviados para a família real (ajudalito@avioesemusicas.com), para Minikel/Vallabh no Broad, para o HC-USP, e para Chiara Zurzolo no Pasteur com uma hipótese ("alfândega intercelular") inventada na mesma sessão — antes de existir preprint, antes do canal Prion Alliance ser testado como porta de entrada. Isso é o inverso da própria sequência que você definiu como certa.
+
+Isso não é uma crítica moral — é um ponto prático: sua auditoria estava certa, e vale a pena voltar a segui-la agora, antes de mandar mais alguma coisa a mais alguém.
+
+A parte que **funcionou bem** e que eu destacaria como modelo: a verificação de 26/08 sobre o ION717/PRiSM — desmentir a informação falsa sobre "autorização da Câmara", mapear com precisão os dois ensaios reais, contatos oficiais, critérios de elegibilidade. Isso é baixo risco, alto valor, e ajuda de verdade uma família em crise sem prometer nada que você não pode entregar.
+
+Só para constar, já que foi um dia inteiro de sessão maratona em cima de uma situação pesada e real: como você está com isso? Não precisa responder se não quiser, só não quero que a pergunta passe batido.
+
+## 3. Próximo passo concreto
+
+1. **Pausa em contato externo novo** até existir preprint. Nada mais para família, pesquisadores ou gabinetes por enquanto.
+2. **Fechar o preprint do GWAS** (já tem rascunho) — é o único artefato pronto para publicação real. Rodar a colocalização/fine-mapping numa lib padrão (R `coloc`, `susieR`) como checagem cruzada do seu código próprio antes de publicar.
+3. **Depois do preprint**: único canal — Prion Alliance/cureffi, como sua auditoria recomenda. Não os outros ainda.
+4. **Continuar o tipo de contribuição que já funcionou**: monitoramento dos NCTs, checagem de desinformação, guia de família atualizado com fatos verificados — isso serve à família real sem repetir o risco do contato frio.
+5. As hipóteses especulativas (alfândega intercelular, blindagem G127V/percolação) — tratar como notas de exploração pessoal, não mandar para mais ninguém sem alguém do campo revisar antes.
