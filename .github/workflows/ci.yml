@@ -14,7 +14,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Instalar dependências leves
-        run: pip install matplotlib openpyxl pytest
+      - name: Instalar dependências
+        # scipy/statsmodels NÃO são opcionais: test_stats_core.py usa-os como
+        # oráculo de referência para welch/tcdf_p/fdr_bh/cohen_d. Sem eles o
+        # pytest importorskip e o núcleo estatístico inteiro fica sem gate.
+        run: pip install matplotlib openpyxl pytest numpy scipy statsmodels
       - name: Testes estatísticos + consistência relatório↔script↔figuras
-        run: python -m pytest tests/ -q
+        run: python -m pytest tests/ -q -rs
+      - name: Nenhum teste pode ser pulado
+        # -q esconde skips. Um skip aqui significa que um gate sumiu; falhar é
+        # mais honesto do que um build verde que não validou nada.
+        run: |
+          SKIPS=$(python -m pytest tests/ -q -rs 2>&1 | grep -c '^SKIPPED' || true)
+          if [ "$SKIPS" -ne 0 ]; then
+            echo "::error::$SKIPS teste(s) pulado(s) — gate não executou"; exit 1
+          fi

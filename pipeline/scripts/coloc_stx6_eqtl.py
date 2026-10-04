@@ -7,8 +7,24 @@ Catalogue, DLPFC n=285 e cerebelo n=272).
 
 Fonte eQTL: eQTL Catalogue r8, QTD000176 (brain_frontal_cortex) e QTD000166
 (brain_cerebellum), arquivos tabix remotos — consulta por região (não baixa
-os 3,2 GB completos). Posições eQTL em GRCh38 → convertidas para GRCh37 com
-offset -30.864 (validado por Ensembl MAP e conferência de alelos).
+os 3,2 GB completos).
+
+ATENÇÃO — conversão de coordenadas (limitação conhecida, 2026-10-04):
+posições eQTL vêm em GRCh38 e são convertidas para GRCh37 por um offset
+CONSTANTE (-30.864 bp), derivado dos limites do gene STX6. Este offset NÃO foi
+validado contra um chain file do NCBI. Um offset uniforme só é exato se não
+houver indels entre GRCh38 e GRCh37 na janela consultada. Como o mesmo offset é
+aplicado a todas as variantes, um deslocamento por variante introduzido aqui
+desloca todas as posições eQTL igualmente em relação às posições do GWAS e não
+altera quais variantes são harmonizadas em conjunto dentro do bloco — mas pode
+deslocar uma variante em relação à anotação do GWAS se o offset verdadeiro
+diferir localmente. É a maior suposição não validada da colocalização e a
+primeira coisa que uma reimplementação deve substituir por liftOver com chain
+file. Ver também coloc_meta_stx6.py, coloc_sqtl_stx6.py e
+crosscheck_coloc_R.py, que aplicam a mesma constante.
+
+O script NÃO faz conferência de alelos contra o GWAS: a harmonização limita-se
+ao filtro de compatibilidade de alelos (ver harmonicar()).
 
 Saída: pipeline/reports/relatorio_coloc_stx6.md + figura regional.
 """
