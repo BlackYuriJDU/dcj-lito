@@ -93,7 +93,7 @@ def md5(caminho: Path) -> str:
 def main() -> None:
     agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     L = [
-        "# ARQUIVO COMPLETO TOTAL — Projeto dcj-study",
+        "# ARQUIVO COMPLETO TOTAL — Projeto sCJD GWAS Reanalysis",
         "## A íntegra de tudo: contexto, dossiês, pesquisas, análises, validações,",
         "## auditorias, cartas, memória e código-fonte — num único documento",
         f"*Montado por `monta_arquivo_completo.py` em {agora}*",

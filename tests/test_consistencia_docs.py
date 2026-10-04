@@ -10,6 +10,7 @@ Text files only (tracked in git); large datasets stay out of CI by design.
 """
 import json
 import re
+import subprocess
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[1]
@@ -132,8 +133,53 @@ def test_figuras_principais_existem():
 
 
 def test_sem_figura_legada_com_nome_de_pessoa():
-    legado = FIGS / "timeline_caso_referencia.png"
-    assert not legado.exists(), "figura legada com nome de pessoa voltou ao repo"
+    """A linha do tempo de um caso real foi substituída por uma versão genérica.
+
+    O guard não hardcoda o nome da pessoa (seria reintroduzi-la no repo): ele
+    exige que a figura saneada exista e seja a ÚNICA da série timeline, de modo
+    que a versão pessoal não possa voltar sem que este teste caia.
+    """
+    series = sorted(FIGS.glob("timeline_*.png"))
+    assert [p.name for p in series] == ["timeline_caso_referencia.png"], (
+        f"série timeline deve conter só a figura saneada; encontrada: "
+        f"{[p.name for p in series]}")
+
+
+# ---------------------------------------------------------------- privacidade
+def test_nome_do_caso_ausente_do_repo():
+    """O nome do caso real não pode reaparecer em arquivo versionado.
+
+    Existe um motivo histórico: a lista de renomeação de 2026-10-04 cobriu o
+    manuscrito, CITATION.cff, LICENSE e READMEs, mas não varreu os relatórios
+    do "caso de referência" nem as linhas de proveniência — que ainda citavam
+    scripts já renomeados (`analise_caso_referencia.py`). O guard é por substantivo,
+    para pegar tanto "Caso Referência" quanto o slug antigo.
+    """
+    substantivo = re.compile(r"\bcaso_referencia\b|\bdcj ?- ?caso_referencia\b", re.I)
+    extensoes = (".md", ".cff", ".py", ".sh", ".yml", ".yaml", ".txt",
+                 ".csv", ".R", ".html", ".js", ".css", ".svg", ".json",
+                 ".gitignore", ".cff")
+    alvos = subprocess.run(
+        ["git", "ls-files"], capture_output=True, text=True,
+        encoding="utf-8", cwd=BASE).stdout.splitlines()
+    # Só texto. Binários (.pdf, .gz, .xlsx, .png, .tbi) ficam de fora: o título
+    # do PDF vai em metadata comprimida e se verifica descompactando; o resto
+    # não tem onde esconder texto legível.
+    vazamentos = []
+    for rel in alvos:
+        if not rel.endswith(extensoes):
+            continue
+        # Este próprio arquivo contém o termo (é o padrão do guard); autoexcluir.
+        if Path(rel) == Path(__file__).relative_to(BASE):
+            continue
+        try:
+            txt = (BASE / rel).read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        if substantivo.search(txt):
+            vazamentos.append(rel)
+    assert not vazamentos, (
+        f"nome do caso real reapareceu em: {vazamentos}")
 
 
 # ---------------------------------------------------------------- citável

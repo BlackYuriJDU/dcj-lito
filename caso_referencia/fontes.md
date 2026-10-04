@@ -7,7 +7,7 @@ via API Tavily (`pipeline/scripts/tavily_search.sh`), search_depth=advanced.
 - **Frontiers in Neurology 2022 — Genetic aspects of human prion diseases**
   https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.1003056/full
   → Distribuição do códon 129 na população caucasiana saudável: 51% MV, 37% MM, 12% VV;
-  homozygose sobre-representada em sCJD. Embasa escolha MM1 para o caso Caso Referência.
+  homozygose sobre-representada em sCJD. Embasa escolha MM1 para o caso Referência.
 
 ## RT-QuIC
 - **PMC6580883 — RT-QuIC: a new test for sporadic CJD** (UK NCJDRSU)

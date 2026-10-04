@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-stats_core.py — Núcleo estatístico do Projeto dcj-study.
+stats_core.py — Núcleo estatístico do projeto sCJD GWAS Reanalysis.
 
 Implementações de referência em stdlib puro (extraídas VERBATIM dos scripts de
 análise que geraram os relatórios v1). Validadas contra scipy/R em
