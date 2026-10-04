@@ -9,19 +9,23 @@ Fonte eQTL: eQTL Catalogue r8, QTD000176 (brain_frontal_cortex) e QTD000166
 (brain_cerebellum), arquivos tabix remotos — consulta por região (não baixa
 os 3,2 GB completos).
 
-ATENÇÃO — conversão de coordenadas (limitação conhecida, 2026-10-04):
+ATENÇÃO — conversão de coordenadas (verificada em 2026-10-04):
 posições eQTL vêm em GRCh38 e são convertidas para GRCh37 por um offset
-CONSTANTE (-30.864 bp), derivado dos limites do gene STX6. Este offset NÃO foi
-validado contra um chain file do NCBI. Um offset uniforme só é exato se não
-houver indels entre GRCh38 e GRCh37 na janela consultada. Como o mesmo offset é
-aplicado a todas as variantes, um deslocamento por variante introduzido aqui
-desloca todas as posições eQTL igualmente em relação às posições do GWAS e não
-altera quais variantes são harmonizadas em conjunto dentro do bloco — mas pode
-deslocar uma variante em relação à anotação do GWAS se o offset verdadeiro
-diferir localmente. É a maior suposição não validada da colocalização e a
-primeira coisa que uma reimplementação deve substituir por liftOver com chain
-file. Ver também coloc_meta_stx6.py, coloc_sqtl_stx6.py e
-crosscheck_coloc_R.py, que aplicam a mesma constante.
+CONSTANTE (-30.864 bp), derivado dos limites do gene STX6.
+
+VERIFICAÇÃO FEITA (valida_offset_grch38_grch37.py → relatório
+relatorio_validacao_offset_genomico.md): o offset foi conferido contra a API de
+assembly map do Ensembl em pontos amostrados ao longo de todo o span de STX6, e
+o deslocamento GRCh38−GRCh37 é exatamente +30.864 bp em todos eles. As variantes
+eQTL que casam com uma variante do GWAS sob a constante são as mesmas sob o
+mapeamento do serviço. Logo, para esta janela o offset é exato e o resultado da
+colocalização NÃO depende da aproximação.
+
+RESSALVA que permanece: um offset uniforme é exato apenas onde não há indel entre
+GRCh38 e GRCh37. A verificação confirma isso empiricamente para STX6, mas uma
+reimplementação deve preferir liftOver por chain file. Ver também
+coloc_meta_stx6.py, coloc_sqtl_stx6.py e crosscheck_coloc_R.py, que aplicam a
+mesma constante.
 
 O script NÃO faz conferência de alelos contra o GWAS: a harmonização limita-se
 ao filtro de compatibilidade de alelos (ver harmonicar()).
@@ -90,7 +94,15 @@ def baixar_eqtl(dataset_id, tecido, qts="QTS000015"):
         return rows
     tb = pysam.TabixFile(url)
     rows = []
-    for line in tb.fetch("1", REGIAO_B37[0] + 30_000, REGIAO_B37[1] + 32_000):
+    # A janela do tabix é em GRCh38 (o arquivo é indexado em b38) e precisa ser
+    # derivada da MESMA constante usada no join abaixo — não de um número
+    # digitado à mão. Antes eram +30_000/+32_000 literais, o que só segurava por
+    # acaso, sobre-fazendo a janela em ~0,9 kb (seguro, porém frágil: mudar a
+    # constante sem mudar o padding poderia truncar variantes em silêncio).
+    # Margem de 5 kb cobre o caso de o offset deixar de ser uniforme.
+    ini38 = REGIAO_B37[0] - OFFSET_B38_B37 - 5_000
+    fim38 = REGIAO_B37[1] - OFFSET_B38_B37 + 5_000
+    for line in tb.fetch("1", ini38, fim38):
         f = line.split("\t")
         if f[0] != STX6:
             continue

@@ -8,6 +8,7 @@ fail the build.
 
 Text files only (tracked in git); large datasets stay out of CI by design.
 """
+import json
 import re
 from pathlib import Path
 
@@ -49,15 +50,76 @@ def test_validacao_eur_existe():
     assert "90.5%" in txt, "massa STX6 (90.5%) ausente no run EUR"
 
 
-def test_offset_genomico_declarado_como_nao_validado():
-    """A conversão GRCh38→GRCh37 por offset constante é a maior suposição não
-    validada da colocalização. Os scripts NÃO podem afirmar que ela foi validada."""
-    proibido = re.compile(r"validado por Ensembl MAP", re.I)
-    for nome in ("coloc_stx6_eqtl.py", "coloc_meta_stx6.py",
-                 "coloc_sqtl_stx6.py", "crosscheck_coloc_R.py"):
-        txt = ler(f"pipeline/scripts/{nome}")
-        assert not proibido.search(txt), \
-            f"{nome} superdeclara validação do offset GRCh38→GRCh37"
+def test_offset_genomico_verificado_sem_exagero():
+    """O offset GRCh38→GRCh37 de STX6 foi medido em 2026-10-04 contra a API de
+    assembly map do Ensembl (relatorio_validacao_offset_genomico.md).
+
+    Isso torna FALSOS os dois extremos que o texto já afirmou em versões
+    diferentes: "não foi validado" (docstring de 2026-10-03) e "validado por
+    Ensembl MAP" (manuscrito, que sugeria uma validação de cadeia inexistente —
+    o parser de chain file próprio foi escrito, provado defeituoso e
+    descartado). O que é verdade hoje é estreito: verificação por assembly map,
+    sem cadeia. O gate prende os dois lados.
+    """
+    alvos = [f"pipeline/scripts/{n}" for n in
+             ("coloc_stx6_eqtl.py", "coloc_meta_stx6.py",
+              "coloc_sqtl_stx6.py", "crosscheck_coloc_R.py")]
+
+    # (1) não afirmar validação por chain/liftOver — nunca foi feita
+    for rel in alvos:
+        txt = ler(rel)
+        for padrao in (r"validad\w*.{0,60}(chain|liftOver)",
+                       r"(chain|liftOver).{0,60}validad"):
+            assert not re.search(padrao, txt, re.I), \
+                f"{rel} afirma validação por chain/liftOver, que não ocorreu"
+
+    # (2) não continuar chamando de suposição não validada — deixou de ser verdade
+    for rel in alvos:
+        txt = ler(rel)
+        assert not re.search(r"n[aã]o (foi )?validad|n[aã]o validada",
+                             txt, re.I), \
+            f"{rel} ainda chama o offset de não validado"
+
+    # (3) o manuscrito não pode superdeclarar: assembly map não é liftOver
+    ms = ler("preprint/manuscrito_preprint.md")
+    assert not re.search(r"validad\w*.{0,60}(chain|liftOver)", ms, re.I), \
+        "manuscrito afirma validação por chain/liftOver, que não ocorreu"
+
+    # (4) a medição existe e registra o veredito
+    rel = ler("pipeline/reports/relatorio_validacao_offset_genomico.md")
+    for marca in ("+30,864", "9/9", "30/30"):
+        assert marca in rel, f"marcador da validação ausente no relatório: {marca}"
+
+    # (5) o manuscrito reflete o estado verificado
+    assert "verified this offset against the Ensembl" in ms, \
+        "manuscrito não registra a verificação do offset"
+
+
+def test_cache_ensembl_consistente_com_a_constante():
+    """O cache em disco guarda pares b37→b38 do Ensembl; o script regenerate o
+    relatório a partir dele.
+
+    Bug real de 2026-10-04: o cache continha pares com delta +30.865 (um +1 a
+    mais). Como §1 calcula `p38 - p37` direto, um re-run teria reescrito o
+    veredito do relatório de "+30.864, correto" para "+30.865, incorreto" sem
+    erro, sem aviso e sem rede — o ensaio inteiro passaria. E o par errado era
+    plausível à vista: 180941860→180972725 é o mapeamento *correto* de
+    180941861, então a inspeção visual não pegaria.
+
+    O cache é descartável (o script o reconstrói); se um dia for commitado, tem
+    de concordar com a constante.
+    """
+    p = BASE / "pipeline" / "data" / "offset_ensembl_cache.json"
+    if not p.exists():
+        return                      # cache opcional; o script reconstrói
+    d = json.loads(p.read_text(encoding="utf-8"))
+    for k, v in d.items():
+        assert v is not None, f"cache Ensembl com falha em b37={k}"
+        delta = v - int(k)
+        assert delta == 30_864, (
+            f"cache Ensembl inconsistente com OFFSET_CONSTANTE: b37 {k} -> "
+            f"b38 {v} (delta {delta}, esperado 30864). Um re-run trocaria o "
+            f"veredito do relatório em silêncio.")
 
 
 # ---------------------------------------------------------------- figuras
