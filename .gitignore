@@ -3,9 +3,38 @@ pipeline/data/GCST90001389_buildGRCh37.tsv.gz
 __pycache__/
 dist/
 
-# privacidade (29/08/2026): conteúdo pessoal/local — não rastrear daqui em diante
-# (histórico anterior preservado; face pública = código, relatórios, preprint, README)
+# ---------------------------------------------------------------------------
+# PRIVACIDADE — nada abaixo pode ser rastreado (revisão 2026-10-04)
+#
+# Em 2026-10-04 uma auditoria identificou exposição pública de dados
+# identificáveis do paciente real (nome, idade, cônjuge, histórico clínico,
+# situação de ensaio clínico) e um endereço de e-mail de familiar, em arquivos
+# rastreados. O histórico público foi reescrito (git filter-repo) para removê-los.
+#
+# REGRA: este repositório publica CÓDIGO, RELATÓRIOS e PREPRINT. Nunca notas de
+# caso, contexto pessoal, rascunhos de contato ou material clínico — ainda que
+# a fonte seja imprensa pública. Fatos publicados pela imprensa, quando
+# agregados num único documento por pessoa, formam prontuário.
+# ---------------------------------------------------------------------------
+
+# Notas de caso, contexto pessoal e cartas privadas
 MEMORIA.md
 memory/
 colaboracao/
 ARQUIVO_COMPLETO.md
+research/caso_real_contexto.md
+research/ecossistema_ciencia_aberta_mapa.md
+research/verificacao_ensaios_ion717_prism_2026-08-26.md
+
+# Colados do usuário (conteúdo do usuário, nunca fazer parte do repositório)
+pasted*.txt
+pasted*.png
+pasted*.jpeg
+
+# Extratos temporários de documentos externos
+.tmp_docs/
+
+# PDFs baixados de preprint servers
+MEDRXIV-*.pdf
+MEDRXIV-*.pdf_Zone.Identifier
+bioRxiv-*.pdf
