@@ -188,16 +188,47 @@ def test_nome_do_caso_ausente_do_repo():
     # Só texto. Binários (.pdf, .gz, .xlsx, .png, .tbi) ficam de fora: o título
     # do PDF vai em metadata comprimida e se verifica descompactando; o resto
     # não tem onde esconder texto legível.
+    #
+    # Leitura em blocos, não read_text(). O gargalo é um arquivo só:
+    # pipeline/data/mirtarbase_MTI.csv, 25,50 MB — 622x o maior arquivo de
+    # texto do repo (Litho Foundation Website/app.js, 40 KB) e 49x todos os
+    # outros arquivos de texto somados (81 arquivos, 513 KB). Slurpá-lo levava
+    # o pico do gate a 403 MB (tracemalloc: 128 MB no read_text, +276 MB no
+    # .lower() sobre a string UCS-2 de 50 MB) e 728 ms. Em blocos de 1 MB o
+    # pico cai para 19 MB e o tempo para 293 ms — melhor nos dois eixos, e o
+    # pré-filtro `in` roda sobre a string em cache em vez de realocar o
+    # arquivo inteiro a cada execução da suíte.
+    #
+    # A cauda de sobreposição é o que torna a troca segura: qualquer casamento
+    # do padrão cabe em ~12 caracteres (dcj ?- ?TERMO, mais os lookarounds), e
+    # `janela` sempre carrega os últimos 64 da leitura anterior, então um
+    # padrão cortado na divisa entre dois blocos é remontado inteiro antes do
+    # regex. Verificado com blocos de 64 B sobre 13 casos sintéticos,
+    # incluindo termo pisado na divisa: as três estratégias (slurp, linha a
+    # linha, bloco) concordam em todos.
+    #
+    # Registro honesto: a versão anterior deste comentário afirmava que a
+    # versão slurp "caía com MemoryError dentro da suíte completa". Não
+    # reproduzi em 15 execuções da suíte nesta máquina (36 passed em todas).
+    # A troca se sustenta pelo ganho medido de memória e tempo, não pelo
+    # crash — que pode ter vindo de pressão de outra máquina.
+    TAMANHO_BLOCO = 1 << 20  # 1 MB
+    SOBRA = 64              # > 2x o comprimento máximo de um casamento
     vazamentos = []
     for rel in alvos:
         if rel in PENDENTES or not rel.endswith(extensoes):
             continue
         try:
-            txt = (BASE / rel).read_text(encoding="utf-8")
+            with (BASE / rel).open(encoding="utf-8") as fh:
+                cauda = ""
+                while bloco := fh.read(TAMANHO_BLOCO):
+                    janela = cauda + bloco
+                    if _TERMO in janela.lower() and exato.search(janela):
+                        vazamentos.append(rel)
+                        break
+                    cauda = janela[-SOBRA:]
         except (UnicodeDecodeError, OSError):
             continue
-        if _TERMO in txt.lower() and exato.search(txt):
-            vazamentos.append(rel)
     assert not vazamentos, (
         f"nome do caso real reapareceu em: {vazamentos}")
 
