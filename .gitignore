@@ -26,6 +26,12 @@ research/caso_real_contexto.md
 research/ecossistema_ciencia_aberta_mapa.md
 research/verificacao_ensaios_ion717_prism_2026-08-26.md
 
+# Montador do dossie privado (2026-10-05): o script em si e util, mas seu
+# manifesto lista os arquivos privados que ele concatena, entre eles uma carta
+# dirigida ao paciente real. Fica no disco, fora do versionamento — igual aos
+# arquivos que ele monta.
+pipeline/scripts/monta_arquivo_completo.py
+
 # Colados do usuário (conteúdo do usuário, nunca fazer parte do repositório)
 pasted*.txt
 pasted*.png

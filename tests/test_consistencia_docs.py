@@ -153,12 +153,12 @@ def test_sem_figura_legada_com_nome_de_pessoa():
 # isento nomeando-se).
 _TERMO = "li" + "to"
 
-# Fila única, resolvida por caminho — não por conteúdo. `monta_arquivo_completo.py`
-# monta o DOSSIÊ PRIVADO e seu manifesto ainda nomeia uma carta dirigida ao
-# paciente real. Des rastrá-lo quebraria o alvo `make arquivo-completo` e a
-# instrução equivalente no README, então a decisão é do maintainer. Está aqui,
-# nomeado e visível, em vez de silenciosamente ignorado.
-PENDENTES = {"pipeline/scripts/monta_arquivo_completo.py"}
+# Fila única, resolvida por caminho — não por conteúdo. 2026-10-05: o montador
+# do dossiê privado saiu do versionamento (ver .gitignore), então a fila está
+# vazia. Ela existe para o gate não precisar de autoexclusão: um arquivo nunca
+# se declara isento pelo próprio nome, e qualquer exclusão futura fica escrita
+# aqui, visível em review.
+PENDENTES: set[str] = set()
 
 
 def test_nome_do_caso_ausente_do_repo():
@@ -200,6 +200,24 @@ def test_nome_do_caso_ausente_do_repo():
             vazamentos.append(rel)
     assert not vazamentos, (
         f"nome do caso real reapareceu em: {vazamentos}")
+
+
+def test_nada_rastreado_esta_no_gitignore():
+    """Um arquivo não pode estar versionado E ignorado ao mesmo tempo.
+
+    A intuição é "gitignore protege", e aí está o problema: se o arquivo já
+    está rastreado, o .gitignore não age sobre ele e o repo segue publicando
+    o conteúdo. Foi assim com o montador do dossiê privado — entrou no
+    .gitignore em 2026-10-05 e continuou no índice até `git rm --cached`.
+
+    Por isso o gate compara as duas listas em vez de confiar no .gitignore.
+    """
+    ignorados = subprocess.run(
+        ["git", "ls-files", "--ignored", "--exclude-standard", "--cached"],
+        capture_output=True, text=True, encoding="utf-8", cwd=BASE).stdout
+    vazando = sorted(p for p in ignorados.splitlines() if p.strip())
+    assert not vazando, (
+        f"versionados mas ignorados (o .gitignore não protege estes): {vazando}")
 
 
 # ---------------------------------------------------------------- citável

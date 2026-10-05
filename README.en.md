@@ -40,7 +40,6 @@ python3 pipeline/scripts/finemap_ld.py              # LD fine-mapping + λ strat
 python3 pipeline/scripts/analise_gse160208.py       # brain expression
 python3 pipeline/scripts/analise_gse140069.py       # blood miRNA (adjusted model)
 python3 pipeline/scripts/gera_figuras.py            # figures
-python3 pipeline/scripts/monta_arquivo_completo.py  # rebuild the master file
 ```
 
 Statistics implemented from first principles (Welch t-test, Benjamini–Hochberg FDR,
