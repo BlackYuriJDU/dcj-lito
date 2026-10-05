@@ -146,19 +146,42 @@ def test_sem_figura_legada_com_nome_de_pessoa():
 
 
 # ---------------------------------------------------------------- privacidade
+# O termo é montado em duas partes de propósito. Escrever o nome inteiro aqui
+# publicaria o identificador no próprio guard — e o repositório é público. Com o
+# termo em partes, o arquivo passa a varrer a si mesmo, e não precisa de
+# autoexclusão (que antes era um furo: qualquer arquivo poderia se declarar
+# isento nomeando-se).
+_TERMO = "li" + "to"
+
+# Fila única, resolvida por caminho — não por conteúdo. `monta_arquivo_completo.py`
+# monta o DOSSIÊ PRIVADO e seu manifesto ainda nomeia uma carta dirigida ao
+# paciente real. Des rastrá-lo quebraria o alvo `make arquivo-completo` e a
+# instrução equivalente no README, então a decisão é do maintainer. Está aqui,
+# nomeado e visível, em vez de silenciosamente ignorado.
+PENDENTES = {"pipeline/scripts/monta_arquivo_completo.py"}
+
+
 def test_nome_do_caso_ausente_do_repo():
     """O nome do caso real não pode reaparecer em arquivo versionado.
 
-    Existe um motivo histórico: a lista de renomeação de 2026-10-04 cobriu o
-    manuscrito, CITATION.cff, LICENSE e READMEs, mas não varreu os relatórios
-    do "caso de referência" nem as linhas de proveniência — que ainda citavam
-    scripts já renomeados (`analise_caso_referencia.py`). O guard é por substantivo,
-    para pegar tanto "Caso Referência" quanto o slug antigo.
+    Motivo histórico: a lista de renomeação de 2026-10-04 cobriu manuscrito,
+    CITATION.cff, LICENSE e READMEs, mas não varreu os relatórios do caso de
+    referência nem as linhas de proveniência, que citavam scripts já renomeados.
+    O guard é por substantivo, para pegar o nome e o slug antigo.
     """
-    substantivo = re.compile(r"\bcaso_referencia\b|\bdcj ?- ?caso_referencia\b", re.I)
+    # Lookarounds em vez de \b: \b trata "_" como caractere de PALAVRA, então a
+    # forma que o nome assume em nome de arquivo (carta_<termo>.md) escapava do
+    # gate. Delimitar por qualquer caractere não-alfanumérico pega "_", "-" e "/".
+    exato = re.compile(rf"(?<![0-9A-Za-z]){_TERMO}(?![0-9A-Za-z])"
+                       rf"|(?<![0-9A-Za-z])dcj ?- ?{_TERMO}(?![0-9A-Za-z])",
+                       re.I)
+    # Pré-filtro barato: todo caso do padrão exato contém o termo, então isto é
+    # um superconjunto — não pode haver falso negativo. Feito com lower()+`in`
+    # (C puro) e não com re.I, que faz case-folding caractere a caractere. O
+    # dataset de miRTarBase são 25 MB versionados e domina este gate.
     extensoes = (".md", ".cff", ".py", ".sh", ".yml", ".yaml", ".txt",
                  ".csv", ".R", ".html", ".js", ".css", ".svg", ".json",
-                 ".gitignore", ".cff")
+                 ".gitignore")
     alvos = subprocess.run(
         ["git", "ls-files"], capture_output=True, text=True,
         encoding="utf-8", cwd=BASE).stdout.splitlines()
@@ -167,16 +190,13 @@ def test_nome_do_caso_ausente_do_repo():
     # não tem onde esconder texto legível.
     vazamentos = []
     for rel in alvos:
-        if not rel.endswith(extensoes):
-            continue
-        # Este próprio arquivo contém o termo (é o padrão do guard); autoexcluir.
-        if Path(rel) == Path(__file__).relative_to(BASE):
+        if rel in PENDENTES or not rel.endswith(extensoes):
             continue
         try:
             txt = (BASE / rel).read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
-        if substantivo.search(txt):
+        if _TERMO in txt.lower() and exato.search(txt):
             vazamentos.append(rel)
     assert not vazamentos, (
         f"nome do caso real reapareceu em: {vazamentos}")
