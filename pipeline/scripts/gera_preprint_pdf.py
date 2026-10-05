@@ -93,7 +93,7 @@ def main():
     doc = SimpleDocTemplate(str(DST), pagesize=A4,
                             leftMargin=2 * cm, rightMargin=2 * cm,
                             topMargin=2 * cm, bottomMargin=2 * cm,
-                            title="sCJD GWAS Reanalysis preprint v0.4")
+                            title="dcj-study preprint v0.4")
     story, pbuf, tabbuf = [], [], []
 
     def flush_para():

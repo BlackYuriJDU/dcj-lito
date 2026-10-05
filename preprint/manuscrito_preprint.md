@@ -276,7 +276,7 @@ small-RNA-seq), both from the NCBI Gene Expression Omnibus.
 
 ## 8. Code availability
 All analysis code, reports containing every intermediate number, figure-generation scripts and
-input checksums are version-controlled at https://github.com/BlackYuriJDU/sCJD-GWAS-reanalysis
+input checksums are version-controlled at https://github.com/BlackYuriJDU/dcj-study
 (release `v1.0.0-preprint-clean`; archived on Zenodo). The inferential statistics — approximate
 Bayes factors, t and F distributions, Benjamini–Hochberg FDR, Welch's test, ordinary least squares
 — are implemented from first principles and cross-validated against R anchors (`coloc.abf`

@@ -1,4 +1,4 @@
-# sCJD GWAS Reanalysis — Independent verification of prion-disease data
+# dcj-study — Independent verification of prion-disease data
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164910.svg)](https://doi.org/10.5281/zenodo.22164910)
 

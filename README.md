@@ -1,4 +1,4 @@
-# sCJD GWAS Reanalysis — Projeto de Pesquisa Simulada
+# dcj-study — Projeto de Pesquisa Simulada
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164910.svg)](https://doi.org/10.5281/zenodo.22164910)
 
