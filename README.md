@@ -1,6 +1,6 @@
 # dcj-study — Projeto de Pesquisa Simulada
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164910.svg)](https://doi.org/10.5281/zenodo.22164910)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164909.svg)](https://doi.org/10.5281/zenodo.22164909)
 
 > Simulação de pesquisa sobre **Doença de Creutzfeldt-Jakob esporádica (DCJ)**,
 > centrada no caso fictício **"Caso Referência"**, usando apenas dados públicos reais

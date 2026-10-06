@@ -254,16 +254,42 @@ def test_nada_rastreado_esta_no_gitignore():
 # ---------------------------------------------------------------- citável
 def test_citation_tem_doi_e_autor():
     txt = ler("CITATION.cff")
-    assert "10.5281/zenodo.22164910" in txt, "DOI ausente no CITATION.cff"
+    assert "10.5281/zenodo.23173672" in txt, "DOI ausente no CITATION.cff"
     assert "Araújo" in txt and "Arthur" in txt
 
 
 def test_readme_badge_doi():
     for readme in ("README.md", "README.en.md"):
         txt = ler(readme)
-        assert "zenodo.22164910" in txt, f"badge DOI ausente em {readme}"
+        assert "zenodo.22164909" in txt, f"badge DOI ausente em {readme}"
     assert not re.search(r"60 miRNAs sig\b", ler("README.md")), \
         "número v1 (60 miRNAs sig) voltou ao README"
+
+
+def test_doi_contaminado_nao_e_anunciado():
+    """10.5281/zenodo.22164910 é a versão do Zenodo de 2026-08-29, anterior à
+    limpeza de privacidade. O arquivo que ela serve tem 17 arquivos com o
+    identificador do caso real, entre eles o dossiê clínico e o contexto do
+    paciente.
+
+    A causa foi de encadeamento, não de conteúdo: em 2026-10-04 a release foi
+    re-cortada sob um tag novo, o que não fez o Zenodo mintir versão nova, e os
+    badges continuaram anunciando o registro antigo. O repositório inteiro
+    estava limpo enquanto as superfícies citáveis mandavam o leitor para o
+    arquivo sujo — o vazamento que importa é o que continua resolvível.
+
+    O gate é sobre o DOI errado, não sobre o certo: vigiar apenas que o DOI
+    válido está presente não impede uma linha desatenta de apontar para o
+    antigo, que é exatamente o que aconteceu.
+    """
+    contaminado = "22164910"
+    for rel in ("CITATION.cff", "README.md", "README.en.md",
+                "preprint/manuscrito_preprint.md",
+                "Litho Foundation Website/index.html",
+                "Litho Foundation Website/dados.html"):
+        assert contaminado not in ler(rel), (
+            f"{rel} anuncia o DOI contaminado (10.5281/zenodo.{contaminado}) "
+            f"— resolve para o arquivo anterior à limpeza de privacidade")
 
 
 # ------------------------------------------------- integridade científica

@@ -1,6 +1,6 @@
 # dcj-study — Independent verification of prion-disease data
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164910.svg)](https://doi.org/10.5281/zenodo.22164910)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22164909.svg)](https://doi.org/10.5281/zenodo.22164909)
 
 Open reanalysis of publicly deposited sporadic Creutzfeldt–Jakob disease (sCJD) datasets, run by a non-laboratory independent initiative in Brazil. **Everything here is reproducible from standard-library Python.**
 
